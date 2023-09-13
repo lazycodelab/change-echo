@@ -1,0 +1,67 @@
+.form-control .input{
+    border-radius: unset;
+}
+
+.customer-form {
+    margin-block-start: 4.5rem;
+    margin-block-end: 4.5rem;
+}
+
+.shopify-section--main-customers-login , .shopify-section--main-customers-register{
+    background: #F2F2F2 !important;
+}
+
+#create_customer .text-subdued , #customer_login .text-subdued , #recover .text-subdued{
+    color: #818181;    
+    font-size: 18px;
+}
+.forgot-pswd-font{
+    font-weight: 500 !important;
+}
+.have_an_account a.link.text-subdued, 
+.back_to_login a.link.text-subdued{
+    font-weight: 800 !important;
+    text-transform: uppercase;
+}
+#customer_login .button.button--xl.button--secondary, 
+#recover .button.button--xl.button--secondary,
+#create_customer .button.button--xl.button--secondary{
+    text-transform: uppercase;
+    background: #E4B752 !important;
+}
+
+.shopify-section--main-customers-register .customer-form__box-inner .h2 , .shopify-section--main-customers-login .h2{
+    font-size: 36px;
+}
+
+.forgot-pswd-font{
+    font-size: 16px !important;
+}
+
+@media(min-width:520px){
+    .customer-form__box {
+        padding: 80px 126px;
+    }
+    .button--xl{
+        font-size: 20px !important;
+    }
+}
+
+@media(max-width:520px){
+    .customer-form {
+        margin-block-start: 0.7rem;
+        margin-block-end: 1rem;
+    }
+    .shopify-section--main-customers-register .customer-form__box-inner .h2 , .shopify-section--main-customers-login .h2{
+        font-size: 20px;
+    }
+    #create_customer .text-subdued , #customer_login .text-subdued , #recover .text-subdued{
+        font-size: 16px;
+    }
+    .customer-form__box {
+        padding: 32px 16px 235px;
+    }
+    .forgot-pswd-font{
+        font-size: 12px !important;
+    }
+}

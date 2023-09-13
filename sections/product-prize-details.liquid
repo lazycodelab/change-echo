@@ -1,0 +1,72 @@
+{{'product-prize.css' | asset_url | stylesheet_tag }}
+
+{% assign data = product.metafields.custom.product_prize_content.value %}
+
+{% assign features  = data.features.value %}
+{% assign block_size = features | split: ','  | size%}
+{% unless block_size == 0 %}
+<div class="product__prize-details prize-details">
+    <div class="prize-details__text-content">
+      <div class="prize-details__text-content-container">
+        <p class="prize-details__eyebrow">Prize details</p>
+        <h1 class="prize-details__heading">{{product.title}}</h1>
+        <h1 class="prize-details__description">{{data.description}}</h1>
+      </div>
+    </div>
+    <div class="prize-details__content-flex-wrap" data-load-parent>
+      <div class="prize-details__content-wrapper" data-load-container>
+        <div class="prize-details__content-wrapper-container" data-load-hidden-container>
+            {% for feature in features %}
+              <div class="prize-details__content">
+                  <p class="prize-details__content-heading">{{feature.heading}}</p>
+                  <p class="prize-details__content-text">{{feature.description}}</p>
+              </div>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="prize-details__load-more " data-load-more>
+        <div class="container-custom load-more">
+          <span class="load-more__text" data-load-text>View all</span>
+          <span class="load-more__icon" data-load-icon>{% render 'icon-chevron-down' %}</span>
+        </div>
+      </div>
+    </div>
+</div>
+{% endunless %}
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const loadMore = document.querySelector('[data-load-more]');
+  const content = document.querySelector('[data-load-container]');
+  const contentWrapper = document.querySelector('[data-load-hidden-container]');
+  const currentMaxHeight = content.clientHeight - 14;
+  const originalMaxHeight = contentWrapper.clientHeight;
+  if(loadMore) {
+    loadMore.addEventListener('click', () => {
+      const contentWrap  = loadMore.closest('[data-load-parent]');
+      const contentText = contentWrap.querySelector('[data-load-text]');
+      contentWrap.classList.toggle('active');
+      if(contentWrap.classList.contains('active')) {
+        content.style.maxHeight = `${originalMaxHeight}px`;
+        contentText.innerHTML = "View less"
+      }
+      else {
+        content.style.maxHeight = `${currentMaxHeight}px`;
+        contentText.innerHTML = "View all"
+      }
+    });
+  }
+})
+
+</script>
+
+{% schema %}
+ {
+   "name": "Product Prize Details",
+   "presets": [
+     {
+       "name": "Product Prize details"
+     }
+   ]
+  }
+{% endschema %}

@@ -1,0 +1,44 @@
+.shopify-section--text-with-icons .text-with-icons .text-with-icons__list .text-with-icons__text-wrapper .prose p{
+    font-size: 10px;
+    margin-bottom: 12px;
+    font-weight: 400;
+    color: #000;
+}
+.shopify-section--text-with-icons .text-with-icons{
+    display: block;
+}
+.shopify-section--text-with-icons .text-with-icons .text-with-icons__list .text-with-icons__text-wrapper .prose h4{
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+    color: #000;
+}
+.text-with-icons .page-dots{
+    display: none;
+}
+
+@media(min-width: 768px){
+    .shopify-section--text-with-icons .text-with-icons .text-with-icons__list .text-with-icons__text-wrapper .prose h4{
+        font-size: 20px;
+    }
+}
+@media(max-width: 1199px){
+    .text-with-icons__list{
+        grid-template-columns: repeat(4, 1fr);
+        padding-inline-start: var(--spacing-4);
+        padding-inline-end: var(--spacing-4);
+        gap:10px;
+    }
+    .text-with-icons__list .text-with-icons__item{
+        padding: 0;
+    }
+}
+@media(min-width:1200px){
+    .shopify-section--text-with-icons .text-with-icons .text-with-icons__list .text-with-icons__text-wrapper .prose h4{
+        font-size: 26px;
+    }
+    .shopify-section--text-with-icons .text-with-icons .text-with-icons__list .text-with-icons__text-wrapper .prose p{
+        font-size: 18px;
+    }
+}
