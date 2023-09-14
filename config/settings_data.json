@@ -1,1 +1,337 @@
-{"current":{"page_width":1440,"section_vertical_spacing":"small","button_border_radius":0,"input_border_radius":8,"block_border_radius":0,"block_shadow_opacity":10,"block_shadow_vertical_offset":18,"block_shadow_blur":50,"background":"#ffffff","text_color":"#000000","header_background":"#ffffff","header_text_color":"#1a1a1a","footer_background":"#ffffff","footer_text_color":"#000000","primary_button_background":"#000000","primary_button_text_color":"#ffffff","secondary_button_background":"#e4b752","secondary_button_text_color":"#000000","product_card_text_color":"#000000","product_primary_badge_background":"#803cee","heading_font":"neue_haas_unica_n7","heading_font_size":"medium","heading_text_transform":"normal","heading_letter_spacing":-2,"text_font":"neue_haas_unica_n4","text_font_size_desktop":16,"show_page_transition":true,"zoom_image_on_hover":false,"heading_apparition":"none","show_secondary_image":false,"show_quick_buy":false,"show_product_rating":false,"product_color_display":"hide","product_image_aspect_ratio":"short_crop","product_info_alignment":"start","cart_type":"drawer","cart_icon":"design-bag","social_facebook":"https:\/\/m.facebook.com\/highlifecompetitions","social_twitter":"","social_threads":"https:\/\/www.threads.net\/@highlifecomps","social_instagram":"https:\/\/www.instagram.com\/highlifecomps","favicon":"shopify:\/\/shop_images\/Untitled_design_e93bd593-e5bc-4be5-bcda-1461ea58b38c.png","checkout_logo_image":"shopify:\/\/shop_images\/highlife_competitions_file.png","checkout_logo_position":"center","checkout_logo_size":"large","checkout_accent_color":"#e4b752","checkout_button_color":"#e4b752","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message":{"type":"message","settings":{"text":"Announce something here","url":""}}},"block_order":["message"],"settings":{"enable_sticky":false,"text_size":"text-xs","navigation_mode":"scrolling","scrolling_speed":10,"background":"#1a1a1a","background_gradient":"","text_color":"#ffffff"}},"header":{"type":"header","blocks":{"36fa66a3-7c9a-4d44-8257-c52a15302a00":{"type":"mega_menu","settings":{"menu_item":"shop","layout":"horizontal","submenu_style":"bold_heading","image_1":"shopify:\/\/shop_images\/sowden-collection-1200x1200.webp","image_heading_1":"","image_link_1":"","image_text_color_1":"#ffffff","image_2":"shopify:\/\/shop_images\/office-1200x1200.png","image_heading_2":"","image_link_2":"","image_text_color_2":"#ffffff","image_heading_3":"","image_link_3":"","image_text_color_3":"#ffffff","product":"","product_card_background":"","product_card_text_color":"","promo_content_layout":"grid","stretch_promo":false,"drawer_link_image":"hide"}},"14553d79-f9b7-45fd-9724-4815c78cb117":{"type":"mega_menu","settings":{"menu_item":"Inspiration","layout":"horizontal","submenu_style":"bold_heading","image_heading_1":"","image_link_1":"","image_text_color_1":"#ffffff","image_heading_2":"","image_link_2":"","image_text_color_2":"#ffffff","image_heading_3":"","image_link_3":"","image_text_color_3":"#ffffff","product":"","product_card_background":"","product_card_text_color":"","promo_content_layout":"grid","stretch_promo":false,"drawer_link_image":"hide"}},"62474af5-38fb-413f-8134-eb8dc3294b5e":{"type":"mega_menu","disabled":true,"settings":{"menu_item":"","layout":"horizontal","submenu_style":"bold_heading","image_heading_1":"","image_link_1":"","image_text_color_1":"#ffffff","image_heading_2":"","image_link_2":"","image_text_color_2":"#ffffff","image_heading_3":"","image_link_3":"","image_text_color_3":"#ffffff","product":"","product_card_background":"","product_card_text_color":"","promo_content_layout":"grid","stretch_promo":false,"drawer_link_image":"hide"}}},"block_order":["36fa66a3-7c9a-4d44-8257-c52a15302a00","14553d79-f9b7-45fd-9724-4815c78cb117","62474af5-38fb-413f-8134-eb8dc3294b5e"],"settings":{"enable_sticky":false,"hide_on_scroll":false,"logo":"{{shop.brand.logo}}","logo_max_width":120,"logo_mobile_max_width":100,"menu":"main-menu","sidebar_menu":"","secondary_menu":"","menu_open_trigger":"click","opening_from":"bottom","layout":"logo_left_navigation_center","show_social_media":true,"show_locale_selector":true,"show_country_selector":true,"show_country_flag":true,"show_country_name":false,"transparent_header_text_color":"#ffffff","reduce_padding":false,"background_opacity":100,"background_blur_radius":0}},"cart-drawer":{"type":"cart-drawer","settings":{"show_cart_note":true,"show_shipping_text":true,"show_checkout_button":true,"recommendations_title":"Trending this month","products":[],"product_card_background":"#ffffff","product_card_text_color":""}},"search-drawer":{"type":"search-drawer","settings":{"full_width":true,"show_article_category":true,"search_menu":"","search_menu_show_title":true}},"footer":{"type":"footer","blocks":{"newsletter":{"type":"newsletter","settings":{"image":"{{shop.brand.logo}}","image_width":150,"heading_size":"h3","title":"Sign up for new stories and personal offers","content":""}},"links":{"type":"links","settings":{"menu":"footer","show_menu_title":true}},"text":{"type":"text","settings":{"title":"About","content":"<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.<\/p>"}}},"block_order":["newsletter","links","text"],"settings":{"show_social_media":true,"show_payment_icons":true,"show_country_selector":true,"show_country_flag":true,"show_country_name":true,"show_locale_selector":true}}},"content_for_index":[]},"presets":{"Sound":{"section_vertical_spacing":"medium","button_border_radius":60,"input_border_radius":8,"block_border_radius":24,"block_shadow_opacity":10,"block_shadow_vertical_offset":18,"background":"#f0f0f0","text_color":"#1a1a1a","header_background":"#f0f0f0","header_text_color":"#1a1a1a","footer_background":"#ffffff","footer_text_color":"#1a1a1a","primary_button_background":"#1a1a1a","primary_button_text_color":"#ffffff","secondary_button_background":"#f0c417","secondary_button_text_color":"#1a1a1a","product_card_text_color":"#1a1a1a","product_primary_badge_background":"#803cee","heading_font":"din_next_n7","heading_font_size":"large","heading_letter_spacing":-2,"text_font":"din_next_n4","show_page_transition":true,"cart_icon":"shopping_basket","heading_apparition":"split_fade","product_color_display":"swatch","product_info_alignment":"start","checkout_accent_color":"#f0c417","checkout_button_color":"#1a1a1a"},"Home":{"section_vertical_spacing":"medium","section_boxed_horizontal_spacing":"large","button_hover_effect":"reverse","background":"#ffffff","text_color":"#272727","success_color":"#708a5c","warning_color":"#e37e16","error_color":"#aa2826","header_background":"#ffffff","header_text_color":"#272727","footer_background":"#f2f2f2","footer_text_color":"#272727","primary_button_background":"#272727","primary_button_text_color":"#ffffff","secondary_button_background":"#3c619e","secondary_button_text_color":"#ffffff","product_card_text_color":"#272727","product_on_sale_accent":"#e34f4f","product_sold_out_badge_background":"#bebdb9","product_primary_badge_background":"#3c619e","heading_font":"futura_n7","heading_font_size":"large","heading_text_transform":"normal","heading_letter_spacing":-1,"text_font":"futura_n4","cart_icon":"shopping_basket","heading_apparition":"split_rotation","color_swatch_style":"rectangle","product_color_display":"swatch","cart_type":"drawer","checkout_body_background_color":"#f2f2f2","checkout_sidebar_background_color":"#ffffff","checkout_accent_color":"#3c619e","checkout_button_color":"#3c619e"},"Shape":{"page_width":1440,"section_vertical_spacing":"small","section_boxed_horizontal_spacing":"medium","button_border_radius":60,"input_border_radius":8,"block_border_radius":20,"icon_stroke_width":1.5,"button_style":"fill","button_hover_effect":"reverse","text_color":"#2a555a","header_background":"#ffffff","header_text_color":"#2a555a","footer_background":"#f7f7f7","footer_text_color":"#2a555a","primary_button_background":"#2a555a","primary_button_text_color":"#ffffff","secondary_button_background":"#d9967e","product_card_text_color":"#2a555a","cart_icon":"tote_bag","heading_font":"itc_berkeley_old_style_n4","heading_font_size":"large","heading_text_transform":"normal","heading_letter_spacing":-1,"text_font":"muli_n4","text_font_size_desktop":15,"product_color_display":"swatch","product_info_alignment":"center"}}}
+{
+	"current": {
+		"page_width": 1440,
+		"section_vertical_spacing": "small",
+		"button_border_radius": 0,
+		"input_border_radius": 8,
+		"block_border_radius": 0,
+		"block_shadow_opacity": 10,
+		"block_shadow_vertical_offset": 18,
+		"block_shadow_blur": 50,
+		"background": "#ffffff",
+		"text_color": "#000000",
+		"header_background": "#ffffff",
+		"header_text_color": "#1a1a1a",
+		"footer_background": "#ffffff",
+		"footer_text_color": "#000000",
+		"primary_button_background": "#000000",
+		"primary_button_text_color": "#ffffff",
+		"secondary_button_background": "#e4b752",
+		"secondary_button_text_color": "#000000",
+		"product_card_text_color": "#000000",
+		"product_primary_badge_background": "#803cee",
+		"heading_font": "neue_haas_unica_n7",
+		"heading_font_size": "medium",
+		"heading_text_transform": "normal",
+		"heading_letter_spacing": -2,
+		"text_font": "neue_haas_unica_n4",
+		"text_font_size_desktop": 16,
+		"show_page_transition": true,
+		"zoom_image_on_hover": false,
+		"heading_apparition": "none",
+		"show_secondary_image": false,
+		"show_quick_buy": false,
+		"show_product_rating": false,
+		"product_color_display": "hide",
+		"product_image_aspect_ratio": "short_crop",
+		"product_info_alignment": "start",
+		"cart_type": "drawer",
+		"cart_icon": "design-bag",
+		"social_facebook": "https://m.facebook.com/highlifecompetitions",
+		"social_twitter": "",
+		"social_threads": "https://www.threads.net/@highlifecomps",
+		"social_instagram": "https://www.instagram.com/highlifecomps",
+		"favicon": "shopify://shop_images/Untitled_design_e93bd593-e5bc-4be5-bcda-1461ea58b38c.png",
+		"checkout_logo_image": "shopify://shop_images/highlife_competitions_file.png",
+		"checkout_logo_position": "center",
+		"checkout_logo_size": "large",
+		"checkout_accent_color": "#e4b752",
+		"checkout_button_color": "#e4b752",
+		"sections": {
+			"announcement-bar": {
+				"type": "announcement-bar",
+				"blocks": {
+					"message": {
+						"type": "message",
+						"settings": {
+							"text": "Announce something here",
+							"url": ""
+						}
+					}
+				},
+				"block_order": ["message"],
+				"settings": {
+					"enable_sticky": false,
+					"text_size": "text-xs",
+					"navigation_mode": "scrolling",
+					"scrolling_speed": 10,
+					"background": "#1a1a1a",
+					"background_gradient": "",
+					"text_color": "#ffffff"
+				}
+			},
+			"header": {
+				"type": "header",
+				"blocks": {
+					"36fa66a3-7c9a-4d44-8257-c52a15302a00": {
+						"type": "mega_menu",
+						"settings": {
+							"menu_item": "shop",
+							"layout": "horizontal",
+							"submenu_style": "bold_heading",
+							"image_1": "shopify://shop_images/sowden-collection-1200x1200.webp",
+							"image_heading_1": "",
+							"image_link_1": "",
+							"image_text_color_1": "#ffffff",
+							"image_2": "shopify://shop_images/office-1200x1200.png",
+							"image_heading_2": "",
+							"image_link_2": "",
+							"image_text_color_2": "#ffffff",
+							"image_heading_3": "",
+							"image_link_3": "",
+							"image_text_color_3": "#ffffff",
+							"product": "",
+							"product_card_background": "",
+							"product_card_text_color": "",
+							"promo_content_layout": "grid",
+							"stretch_promo": false,
+							"drawer_link_image": "hide"
+						}
+					},
+					"14553d79-f9b7-45fd-9724-4815c78cb117": {
+						"type": "mega_menu",
+						"settings": {
+							"menu_item": "Inspiration",
+							"layout": "horizontal",
+							"submenu_style": "bold_heading",
+							"image_heading_1": "",
+							"image_link_1": "",
+							"image_text_color_1": "#ffffff",
+							"image_heading_2": "",
+							"image_link_2": "",
+							"image_text_color_2": "#ffffff",
+							"image_heading_3": "",
+							"image_link_3": "",
+							"image_text_color_3": "#ffffff",
+							"product": "",
+							"product_card_background": "",
+							"product_card_text_color": "",
+							"promo_content_layout": "grid",
+							"stretch_promo": false,
+							"drawer_link_image": "hide"
+						}
+					},
+					"62474af5-38fb-413f-8134-eb8dc3294b5e": {
+						"type": "mega_menu",
+						"disabled": true,
+						"settings": {
+							"menu_item": "",
+							"layout": "horizontal",
+							"submenu_style": "bold_heading",
+							"image_heading_1": "",
+							"image_link_1": "",
+							"image_text_color_1": "#ffffff",
+							"image_heading_2": "",
+							"image_link_2": "",
+							"image_text_color_2": "#ffffff",
+							"image_heading_3": "",
+							"image_link_3": "",
+							"image_text_color_3": "#ffffff",
+							"product": "",
+							"product_card_background": "",
+							"product_card_text_color": "",
+							"promo_content_layout": "grid",
+							"stretch_promo": false,
+							"drawer_link_image": "hide"
+						}
+					}
+				},
+				"block_order": [
+					"36fa66a3-7c9a-4d44-8257-c52a15302a00",
+					"14553d79-f9b7-45fd-9724-4815c78cb117",
+					"62474af5-38fb-413f-8134-eb8dc3294b5e"
+				],
+				"settings": {
+					"enable_sticky": false,
+					"hide_on_scroll": false,
+					"logo": "{{shop.brand.logo}}",
+					"logo_max_width": 120,
+					"logo_mobile_max_width": 100,
+					"menu": "main-menu",
+					"sidebar_menu": "",
+					"secondary_menu": "",
+					"menu_open_trigger": "click",
+					"opening_from": "bottom",
+					"layout": "logo_left_navigation_center",
+					"show_social_media": true,
+					"show_locale_selector": true,
+					"show_country_selector": true,
+					"show_country_flag": true,
+					"show_country_name": false,
+					"transparent_header_text_color": "#ffffff",
+					"reduce_padding": false,
+					"background_opacity": 100,
+					"background_blur_radius": 0
+				}
+			},
+			"cart-drawer": {
+				"type": "cart-drawer",
+				"settings": {
+					"show_cart_note": true,
+					"show_shipping_text": true,
+					"show_checkout_button": true,
+					"recommendations_title": "Trending this month",
+					"products": [],
+					"product_card_background": "#ffffff",
+					"product_card_text_color": ""
+				}
+			},
+			"search-drawer": {
+				"type": "search-drawer",
+				"settings": {
+					"full_width": true,
+					"show_article_category": true,
+					"search_menu": "",
+					"search_menu_show_title": true
+				}
+			},
+			"footer": {
+				"type": "footer",
+				"blocks": {
+					"newsletter": {
+						"type": "newsletter",
+						"settings": {
+							"image": "{{shop.brand.logo}}",
+							"image_width": 150,
+							"heading_size": "h3",
+							"title": "Sign up for new stories and personal offers",
+							"content": ""
+						}
+					},
+					"links": {
+						"type": "links",
+						"settings": {
+							"menu": "footer",
+							"show_menu_title": true
+						}
+					},
+					"text": {
+						"type": "text",
+						"settings": {
+							"title": "About",
+							"content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
+						}
+					}
+				},
+				"block_order": ["newsletter", "links", "text"],
+				"settings": {
+					"show_social_media": true,
+					"show_payment_icons": true,
+					"show_country_selector": true,
+					"show_country_flag": true,
+					"show_country_name": true,
+					"show_locale_selector": true
+				}
+			}
+		},
+		"content_for_index": []
+	},
+	"presets": {
+		"Sound": {
+			"section_vertical_spacing": "medium",
+			"button_border_radius": 60,
+			"input_border_radius": 8,
+			"block_border_radius": 24,
+			"block_shadow_opacity": 10,
+			"block_shadow_vertical_offset": 18,
+			"background": "#f0f0f0",
+			"text_color": "#1a1a1a",
+			"header_background": "#f0f0f0",
+			"header_text_color": "#1a1a1a",
+			"footer_background": "#ffffff",
+			"footer_text_color": "#1a1a1a",
+			"primary_button_background": "#1a1a1a",
+			"primary_button_text_color": "#ffffff",
+			"secondary_button_background": "#f0c417",
+			"secondary_button_text_color": "#1a1a1a",
+			"product_card_text_color": "#1a1a1a",
+			"product_primary_badge_background": "#803cee",
+			"heading_font": "din_next_n7",
+			"heading_font_size": "large",
+			"heading_letter_spacing": -2,
+			"text_font": "din_next_n4",
+			"show_page_transition": true,
+			"cart_icon": "shopping_basket",
+			"heading_apparition": "split_fade",
+			"product_color_display": "swatch",
+			"product_info_alignment": "start",
+			"checkout_accent_color": "#f0c417",
+			"checkout_button_color": "#1a1a1a"
+		},
+		"Home": {
+			"section_vertical_spacing": "medium",
+			"section_boxed_horizontal_spacing": "large",
+			"button_hover_effect": "reverse",
+			"background": "#ffffff",
+			"text_color": "#272727",
+			"success_color": "#708a5c",
+			"warning_color": "#e37e16",
+			"error_color": "#aa2826",
+			"header_background": "#ffffff",
+			"header_text_color": "#272727",
+			"footer_background": "#f2f2f2",
+			"footer_text_color": "#272727",
+			"primary_button_background": "#272727",
+			"primary_button_text_color": "#ffffff",
+			"secondary_button_background": "#3c619e",
+			"secondary_button_text_color": "#ffffff",
+			"product_card_text_color": "#272727",
+			"product_on_sale_accent": "#e34f4f",
+			"product_sold_out_badge_background": "#bebdb9",
+			"product_primary_badge_background": "#3c619e",
+			"heading_font": "futura_n7",
+			"heading_font_size": "large",
+			"heading_text_transform": "normal",
+			"heading_letter_spacing": -1,
+			"text_font": "futura_n4",
+			"cart_icon": "shopping_basket",
+			"heading_apparition": "split_rotation",
+			"color_swatch_style": "rectangle",
+			"product_color_display": "swatch",
+			"cart_type": "drawer",
+			"checkout_body_background_color": "#f2f2f2",
+			"checkout_sidebar_background_color": "#ffffff",
+			"checkout_accent_color": "#3c619e",
+			"checkout_button_color": "#3c619e"
+		},
+		"Shape": {
+			"page_width": 1440,
+			"section_vertical_spacing": "small",
+			"section_boxed_horizontal_spacing": "medium",
+			"button_border_radius": 60,
+			"input_border_radius": 8,
+			"block_border_radius": 20,
+			"icon_stroke_width": 1.5,
+			"button_style": "fill",
+			"button_hover_effect": "reverse",
+			"text_color": "#2a555a",
+			"header_background": "#ffffff",
+			"header_text_color": "#2a555a",
+			"footer_background": "#f7f7f7",
+			"footer_text_color": "#2a555a",
+			"primary_button_background": "#2a555a",
+			"primary_button_text_color": "#ffffff",
+			"secondary_button_background": "#d9967e",
+			"product_card_text_color": "#2a555a",
+			"cart_icon": "tote_bag",
+			"heading_font": "itc_berkeley_old_style_n4",
+			"heading_font_size": "large",
+			"heading_text_transform": "normal",
+			"heading_letter_spacing": -1,
+			"text_font": "muli_n4",
+			"text_font_size_desktop": 15,
+			"product_color_display": "swatch",
+			"product_info_alignment": "center"
+		}
+	}
+}
