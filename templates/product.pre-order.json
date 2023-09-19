@@ -23,8 +23,8 @@
 				}
 			},
 			"block_order": [
-				"title",
 				"vendor",
+				"title",
 				"badges",
 				"price",
 				"rating",
