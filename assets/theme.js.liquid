@@ -1995,7 +1995,6 @@ if (!window.customElements.get("close-button")) {
     window.customElements.define("close-button", CloseButton, {extends: "button"});
 }
 
-// js/common/overlay/drawer.js
 import {animate as motionAnimate, timeline as motionTimeline} from "{{ 'vendor.min.js' | asset_url }}";
 var reduceDrawerAnimation = window.matchMedia("(prefers-reduced-motion: reduce)").matches || JSON.parse("{{ settings.reduce_drawer_animation | json }}");
 var Drawer = class extends DialogElement {
@@ -2356,7 +2355,6 @@ if (!window.customElements.get("theme-popover")) {
     window.customElements.define("theme-popover", Popover);
 }
 
-// js/common/overlay/privacy-bar.js
 import {Delegate as Delegate2} from "{{ 'vendor.min.js' | asset_url }}";
 var PrivacyBar = class extends HTMLElement {
     constructor() {
@@ -2403,7 +2401,6 @@ if (!window.customElements.get("privacy-bar")) {
     window.customElements.define("privacy-bar", PrivacyBar);
 }
 
-// js/common/cart/cart-drawer.js
 var CartDrawer = class extends Drawer {
     constructor() {
         super();
@@ -2505,6 +2502,7 @@ var CartDrawer = class extends Drawer {
         this.replaceChildren(... tempDiv.querySelector("#cart-drawer").children);
     }
 };
+
 var CartNotificationDrawer = class extends Drawer {
     constructor() {
         super();
@@ -2537,6 +2535,7 @@ var CartNotificationDrawer = class extends Drawer {
         this.show();
     }
 };
+
 var LineItem = class extends HTMLElement {
     connectedCallback() {
         this.pillLoaderElement = this.querySelector("pill-loader");
