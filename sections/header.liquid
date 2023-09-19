@@ -300,7 +300,7 @@ border-bottom: 1px solid #EFEFEF;
             <div class="header__icon-list">
                 {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
                     <div class="hidden md:block shrink-0">
-                        {%- render 'localization-selector', type: 'country', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag, popover_vertical_position: 'end' -%}
+                        {%- render 'localization-selector', type: 'country', show_country_name: section.settings.show_country_name, popover_vertical_position: 'end' -%}
                     </div>
                 {%- endif -%}
 
@@ -361,10 +361,9 @@ border-bottom: 1px solid #EFEFEF;
         show_social_media: section.settings.show_social_media,
         show_country_selector: section.settings.show_country_selector,
         show_country_name: section.settings.show_country_name,
-        show_country_flag: section.settings.show_country_flag,
         show_locale_selector: section.settings.show_locale_selector -%}
 </navigation-drawer>{%- endif -%}<script>
-document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('shopify-section-  {{ section.id }}').clientHeight) + 'px');
+document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('shopify-section-      {{ section.id }}').clientHeight) + 'px');
 </script>{% schema %}
 {
     "name": "Header",
@@ -491,25 +490,11 @@ document.documentElement.style.setProperty('--header-height', Math.round(documen
             "default": true
         }, {
             "type": "header",
-            "content": "Language selector",
-            "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
-        }, {
-            "type": "checkbox",
-            "id": "show_locale_selector",
-            "label": "Show language selector",
-            "default": true
-        }, {
-            "type": "header",
             "content": "Country/region selector"
         }, {
             "type": "checkbox",
             "id": "show_country_selector",
             "label": "Show country/region selector",
-            "default": true
-        }, {
-            "type": "checkbox",
-            "id": "show_country_flag",
-            "label": "Show country flag",
             "default": true
         }, {
             "type": "checkbox",
