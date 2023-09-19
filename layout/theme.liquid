@@ -2,29 +2,28 @@
 <html
     class="no-js"
     lang="{{ request.locale.iso_code }}"
-    dir="{% render 'direction' %}">
+    dir="ltr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="{{ settings.header_background }}">
 
+        {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+            <link
+                rel="preconnect"
+                href="https://fonts.shopifycdn.com"
+                crossorigin>
+        {%- endunless -%}
+
         <title>
-            {% if page_title == blank %}
-                {{ shop.name }}
-            {% else %}
-                {{ page_title }}{% if current_page != 1 %}
-                    &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}
-            {% endif %}
+            {{ page_title }}
+            {%- if current_tags %}
+                &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+            {%- if current_page != 1 %}
+                &ndash; Page {{ current_page }}{% endif -%}
+            {%- unless page_title contains shop.name %}
+                &ndash; {{ shop.name }}{% endunless -%}
         </title>
-
-        {% if template.name == "index" %}
-            <meta name="title" content="High Life Competitions">
-            <meta name="description" content="High Life Competitions">
-        {%- endif -%}
-
-        {%- if page_description -%}
-            <meta name="description" content="{{ page_description | escape }}">
-        {%- endif -%}
 
         <link rel="canonical" href="{{ canonical_url }}">
 
@@ -32,14 +31,6 @@
             <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
             <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
         {%- endif -%}
-
-        {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
-        <link rel="preconnect" href="https://cdn.shopify.com">
-        <link
-            rel="preconnect"
-            href="https://fonts.shopifycdn.com"
-            crossorigin>
-        <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
 
         {%- unless settings.heading_font.system? -%}
             <link
@@ -59,13 +50,11 @@
                 crossorigin>
         {%- endunless -%}
 
-        {%- render 'social-meta-tags' -%}
-        {%- render 'microdata-schema' -%}
+        {%- render 'meta-tags' -%}
         {%- render 'css-variables' -%}
         {%- render 'js-variables' -%}
         {% render 'fonts' %}
 
-        <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
         <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
         <script type="module" src="{{ 'sections.js' | asset_url }}"></script>
 
