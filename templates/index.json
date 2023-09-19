@@ -494,125 +494,20 @@
     "45df9fc1-7eb7-4d87-9f39-297cb9b269f3": {
       "type": "featured-collection",
       "settings": {
-        "collection": "cars-bikes",
-        "products": [
-          "copy-of-ford-focus-rs-edition-wrapped",
-          "ford-focus-rs-edition-wrapped",
-          "audi-rs4"
-        ],
-        "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_count": 4,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 3,
-        "subheading": "",
-        "title": "Cars & Bikes Competitions",
-        "content": "",
-        "text_alignment": "center",
-        "link_url": "",
-        "link_text": "",
-        "background": "#f2f2f2",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": "",
-        "related_section_id": "index--car-bike-collection-section",
-        "show_coming_soon_offer": false,
-        "coming_soon_text": ""
-      }
-    },
-    "942155bc-5af5-4c79-941e-a819ff3063be": {
-      "type": "featured-collection",
-      "settings": {
         "collection": "",
         "products": [
-          "luxury-holiday-for-2",
-          "copy-of-airpods-pro-x5",
-          "copy-of-luxury-holiday-for-2-in-the-maldives-all-inclusive-1k-cash"
+
         ],
         "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_count": 3,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 3,
-        "subheading": "",
-        "title": "Luxury Competitions",
-        "content": "",
-        "text_alignment": "center",
-        "link_url": "",
-        "link_text": "",
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": "",
-        "related_section_id": "index--luxury-collection-section",
-        "show_coming_soon_offer": false,
-        "coming_soon_text": ""
-      }
-    },
-    "944e3a40-df1f-4b2e-b7f4-a136af959377": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "",
-        "products": [
-          "macbook-pro-x2",
-          "airpods-pro-x5",
-          "place-holder-pixel-7a-x2",
-          "place-holder-playstation-5"
-        ],
-        "full_width": true,
-        "stack_products": true,
+        "stack_products": false,
         "show_progress_bar": false,
         "products_count": 6,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "subheading": "",
-        "title": "Tech Competitions",
+        "title": "Featured collection",
         "content": "",
-        "text_alignment": "center",
-        "link_url": "",
-        "link_text": "",
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": "",
-        "related_section_id": "index--tech-collection-section",
-        "show_coming_soon_offer": false,
-        "coming_soon_text": "More Competitions Coming Soon."
-      }
-    },
-    "7f4a96e8-23c0-46da-8860-e0a6ec2361c9": {
-      "type": "featured-collection",
-      "custom_css": [
-        "@media (min-width: 1000px) {.single-product-card {grid-area: 1 \/ 2 \/ auto \/ auto; }}"
-      ],
-      "settings": {
-        "collection": "10-000-tax-free-cash",
-        "products": [
-          "10-000-tax-free-cash",
-          "copy-of-250-tax-free-cash",
-          "copy-of-10-000-tax-free-cash"
-        ],
-        "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_count": 3,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 3,
-        "subheading": "",
-        "title": "Cash Competitions",
-        "content": "",
-        "text_alignment": "center",
+        "text_alignment": "start",
         "link_url": "",
         "link_text": "",
         "background": "#f2f2f2",
@@ -622,7 +517,7 @@
         "heading_gradient": "",
         "product_card_background": "",
         "product_card_text_color": "",
-        "related_section_id": "index--cash-collection-section",
+        "related_section_id": "",
         "show_coming_soon_offer": false,
         "coming_soon_text": ""
       }
@@ -847,6 +742,197 @@
         "logo_item_background": "",
         "logo_item_border": ""
       }
+    },
+    "1786ff1c-1be8-45f9-a38d-691b70ad530d": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "template--15931762311323__1786ff1c-1be8-45f9-a38d-691b70ad530d-subheading-1": {
+          "type": "subheading",
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "template--15931762311323__1786ff1c-1be8-45f9-a38d-691b70ad530d-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text overlay",
+            "heading_tag": "h1"
+          }
+        },
+        "template--15931762311323__1786ff1c-1be8-45f9-a38d-691b70ad530d-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15931762311323__1786ff1c-1be8-45f9-a38d-691b70ad530d-subheading-1",
+        "template--15931762311323__1786ff1c-1be8-45f9-a38d-691b70ad530d-heading-1",
+        "template--15931762311323__1786ff1c-1be8-45f9-a38d-691b70ad530d-richtext-1"
+      ],
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "image_size": "auto",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "878a2b38-3f58-4c4d-9a33-632ce008b07f": {
+      "type": "featured-product",
+      "blocks": {
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-vendor-1": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-title-1": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-badges-1": {
+          "type": "badges",
+          "settings": {
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-price-1": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-rating-1": {
+          "type": "rating",
+          "settings": {
+            "show_empty": false
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-separator-1": {
+          "type": "separator",
+          "settings": {
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-description-1": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-variant_picker-1": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_mode": "block",
+            "color_mode": "color",
+            "size_chart_page": ""
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-quantity_selector-1": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-buy_buttons-1": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-vendor-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-title-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-badges-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-price-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-rating-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-separator-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-description-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-variant_picker-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-quantity_selector-1",
+        "template--15931762311323__878a2b38-3f58-4c4d-9a33-632ce008b07f-buy_buttons-1"
+      ],
+      "settings": {
+        "full_width": true,
+        "product": "",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": true,
+        "enable_video_looping": false,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "96f4c38d-07be-426e-b344-eb527466df79": {
+      "type": "faq",
+      "blocks": {
+        "template--15931762311323__96f4c38d-07be-426e-b344-eb527466df79-item-1": {
+          "type": "item",
+          "settings": {
+            "title": "Do you ship overseas?",
+            "content": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.<\/p>"
+          }
+        },
+        "template--15931762311323__96f4c38d-07be-426e-b344-eb527466df79-item-2": {
+          "type": "item",
+          "settings": {
+            "title": "How long will it take to get my orders?",
+            "content": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.<\/p>"
+          }
+        },
+        "template--15931762311323__96f4c38d-07be-426e-b344-eb527466df79-item-3": {
+          "type": "item",
+          "settings": {
+            "title": "Any question?",
+            "content": "<p>You can contact us through our contact page! We will be happy to assist you.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15931762311323__96f4c38d-07be-426e-b344-eb527466df79-item-1",
+        "template--15931762311323__96f4c38d-07be-426e-b344-eb527466df79-item-2",
+        "template--15931762311323__96f4c38d-07be-426e-b344-eb527466df79-item-3"
+      ],
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "FAQ",
+        "content": "<p>Use this text to share information about your product or shipping policies.<\/p>",
+        "team_avatar_width": 160,
+        "support_hours": "Our customer support is available Monday to Friday: 8am-8:30pm.",
+        "answer_time": "Average answer time: 24h",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "start",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
+      }
     }
   },
   "order": [
@@ -859,12 +945,12 @@
     "collection-list",
     "01cafc78-e5c6-4bd3-a9ee-3c129512d108",
     "45df9fc1-7eb7-4d87-9f39-297cb9b269f3",
-    "942155bc-5af5-4c79-941e-a819ff3063be",
-    "944e3a40-df1f-4b2e-b7f4-a136af959377",
-    "7f4a96e8-23c0-46da-8860-e0a6ec2361c9",
     "dab60c15-b6de-47a7-9685-134b17d28928",
     "cf1ade20-c37a-46a0-b249-4df995b72f17",
     "7f81f670-72e1-4960-be79-76218a581555",
-    "e1ddc14b-4449-40fb-b0ae-71b0e18d4a18"
+    "e1ddc14b-4449-40fb-b0ae-71b0e18d4a18",
+    "1786ff1c-1be8-45f9-a38d-691b70ad530d",
+    "878a2b38-3f58-4c4d-9a33-632ce008b07f",
+    "96f4c38d-07be-426e-b344-eb527466df79"
   ]
 }
