@@ -352,7 +352,7 @@ border-bottom: 1px solid #EFEFEF;
         {%- render 'icon' with 'close', width: 19, height: 19 -%}
     </button>
 
-    {%- render 'navigation-panel' 
+    {%- render 'navigation-panel'
         , is_mega_menu: false,
         main_menu: main_menu,
         secondary_menu: secondary_menu,
@@ -362,9 +362,14 @@ border-bottom: 1px solid #EFEFEF;
         show_country_selector: section.settings.show_country_selector,
         show_country_name: section.settings.show_country_name,
         show_locale_selector: section.settings.show_locale_selector -%}
-</navigation-drawer>{%- endif -%}<script>
-document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('shopify-section-      {{ section.id }}').clientHeight) + 'px');
-</script>{% schema %}
+</navigation-drawer>
+{%- endif -%}
+
+<script>
+document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('shopify-section-{{ section.id }}').clientHeight) + 'px');
+</script>
+
+{% schema %}
 {
     "name": "Header",
     "class": "shopify-section--header",
