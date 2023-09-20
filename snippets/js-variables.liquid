@@ -4,7 +4,6 @@
     // This allows to expose several variables to the global scope, to be used in scripts
     window.themeVariables = {
         settings: {
-            showPageTransition: {{ settings.show_page_transition | json }},
             headingApparition: {{ settings.heading_apparition | json }},
             pageType: {{ request.page_type | json }},
             moneyFormat: {{ shop.money_format | json }},
@@ -49,36 +48,7 @@
             'lg-max': 'screen and (max-width: 1149px)',
             'xl-max': 'screen and (max-width: 1399px)'
         }
-    };{%- if settings.show_page_transition -%}
-        window.addEventListener('DOMContentLoaded', () => {
-            const isReloaded = (window.performance.navigation && window.performance.navigation.type === 1) || window
-                .performance
-                .getEntriesByType('navigation')
-                .map((nav) => nav.type)
-                .includes('reload');
-
-            if ('animate' in document.documentElement && window.matchMedia('(prefers-reduced-motion: no-preference)').matches && document.referrer.includes(location.host) && ! isReloaded) {
-                document.body.animate({
-                    opacity: [0, 1]
-                }, {
-                    duration: 115,
-                    fill: 'forwards'
-                });
-            }
-        });
-
-        window.addEventListener('pageshow', (event) => {
-            document.body.classList.remove('page-transition');
-
-            if (event.persisted) {
-                document.body.animate({
-                    opacity: [0, 1]
-                }, {
-                    duration: 0,
-                    fill: 'forwards'
-                });
-            }
-        });{%- endif -%}
+    };
 
     // For detecting native share
     document.documentElement.classList.add(`native-share--${

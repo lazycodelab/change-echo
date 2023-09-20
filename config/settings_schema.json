@@ -510,36 +510,6 @@
 		"name": "Animation",
 		"settings": [
 			{
-				"type": "paragraph",
-				"content": "Users who configured their preferences to minimize non-essential motion will automatically experience reduced animations."
-			},
-			{
-				"type": "checkbox",
-				"id": "show_page_transition",
-				"label": "Show page transition",
-				"info": "Fade in and out when the page changes.",
-				"default": false
-			},
-			{
-				"type": "checkbox",
-				"id": "zoom_image_on_hover",
-				"label": "Zoom image on hover",
-				"info": "Various images are zoomed when hovered.",
-				"default": true
-			},
-			{
-				"type": "checkbox",
-				"id": "reduce_drawer_animation",
-				"label": "Reduce drawer animation",
-				"default": false
-			},
-			{
-				"type": "checkbox",
-				"id": "reduce_menu_animation",
-				"label": "Reduce header menu animation",
-				"default": false
-			},
-			{
 				"type": "select",
 				"id": "heading_apparition",
 				"label": "Heading apparition",

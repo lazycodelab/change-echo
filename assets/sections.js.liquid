@@ -126,7 +126,7 @@ if (!window.customElements.get("account-login")) {
 // js/sections/header.js
 import { animate, timeline as timeline3, stagger, Delegate as Delegate2 } from "{{ 'vendor.min.js' | asset_url }}";
 import { AnimatedDetails, EffectCarousel as EffectCarousel2, Drawer, throttle } from "{{ 'theme.js' | asset_url }}";
-var reduceMenuAnimation = JSON.parse("{{ settings.reduce_menu_animation | json }}");
+var reduceMenuAnimation = false;
 var StoreHeader = class extends HTMLElement {
   connectedCallback() {
     if (this.hasAttribute("hide-on-scroll") && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {

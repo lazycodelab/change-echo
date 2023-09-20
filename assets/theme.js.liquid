@@ -18,8 +18,10 @@ var __publicField = (obj, key, value) => {
     return value;
 };
 var __accessCheck = (obj, member, msg) => {
-    if (!member.has(obj))
+    if (!member.has(obj)) 
         throw TypeError("Cannot " + msg);
+    
+
 
 
 };
@@ -30,8 +32,10 @@ var __privateGet = (obj, member, getter) => {
         : member.get(obj);
 };
 var __privateAdd = (obj, member, value) => {
-    if (member.has(obj))
+    if (member.has(obj)) 
         throw TypeError("Cannot add the same private member more than once");
+    
+
 
 
     member instanceof WeakSet
@@ -1996,7 +2000,7 @@ if (!window.customElements.get("close-button")) {
 }
 
 import {animate as motionAnimate, timeline as motionTimeline} from "{{ 'vendor.min.js' | asset_url }}";
-var reduceDrawerAnimation = window.matchMedia("(prefers-reduced-motion: reduce)").matches || JSON.parse("{{ settings.reduce_drawer_animation | json }}");
+var reduceDrawerAnimation = window.matchMedia("(prefers-reduced-motion: reduce)").matches || false;
 var Drawer = class extends DialogElement {
     constructor() {
         super();
@@ -3003,7 +3007,11 @@ var FacetForm = class extends HTMLFormElement {
                         openElements.delete(disclosureElement.id);
                     }
                 });
-            })
+            }) 
+
+
+
+            
 
 
 
@@ -5357,14 +5365,14 @@ var FacetForm = class extends HTMLFormElement {
 						</ul>
 						</div>`;
 
-				constructor() {
-					super();
+            constructor() {
+                super();
 
-					this.attachShadow({mode: "open"});
-					this.templateElement = document.createElement("template")
-					this.templateElement.innerHTML = this.template
-					this.shadowRoot.appendChild(this.templateElement.content.cloneNode(true));
-				}
+                this.attachShadow({mode: "open"});
+                this.templateElement = document.createElement("template")
+                this.templateElement.innerHTML = this.template
+                this.shadowRoot.appendChild(this.templateElement.content.cloneNode(true));
+            }
 
             connectedCallback() {
                 this.timer = setInterval(() => {
@@ -5470,24 +5478,7 @@ var FacetForm = class extends HTMLFormElement {
             import {Delegate as Delegate4} from "{{ 'vendor.min.js' | asset_url }}";
         (() => {
             const delegateDocument = new Delegate4(document.documentElement);
-            if (window.themeVariables.settings.showPageTransition && "animate" in document.documentElement && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
-                delegateDocument.on("click", "a", async (event, target) => {
-                    if (event.defaultPrevented || event.ctrlKey || event.metaKey) {
-                        return;
-                    }
-                    if (target.hostname !== window.location.hostname || target.pathname === window.location.pathname) {
-                        return;
-                    }
-                    event.preventDefault();
-                    await document.body.animate({
-                        opacity: [1, 0]
-                    }, {
-                        duration: 75,
-                        fill: "forwards"
-                    }).finished;
-                    window.location = target.href;
-                });
-            }
+
             if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
                 delegateDocument.on("click", 'a[href*="#"]', (event, target) => {
                     if (event.defaultPrevented || target.pathname !== window.location.pathname || target.search !== window.location.search) {

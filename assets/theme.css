@@ -5117,12 +5117,6 @@ tfoot td {
 	}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	.js .page-transition {
-		opacity: 0;
-	}
-}
-
 .lock {
 	overflow: hidden;
 }
