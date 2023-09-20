@@ -744,30 +744,6 @@
 				"default": "popover"
 			},
 			{
-				"type": "select",
-				"id": "cart_icon",
-				"label": "Cart icon",
-				"options": [
-					{
-						"value": "shopping_basket",
-						"label": "Shopping basket"
-					},
-					{
-						"value": "tote_bag",
-						"label": "Tote bag"
-					},
-					{
-						"value": "shopping_cart",
-						"label": "Shopping cart"
-					},
-					{
-						"value": "design-bag",
-						"label": "Design Bag"
-					}
-				],
-				"default": "shopping_basket"
-			},
-			{
 				"type": "url",
 				"id": "cart_empty_button_link",
 				"label": "Empty button link",
