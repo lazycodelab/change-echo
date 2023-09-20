@@ -22,7 +22,7 @@ var __privateMethod = (obj, member, method) => {
 };
 
 // js/sections/announcement-bar.js
-import { timeline } from "{{ 'vendor.min.js' | asset_url }}";
+import { timeline } from "{{ 'app.min.js' | asset_url }}";
 import { EffectCarousel } from "{{ 'theme.js' | asset_url }}";
 var AnnouncementBar = class extends EffectCarousel {
   _transitionTo(fromSlide, toSlide) {
@@ -80,7 +80,7 @@ if (!window.customElements.get("split-cursor")) {
 }
 
 // js/sections/collection-list.js
-import { timeline as timeline2, inView } from "{{ 'vendor.min.js' | asset_url }}";
+import { timeline as timeline2, inView } from "{{ 'app.min.js' | asset_url }}";
 var CollectionList = class extends HTMLElement {
   connectedCallback() {
     if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
@@ -101,7 +101,7 @@ if (!window.customElements.get("collection-list")) {
 }
 
 // js/sections/customer-login.js
-import { Delegate } from "{{ 'vendor.min.js' | asset_url }}";
+import { Delegate } from "{{ 'app.min.js' | asset_url }}";
 var AccountLogin = class extends HTMLElement {
   connectedCallback() {
     this.recoverForm = this.querySelector("#recover");
@@ -124,7 +124,7 @@ if (!window.customElements.get("account-login")) {
 }
 
 // js/sections/header.js
-import { animate, timeline as timeline3, stagger, Delegate as Delegate2 } from "{{ 'vendor.min.js' | asset_url }}";
+import { animate, timeline as timeline3, stagger, Delegate as Delegate2 } from "{{ 'app.min.js' | asset_url }}";
 import { AnimatedDetails, EffectCarousel as EffectCarousel2, Drawer, throttle } from "{{ 'theme.js' | asset_url }}";
 var reduceMenuAnimation = false;
 var StoreHeader = class extends HTMLElement {
@@ -477,7 +477,7 @@ if (!window.customElements.get("navigation-drawer")) {
 }
 
 // js/sections/feature-chart.js
-import { animate as motionAnimate, scroll } from "{{ 'vendor.min.js' | asset_url }}";
+import { animate as motionAnimate, scroll } from "{{ 'app.min.js' | asset_url }}";
 var FeatureChart = class extends HTMLElement {
   connectedCallback() {
     this.viewButtonElement = this.querySelector('[data-action="toggle-rows"]');
@@ -543,7 +543,7 @@ if (!window.customElements.get("feature-chart")) {
 }
 
 // js/sections/image-banner.js
-import { scroll as scroll2, timeline as timeline4, animate as animate2, inView as inView2 } from "{{ 'vendor.min.js' | asset_url }}";
+import { scroll as scroll2, timeline as timeline4, animate as animate2, inView as inView2 } from "{{ 'app.min.js' | asset_url }}";
 import { imageLoaded, getHeadingKeyframe } from "{{ 'theme.js' | asset_url }}";
 var ImageBanner = class extends HTMLElement {
   connectedCallback() {
@@ -598,7 +598,7 @@ if (!window.customElements.get("image-link-blocks")) {
 }
 
 // js/sections/images-with-text-scrolling.js
-import { animate as animate3, timeline as timeline5, inView as inView3 } from "{{ 'vendor.min.js' | asset_url }}";
+import { animate as animate3, timeline as timeline5, inView as inView3 } from "{{ 'app.min.js' | asset_url }}";
 import { getHeadingKeyframe as getHeadingKeyframe2, throttle as throttle2 } from "{{ 'theme.js' | asset_url }}";
 var ImagesWithTextScrolling = class extends HTMLElement {
   connectedCallback() {
@@ -663,7 +663,7 @@ if (!window.customElements.get("images-with-text-scrolling")) {
 }
 
 // js/sections/impact-text.js
-import { animate as animate4, inView as inView4 } from "{{ 'vendor.min.js' | asset_url }}";
+import { animate as animate4, inView as inView4 } from "{{ 'app.min.js' | asset_url }}";
 var ImpactText = class extends HTMLElement {
   connectedCallback() {
     if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
@@ -704,7 +704,7 @@ if (!window.customElements.get("impact-text")) {
 }
 
 // js/sections/media-grid.js
-import { timeline as timeline6, inView as inView5 } from "{{ 'vendor.min.js' | asset_url }}";
+import { timeline as timeline6, inView as inView5 } from "{{ 'app.min.js' | asset_url }}";
 var MediaGrid = class extends HTMLElement {
   connectedCallback() {
     this.items = Array.from(this.children);
@@ -725,7 +725,7 @@ if (!window.customElements.get("media-grid")) {
 }
 
 // js/sections/media-with-text.js
-import { animate as animate5, timeline as timeline7, inView as inView6 } from "{{ 'vendor.min.js' | asset_url }}";
+import { animate as animate5, timeline as timeline7, inView as inView6 } from "{{ 'app.min.js' | asset_url }}";
 import { imageLoaded as imageLoaded2 } from "{{ 'theme.js' | asset_url }}";
 var reduceMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 var MediaWithText = class extends HTMLElement {
@@ -752,7 +752,7 @@ if (!window.customElements.get("media-with-text")) {
 }
 
 // js/sections/multiple-images-with-text.js
-import { timeline as timeline8, animate as animate6, stagger as stagger2, inView as inView7 } from "{{ 'vendor.min.js' | asset_url }}";
+import { timeline as timeline8, animate as animate6, stagger as stagger2, inView as inView7 } from "{{ 'app.min.js' | asset_url }}";
 import { EffectCarousel as EffectCarousel3, imageLoaded as imageLoaded3, getHeadingKeyframe as getHeadingKeyframe3 } from "{{ 'theme.js' | asset_url }}";
 var MultipleImagesWithText = class extends HTMLElement {
   constructor() {
@@ -892,7 +892,7 @@ if (!window.customElements.get("newsletter-popup")) {
 }
 
 // js/sections/press.js
-import { timeline as timeline9, animate as animate7, inView as inView8 } from "{{ 'vendor.min.js' | asset_url }}";
+import { timeline as timeline9, animate as animate7, inView as inView8 } from "{{ 'app.min.js' | asset_url }}";
 import { EffectCarousel as EffectCarousel4 } from "{{ 'theme.js' | asset_url }}";
 var reduceMotion2 = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 var PressCarousel = class extends EffectCarousel4 {
@@ -999,7 +999,7 @@ if (!window.customElements.get("recently-viewed-products")) {
 }
 
 // js/sections/revealed-image-on-scroll.js
-import { scroll as scroll3, timeline as timeline10, ScrollOffset, inView as inView9 } from "{{ 'vendor.min.js' | asset_url }}";
+import { scroll as scroll3, timeline as timeline10, ScrollOffset, inView as inView9 } from "{{ 'app.min.js' | asset_url }}";
 var RevealedImage = class extends HTMLElement {
   connectedCallback() {
     const scrollTracker = this.querySelector(".revealed-image__scroll-tracker"), scroller = this.querySelector(".revealed-image__scroller");
@@ -1045,7 +1045,7 @@ if (!window.customElements.get("shop-the-look-dots")) {
 }
 
 // js/sections/slideshow.js
-import { animate as motionAnimate2, timeline as timeline11, inView as inView10 } from "{{ 'vendor.min.js' | asset_url }}";
+import { animate as motionAnimate2, timeline as timeline11, inView as inView10 } from "{{ 'app.min.js' | asset_url }}";
 import { EffectCarousel as EffectCarousel5, imageLoaded as imageLoaded4, getHeadingKeyframe as getHeadingKeyframe4 } from "{{ 'theme.js' | asset_url }}";
 var Slideshow = class extends HTMLElement {
   constructor() {
