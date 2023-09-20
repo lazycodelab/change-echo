@@ -341,8 +341,7 @@
 			},
 			{
 				"type": "header",
-				"content": "Product",
-				"info": "[Learn more](https://support.maestrooo.com/article/75-collection-displaying-custom-label) about setting custom badges."
+				"content": "Product"
 			},
 			{
 				"type": "color",
@@ -513,7 +512,6 @@
 				"type": "select",
 				"id": "heading_apparition",
 				"label": "Heading apparition",
-				"info": "Line by line apparition can't be used for gradient heading. [Learn more](https://support.maestrooo.com/article/299-limitation-for-gradients-on-impact-theme)",
 				"options": [
 					{
 						"value": "none",
@@ -567,8 +565,7 @@
 				"type": "textarea",
 				"id": "color_swatch_config",
 				"label": "Configuration",
-				"placeholder": "Red:#ff0000\nGreen:#00ff00\nBlue:#0000ff",
-				"info": "Each rule must be in its own line. [Learn more](https://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch) about the exact naming convention."
+				"placeholder": "Red:#ff0000\nGreen:#00ff00\nBlue:#0000ff"
 			}
 		]
 	},

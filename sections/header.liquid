@@ -352,7 +352,7 @@ border-bottom: 1px solid #EFEFEF;
         {%- render 'icon' with 'close', width: 19, height: 19 -%}
     </button>
 
-    {%- render 'navigation-panel'
+    {%- render 'navigation-panel' 
         , is_mega_menu: false,
         main_menu: main_menu,
         secondary_menu: secondary_menu,
@@ -362,14 +362,9 @@ border-bottom: 1px solid #EFEFEF;
         show_country_selector: section.settings.show_country_selector,
         show_country_name: section.settings.show_country_name,
         show_locale_selector: section.settings.show_locale_selector -%}
-</navigation-drawer>
-{%- endif -%}
-
-<script>
-document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('shopify-section-{{ section.id }}').clientHeight) + 'px');
-</script>
-
-{% schema %}
+</navigation-drawer>{%- endif -%}<script>
+document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('shopify-section-  {{ section.id }}').clientHeight) + 'px');
+</script>{% schema %}
 {
     "name": "Header",
     "class": "shopify-section--header",
@@ -557,7 +552,7 @@ document.documentElement.style.setProperty('--header-height', Math.round(documen
                     "type": "text",
                     "id": "menu_item",
                     "label": "Menu item",
-                    "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+                    "info": "Enter menu item to apply a mega menu dropdown."
                 }, {
                     "type": "select",
                     "id": "layout",
@@ -674,7 +669,7 @@ document.documentElement.style.setProperty('--header-height', Math.round(documen
                     "type": "select",
                     "id": "promo_content_layout",
                     "label": "Promotional content layout",
-                    "info": "To improve readability, layout can be changed automatically depending on the screen size, menu column count and promotional content. [Learn more](https://support.maestrooo.com/article/296-navigation-understanding-impact-mega-menu-strategy)",
+                    "info": "To improve readability, layout can be changed automatically depending on the screen size, menu column count and promotional content.",
                     "options": [
                         {
                             "value": "grid",
