@@ -1,3 +1,5 @@
+<!-- @prettify-ignore -->
+
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -9,7 +11,7 @@
         {%- assign card_blends = true -%}
     {%- endunless -%}
 
-    #shopify-section-{{ section.id }}.product-list {
+    #shopify-section-{{ section.id }} .product-list {
         --product-list-gap: {% if section.settings.stack_products and section.settings.products_per_row_mobile == '2' %}
             {% if card_blends %}
                 var(--product-list-row-gap){% endif %}
@@ -23,63 +25,63 @@
             auto / auto-flow var(--product-list-carousel-item-width){% endif %};
         row-gap: 28px;
     }
-    #shopify-section-{{ section.id }}.section-header .prose h2 {
+    #shopify-section-{{ section.id }} .section-header .prose h2 {
         font-size: 24px;
         font-weight: 900;
     }
-    #shopify-section-{{ section.id }}.section-header .prose p {
+    #shopify-section-{{ section.id }} .section-header .prose p {
         margin-top: 12px;
         font-size: 20px;
         line-height: 1;
     }
-    #shopify-section-{{ section.id }}.product-list .product-card__info .product-card__title {
+    #shopify-section-{{ section.id }} .product-list .product-card__info .product-card__title {
         width: 100%;
         line-height: 1.2;
     }
-    #shopify-section-{{ section.id }}.product-list .product-card__info .product-card__title a {
+    #shopify-section-{{ section.id }} .product-list .product-card__info .product-card__title a {
         width: 100%;
         display: block;
         min-height: 50px;
     }
     @media screen and (max-width: 425px) {
-        #shopify-section-{{ section.id }}.product-list .product-card__info .product-card__title.coming-soon-title {
+        #shopify-section-{{ section.id }} .product-list .product-card__info .product-card__title.coming-soon-title {
             padding: 20px 0 10px;
         }
-        #shopify-section-{{ section.id }}.product-list .product-card-button-wrapper .button {
+        #shopify-section-{{ section.id }} .product-list .product-card-button-wrapper .button {
             padding: 15px 10px;
         }
     }
     @media screen and (max-width: 320px) {
-        #shopify-section-{{ section.id }}.product-list .product-card-button-wrapper .button {
+        #shopify-section-{{ section.id }} .product-list .product-card-button-wrapper .button {
             padding: 15px 2px;
         }
     }
     @media screen and (min-width: 700px) {
-        #shopify-section-{{ section.id }}.product-list .product-card {
+        #shopify-section-{{ section.id }} .product-list .product-card {
             margin-bottom: 1rem;
         }
-        #shopify-section-{{ section.id }}.product-list {
+        #shopify-section-{{ section.id }} .product-list {
             --product-list-gap: var(--product-list-row-gap) var(--product-list-column-gap);
             --product-list-items-per-row: 2;
             --product-list-carousel-item-width: 36vw;
             row-gap: 40px;
         }
-        #shopify-section-{{ section.id }}.section-header .prose h2 {
+        #shopify-section-{{ section.id }} .section-header .prose h2 {
             font-size: 36px;
             font-weight: 900;
         }
-        #shopify-section-{{ section.id }}.section-header .prose p {
+        #shopify-section-{{ section.id }} .section-header .prose p {
             margin-top: 14px;
             font-size: 32px;
             line-height: 1;
         }
-        #shopify-section-{{ section.id }}.product-list .product-card__info .product-card__title a {
+        #shopify-section-{{ section.id }} .product-list .product-card__info .product-card__title a {
             min-height: 60px;
         }
     }
 
     @media screen and (min-width: 1000px) {
-        #shopify-section-{{ section.id }}.product-list {
+        #shopify-section-{{ section.id }} .product-list {
             --product-list-items-per-row: {{ section.settings.products_per_row_desktop }}
             ;
             --product-list-carousel-item-width: calc(var(--container-inner-width) / {{ section.settings.products_per_row_desktop }} -(var(--product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
@@ -87,7 +89,7 @@
     }
 
     @media screen and (min-width: 1440px) {
-        #shopify-section-{{ section.id }}.product-list .product-card__info .product-card__title a {
+        #shopify-section-{{ section.id }} .product-list .product-card__info .product-card__title a {
             min-height: 90px;
         }
     }
