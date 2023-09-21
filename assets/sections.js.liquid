@@ -1,3 +1,5 @@
+// @prettify-ignore
+
 var __accessCheck = (obj, member, msg) => {
   if (!member.has(obj))
     throw TypeError("Cannot " + msg);
@@ -955,34 +957,6 @@ if (!window.customElements.get("recently-viewed-products")) {
   window.customElements.define("recently-viewed-products", RecentlyViewedProducts);
 }
 
-// js/sections/revealed-image-on-scroll.js
-import { scroll as scroll3, timeline as timeline10, ScrollOffset, inView as inView9 } from "{{ 'app.min.js' | asset_url }}";
-var RevealedImage = class extends HTMLElement {
-  connectedCallback() {
-    const scrollTracker = this.querySelector(".revealed-image__scroll-tracker"), scroller = this.querySelector(".revealed-image__scroller");
-    scrollTracker.style.height = `${scroller.clientHeight}px`;
-    new ResizeObserver((entries) => scrollTracker.style.height = `${entries[0].contentRect.height}px`).observe(scroller);
-    scroll3(timeline10([
-      [this.querySelectorAll(".revealed-image__image-clipper, .revealed-image__content--inside"), { clipPath: ["inset(37% 37% 41% 37%)", "inset(calc(var(--sticky-area-height) / 2) 0)"] }, { easing: "ease-in" }],
-      [this.querySelectorAll("img, svg"), { transform: ["translate(-10%, -1.5%) scale(1.4)", "translate(0, 0) scale(1)"] }, { easing: "ease-in", at: "<" }],
-      [this.querySelectorAll(".revealed-image__content"), { opacity: [0, 1, 1] }, { offset: [0, 0.25, 1], at: "<" }]
-    ]), {
-      target: scrollTracker,
-      offset: ScrollOffset.All
-    });
-    inView9(this, () => {
-      this.style.visibility = "visible";
-      return () => {
-        this.style.visibility = "hidden";
-      };
-    }, { margin: "200px" });
-  }
-};
-if (!window.customElements.get("revealed-image")) {
-  window.customElements.define("revealed-image", RevealedImage);
-}
-
-// js/sections/shop-the-look.js
 var ShopTheLookDots = class extends HTMLElement {
   connectedCallback() {
     this._abortController = new AbortController();

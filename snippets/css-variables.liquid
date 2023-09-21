@@ -1,3 +1,4 @@
+<!-- @prettify-ignore -->
 {%- capture direction -%}ltr{%- endcapture -%}
 
 <style>
@@ -29,13 +30,6 @@
   {%- endif -%}
 
   :root {
-    /**
-     * ---------------------------------------------------------------------
-     * SPACING VARIABLES
-     *
-     * We are using a spacing inspired from frameworks like Tailwind CSS.
-     * ---------------------------------------------------------------------
-     */
     --spacing-0-5: 0.125rem; /* 2px */
     --spacing-1: 0.25rem; /* 4px */
     --spacing-1-5: 0.375rem; /* 6px */
@@ -347,75 +341,48 @@
 
   {%- endcase -%}
 
-  {% comment %} custom colors {% endcomment %}
-
   :root {
-
-    {% comment %} Colors {% endcomment %}
     --secondary-color: #E1B146;
     --primary-color: #000000;
     --alternate-color: #A7A7A7;
     --border-color: #D9D9D9;
-    --button-background: #E4B752;
     --button-color: #000000;
     --button-border-color: #000000;
     --secondary-background: #F2F2F2;
     --alternate-text-color: #787878;
-
-
-
     --button-border-size: 2px;
     --button-border-radius: 38px;
 
-
-    {% comment %} Font {% endcomment %}
     --primary-font:  "Neue Haas Unica", sans-serif;
-
-    {% comment %} title {% endcomment %}
     --title-size: 20px;
     --title-height: 20px;
     --title-weight: 900;
 
-
-    {% comment %} HEADING {% endcomment %}
     --heading-3-size: 24px;
     --heading-3-line-height: 24px;
     --heading-3-weight: 900;
 
-
-    {% comment %} HEADING {% endcomment %}
     --heading-4-size: 20px;
     --heading-4-line-height: 20px;
     --heading-4-weight: 900;
-
-    {% comment %} Body {% endcomment %}
     --body-size: 16px;
     --body-line-height: 16px;
     --body-weight: 500;
-
-
-    {% comment %} Body {% endcomment %}
     --body-alt-size: 16px;
     --body-alt-line-height: 16px;
     --body-alt-weight: 500;
 
-    {% comment %} Body small {% endcomment %}
     --body-small-size: 12px;
     --body-small-line-height: 12px;
     --body-small-weight: 500;
-
-    {% comment %} cta {% endcomment %}
     --cta-size: 14px;
     --cta-line-height: 14px;
-    --cta-weight: 900;
+    --cta-weight: 700;
 
-    {% comment %}cta link {% endcomment %}
     --cta-link-size: 18px;
     --cta-link-height: 18px;
     --cta-link-weight: 500;
 
-
-    {% comment %} spacings {% endcomment %}
     --column-gap: 4px;
     --row-gap: 6px;
     --content-padding: 16px;
@@ -465,7 +432,7 @@
       {% comment %} cta {% endcomment %}
       --cta-size: 20px;
       --cta-line-height: 20px;
-      --cta-weight: 900;
+      --cta-weight: 700;
 
       --content-padding: 27px;
 
