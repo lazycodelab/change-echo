@@ -1,10 +1,6 @@
 {%- render 'section-spacing-collapsing' -%}
 
-{%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
-    CSS
-    ------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}<style>
+<style>
     #shopify-section-{{ section.id }}.product-list {
         --product-list-gap: {% if section.settings.stack_products %}
             {% if section.settings.products_per_row_mobile == '1' %}
