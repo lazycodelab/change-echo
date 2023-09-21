@@ -293,11 +293,6 @@
 	.buy-buttons--multiple {
 		grid-template-columns: unset;
 	}
-	.quantity-selector__button {
-		padding-inline-start: var(--spacing-2);
-		padding-inline-end: var(--spacing-2);
-		height: 28px;
-	}
 	.input__slider {
 		height: 13px;
 	}

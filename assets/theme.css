@@ -4071,10 +4071,12 @@ model-media .shopify-model-viewer-ui {
 }
 
 .quantity-selector__button {
-	padding-inline-start: var(--spacing-1);
-	padding-inline-end: var(--spacing-1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid #000;
-	height: 20.5px;
+	aspect-ratio: 1;
+	width: var(--spacing-10);
 	border-radius: 50%;
 }
 
@@ -4097,12 +4099,12 @@ model-media .shopify-model-viewer-ui {
 	margin-bottom: 8px;
 }
 
-@media screen and (min-width: 700px) {
+/*@media screen and (min-width: 700px) {
 	.quantity-selector__button {
 		padding-inline-start: var(--spacing-6);
 		padding-inline-end: var(--spacing-6);
 	}
-}
+}*/
 
 .product-quick-add {
 	width: 100%;
