@@ -67,7 +67,7 @@
     }
     @media screen and (min-width: 700px) {
         .shopify-section.shopify-section--navigator {
-            top: 97px;
+            top: var(--header-height);
         }
     }
 
@@ -80,7 +80,7 @@
     }
 </style>
 
-<div {% render 'section-properties' %}>
+<div {% render 'section-attributes' %}>
     <div class="section-stack">
         <ul>
             {%- for block in section.blocks -%}
@@ -130,7 +130,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll("{%- for block in section.blocks -%}#{{ block.settings.related_section_id }}{% unless forloop.last %},    {% endunless %}{%- endfor -%}")
+        const sections = document.querySelectorAll("{%- for block in section.blocks -%}#{{ block.settings.related_section_id }}{% unless forloop.last %},               {% endunless %}{%- endfor -%}")
 
         const sectionNavigator = document.querySelector(".shopify-section--navigator")
         if (sectionNavigator) {

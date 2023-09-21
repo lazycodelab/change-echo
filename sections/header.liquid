@@ -1,5 +1,5 @@
 {{- 'header.css' | asset_url | stylesheet_tag: preload: true -}}
-{%- assign check = 'shopify-section-{{ section.id }}' -%}
+{%- assign check = 'shopify-section-' | append: section.id -%}
 <script>
     document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('{{ check }}').clientHeight) + 'px');
 </script>

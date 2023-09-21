@@ -662,48 +662,6 @@ if (!window.customElements.get("images-with-text-scrolling")) {
   window.customElements.define("images-with-text-scrolling", ImagesWithTextScrolling);
 }
 
-// js/sections/impact-text.js
-import { animate as animate4, inView as inView4 } from "{{ 'app.min.js' | asset_url }}";
-var ImpactText = class extends HTMLElement {
-  connectedCallback() {
-    if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
-      return;
-    }
-    inView4(this, ({ target }) => this._onBecameVisible(target), { margin: "-100px" });
-  }
-  async _onBecameVisible(target) {
-    animate4(target, { opacity: 1, transform: ["translateY(10px)", "translateY(0)"] }, { duration: 0.3 });
-    if (this.hasAttribute("count-up")) {
-      const itemToSearch = this.childElementCount === 0 ? this : this.firstElementChild, matches = itemToSearch.textContent.trim().match(/\d+(?:[,. ]\d+)*/);
-      if (!matches) {
-        return;
-      }
-      itemToSearch.innerHTML = itemToSearch.textContent.replace(/\d+(?:[,. ]\d+)*/, `<span>${matches[0]}</span>`);
-      const numberSpan = itemToSearch.querySelector("span");
-      numberSpan.style.textAlign = matches[0] === matches["input"] ? null : "end";
-      if (!itemToSearch.classList.contains("text-gradient")) {
-        numberSpan.style.display = "inline-block";
-        numberSpan.style.minWidth = `${numberSpan.clientWidth}px`;
-      }
-      const toReplace = matches[0].replace(/[,\. ]+/, ""), charactersMatches = [...matches[0].matchAll(/[,\. ]+/g)];
-      await animate4((progress) => {
-        let formattedString = Math.round(progress * parseInt(toReplace)).toString();
-        charactersMatches.forEach((character) => {
-          if (formattedString.length >= matches[0].length - character.index) {
-            formattedString = formattedString.slice(0, character.index) + character[0] + formattedString.slice(character.index);
-          }
-        });
-        numberSpan.textContent = progress === 1 ? matches[0] : formattedString;
-      }, { duration: parseFloat(this.getAttribute("count-up")), easing: [0.16, 1, 0.3, 1] }).finished;
-      numberSpan.style.minWidth = null;
-    }
-  }
-};
-if (!window.customElements.get("impact-text")) {
-  window.customElements.define("impact-text", ImpactText);
-}
-
-// js/sections/media-grid.js
 import { timeline as timeline6, inView as inView5 } from "{{ 'app.min.js' | asset_url }}";
 var MediaGrid = class extends HTMLElement {
   connectedCallback() {
@@ -724,7 +682,6 @@ if (!window.customElements.get("media-grid")) {
   window.customElements.define("media-grid", MediaGrid);
 }
 
-// js/sections/media-with-text.js
 import { animate as animate5, timeline as timeline7, inView as inView6 } from "{{ 'app.min.js' | asset_url }}";
 import { imageLoaded as imageLoaded2 } from "{{ 'theme.js' | asset_url }}";
 var reduceMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
