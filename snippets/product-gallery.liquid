@@ -23,10 +23,7 @@
     {%- endfor -%}
 {%- endif -%}
 
-<product-gallery
-    form="{{ product_form_id }}"
-    {%- if section.settings.enable_image_zoom -%}allow-zoom="{{ section.settings.max_image_zoom_level }}"{% endif %}
-    class="product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if section.settings.desktop_media_layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if section.settings.desktop_media_layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}">
+<product-gallery form="{{ product_form_id }}" {%- if section.settings.enable_image_zoom -%}allow-zoom="{{ section.settings.max_image_zoom_level }}"{% endif %}class="product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if section.settings.desktop_media_layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if section.settings.desktop_media_layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}">
     {%- capture page_dots -%}
         <page-dots class="page-dots {% if section.settings.mobile_carousel_control == 'floating_dots' %}page-dots--blurred{% endif %} md:hidden" aria-controls="{{ product_gallery_id }}">
             {%- for media in product.media -%}
@@ -52,9 +49,9 @@
             {%- endif -%}
 
             {%- comment -%}
-                --------------------------------------------------------------------------------------------------------------------
+                --ul-------------------------------------------------------------------------------------------------------------------
                 MEDIA LIST
-                --------------------------------------------------------------------------------------------------------------------
+                --ul-------------------------------------------------------------------------------------------------------------------
             {%- endcomment -%}
             <media-carousel
                 desktop-mode="{{ section.settings.desktop_media_layout }}"
@@ -128,9 +125,9 @@
         </div>
 
         {%- comment -%}
-            ----------------------------------------------------------------------------------------------------------------------
+            --ul---------------------------------------------------------------------------------------------------------------------
             VIEW IN YOUR SPACE
-            ----------------------------------------------------------------------------------------------------------------------
+            --ul---------------------------------------------------------------------------------------------------------------------
         {%- endcomment -%}
 
         {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
@@ -158,9 +155,9 @@
     </div>
 
     {%- comment -%}
-        --------------------------------------------------------------------------------------------------------------------
+        --ul-------------------------------------------------------------------------------------------------------------------
         CONTROLS
-        --------------------------------------------------------------------------------------------------------------------
+        --ul-------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}{%- if product.media.size > 1 -%}
         {%- if section.settings.mobile_carousel_control == 'dots' -%}
             {{- page_dots -}}

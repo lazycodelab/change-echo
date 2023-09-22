@@ -1,7 +1,7 @@
 {%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
+--ul-----------------------------------------------------------------------------------------------------------------------
 CSS
-------------------------------------------------------------------------------------------------------------------------
+--ul-----------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
 {{- 'slideshow.css' | asset_url | stylesheet_tag: preload: true -}}
@@ -12,14 +12,14 @@ CSS
   {%- else -%}
     {%- assign controls_color = section.blocks.first.settings.text_color -%}
   {%- endif -%}
- 
+
   #shopify-section-{{ section.id }} {
-    --slideshow-background: {{ section.blocks.first.settings.background_gradient | default: section.blocks.first.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
-    --slideshow-controls-background: {{ controls_background.rgb }};
-    --slideshow-controls-color: {{ controls_color.rgb }};
+--ul-slideshow-background: {{ section.blocks.first.settings.background_gradient | default: section.blocks.first.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
+--ul-slideshow-controls-background: {{ controls_background.rgb }};
+--ul-slideshow-controls-color: {{ controls_color.rgb }};
 
     {%- if section.settings.allow_transparent_header -%}
-      margin-block-start: calc(-1 * var(--header-height) * var(--section-is-first));
+      margin-block-start: calc(-1 * var(--ul-header-height) * var(--ul-section-is-first));
     {%- endif -%}
   }
 
@@ -32,9 +32,9 @@ CSS
         {%- assign controls_color = block.settings.text_color -%}
       {%- endif -%}
 
-      --slideshow-slide-background: {{ block.settings.background_gradient | default: block.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
-      --slideshow-slide-controls-background: {{ controls_background.rgb }};
-      --slideshow-slide-controls-color: {{ controls_color.rgb }};
+--ul-slideshow-slide-background: {{ block.settings.background_gradient | default: block.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
+--ul-slideshow-slide-controls-background: {{ controls_background.rgb }};
+--ul-slideshow-slide-controls-color: {{ controls_color.rgb }};
     }
     #block-{{ block.id }} .desktop_only .button {
       color: {{ block.settings.button_text_color }}
@@ -42,25 +42,25 @@ CSS
   {%- endfor -%}
   @media(max-width:767px){
     .content-over-media--lg{
-      --content-over-media-height: 375px;
+--ul-content-over-media-height: 375px;
     }
   }
   @media(max-width:425px){
     .content-over-media--lg{
-      --content-over-media-height: 260px;
+--ul-content-over-media-height: 260px;
     }
   }
   @media(max-width:320px){
     .content-over-media--lg{
-      --content-over-media-height: 203px;
+--ul-content-over-media-height: 203px;
     }
   }
 </style>
 
 {%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
+--ul-----------------------------------------------------------------------------------------------------------------------
 LIQUID
-------------------------------------------------------------------------------------------------------------------------
+--ul-----------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
 {%- assign slideshow_id = 'slideshow-' | append: section.id -%}
@@ -83,7 +83,7 @@ LIQUID
 
     {%- for block in section.blocks -%}
       {%- capture slide -%}
-        <div class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+        <div class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--ul-content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
           {%- comment -%}---------------- MEDIA ----------------{%- endcomment -%}
           {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
 
@@ -173,7 +173,7 @@ LIQUID
             <page-dots class="numbered-dots" aria-controls="{{ slideshow_id }}">
               {%- for i in (1..section.blocks.size) -%}
                 <button type="button" class="numbered-dots__item" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                  <svg width="100%" height="100%" {% if section.settings.autoplay %}style="--percent: 0"{% endif %}>
+                  <svg width="100%" height="100%" {% if section.settings.autoplay %}style="--ul-percent: 0"{% endif %}>
                     <circle cx="50%" cy="50%" r="15"></circle>
                     <circle cx="50%" cy="50%" r="15"></circle>
                   </svg>

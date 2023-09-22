@@ -2,25 +2,26 @@
 
 <style>
     #shopify-section-{{ section.id }}{
-        --blog-posts-per-row: {% if section.blocks.first.type == 'blog' %}
-            {{ section.blocks.first.settings.blog.articles_count | default: 3 | at_least: 2 | at_most: section.blocks.first.settings.posts_count | at_most: 3 }}{% else %}
+        --ul-blog-posts-per-row: {% if section.blocks.first.type == 'blog' %}
+            {{ section.blocks.first.settings.blog.articles_count | default: 3 | at_least: 2 | at_most: section.blocks.first.settings.posts_count | at_most: 3 }}
+        {% else %}
             3{% endif %};
-        --blog-posts-grid: {% if section.blocks.first.settings.stack_items or section.blocks.first.type == 'article' %}
+        --ul-blog-posts-grid: {% if section.blocks.first.settings.stack_items or section.blocks.first.type == 'article' %}
             auto / minmax(0, 1fr)){% else %}
             auto / auto-flow 74vw{% endif %};
     }
 
     @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }}{
-            --blog-posts-grid: {% if section.blocks.first.settings.stack_items or section.blocks.first.type == 'article' %}
-                auto / repeat(var(--blog-posts-per-row), minmax(0, 1fr)){% else %}
+            --ul-blog-posts-grid: {% if section.blocks.first.settings.stack_items or section.blocks.first.type == 'article' %}
+                auto / repeat(var(--ul-blog-posts-per-row), minmax(0, 1fr)){% else %}
                 auto / auto-flow 52vw{% endif %};
         }
     }
 
     @media screen and (min-width: 1000px) {
         #shopify-section-{{ section.id }}{
-            --blog-posts-grid: auto / repeat(var(--blog-posts-per-row), minmax(0, 1fr));
+            --ul-blog-posts-grid: auto / repeat(var(--ul-blog-posts-per-row), minmax(0, 1fr));
         }
     }
 </style>

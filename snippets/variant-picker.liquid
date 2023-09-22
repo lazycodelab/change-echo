@@ -1,7 +1,7 @@
 {%- comment -%}
-    ----------------------------------------------------------------------------------------------------------------------
+    --ul---------------------------------------------------------------------------------------------------------------------
     VARIANT PICKER
-    ----------------------------------------------------------------------------------------------------------------------
+    --ul---------------------------------------------------------------------------------------------------------------------
 
     Render the variant picker option selectors.
 
@@ -117,8 +117,7 @@
                                         class="popover-listbox__option"
                                         role="option"
                                         value="{{ value | escape }}"
-                                        {% if value == option.selected_value %}aria-selected="true"{% endif %}
-                                        data-option-value>{{ value }}</button>
+                                        {% if value == option.selected_value %}aria-selected="true"{% endif %}data-option-value>{{ value }}</button>
                                 {%- endfor -%}
                             </x-listbox>
                         </theme-popover>
@@ -158,10 +157,7 @@
                 {{ 'product.general.variant' | t }}{%- endcapture -%}
             {%- capture select_options -%}
                 {%- for variant in product.variants -%}
-                    <option
-                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                        {% unless variant.available %}disabled="disabled"{% endunless %}
-                        value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                    <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}{% unless variant.available %}disabled="disabled"{% endunless %}value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
                 {%- endfor -%}
             {%- endcapture -%}
 

@@ -1,36 +1,32 @@
 {%- render 'section-spacing-collapsing' -%}
 
-{%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
-    CSS
-    ------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}<style>
+<style>
     #shopify-section-{{ section.id }}{
-        --media-grid-row-height: {{ section.settings.mobile_row_height }}
+        --ul-media-grid-row-height: {{ section.settings.mobile_row_height }}
         px;
     }
 
     @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }}{
-            --media-grid-row-height: {{ section.settings.desktop_row_height }}
+            --ul-media-grid-row-height: {{ section.settings.desktop_row_height }}
             px;
         }
     }
 
     {%- for block in section.blocks -%}
         #media-grid-{{ block.id }}{
-            --content-over-media-overlay: {{ block.settings.overlay_color.rgb }}
+            --ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }}
             /{{ block.settings.overlay_opacity | divided_by: 100.0 }};
 
             {%- if block.settings.heading_tag == 'h5' or block.settings.heading_tag == 'h6' -%}
-                --content-over-media-gap: 1rem;
+                --ul-content-over-media-gap: 1rem;
             {%- endif -%}
         }
 
         {%- if block.settings.heading_tag == 'h5' or block.settings.heading_tag == 'h6' -%}
             @media screen and (min-width: 740px) {
                 #media-grid-{{ block.id }}{
-                    --content-over-media-gap: 1.5rem;
+                    --ul-content-over-media-gap: 1.5rem;
                 }
             }
         {%- endif -%}
@@ -38,9 +34,9 @@
 </style>
 
 {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
     LIQUID
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{% assign data = product.metafields.custom.product_grid_image.value %}
 {% assign data_length = data | split: "," %}
 
@@ -63,18 +59,12 @@
                         {% endif %}
                     {% endfor %}
                 {% endcapture %}
-                <a
-                    {% if block.settings.link_url != blank %}href="{{ block.settings.link_url }}"{% endif %}
-                    class="media-grid__item shadow group"
-                    reveal-js
-                    style="--media-grid-column-span: {{ block.settings.desktop_column_span }}; --media-grid-row-span: {{ block.settings.desktop_row_span }}"
-                    {{ block.shopify_attributes }}
-                    style="order:{{forloop.index}}">
+                <a {% if block.settings.link_url != blank %}href="{{ block.settings.link_url }}"{% endif %}class="media-grid__item shadow group"reveal-jsstyle="--ul-media-grid-column-span: {{ block.settings.desktop_column_span }}; --media-grid-row-span: {{ block.settings.desktop_row_span }}"{{ block.shopify_attributes }}style="order:{{forloop.index}}">
                     {%- capture style -%}
-                        --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+                        --ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }};
 
                         {%- if block.settings.heading_tag == 'h5' or block.settings.heading_tag == 'h6' -%}
-                            --content-over-media-gap: 1.5rem;
+                            --ul-content-over-media-gap: 1.5rem;
                         {%- endif -%}
                     {%- endcapture -%}
 
@@ -96,7 +86,7 @@
 
                             {%- when 'video' -%}
                             {%- if block.settings.video -%}
-                                <video-media autoplay style="--aspect-ratio: auto">
+                                <video-media autoplay style="--ul-aspect-ratio: auto">
                                     {%- if block.settings.show_video_controls -%}
                                         {%- assign loop_video = false -%}
                                     {%- else -%}
@@ -109,7 +99,7 @@
                                 <video-media
                                     host="{{ block.settings.external_video_url.type }}"
                                     autoplay
-                                    style="--aspect-ratio: auto">
+                                    style="--ul-aspect-ratio: auto">
                                     <template>
                                         {%- if block.settings.external_video_url.type == 'youtube' -%}
                                             <iframe

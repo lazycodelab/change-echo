@@ -68,13 +68,13 @@ var SplitCursor = class extends HTMLElement {
     }
     this._currentX = Math.min(Math.max(event.clientX - this._initialX, this.minOffset), this.maxOffset);
     this._offsetX = this._currentX;
-    this._parentSection.style.setProperty("--clip-path-offset", `${this._currentX.toFixed(1)}px`);
+    this._parentSection.style.setProperty("--ul-clip-path-offset", `${this._currentX.toFixed(1)}px`);
   }
   _onPointerUp() {
     this._dragging = false;
   }
   _recalculateOffset() {
-    this._parentSection.style.setProperty("--clip-path-offset", `${Math.min(Math.max(this.minOffset, this._currentX.toFixed(1)), this.maxOffset)}px`);
+    this._parentSection.style.setProperty("--ul-clip-path-offset", `${Math.min(Math.max(this.minOffset, this._currentX.toFixed(1)), this.maxOffset)}px`);
   }
 };
 if (!window.customElements.get("split-cursor")) {
@@ -354,7 +354,7 @@ var MegaMenuPromoCarousel = class extends EffectCarousel2 {
   }
   _updateControlsColor(slide) {
     const extractFrom = slide.classList.contains("content-over-media") ? slide : slide.firstElementChild;
-    this.nextElementSibling.style.setProperty("--text-color", extractFrom.style.getPropertyValue("--text-color"));
+    this.nextElementSibling.style.setProperty("--ul-text-color", extractFrom.style.getPropertyValue("--ul-text-color"));
   }
 };
 var NavigationDrawer = class extends Drawer {
@@ -756,7 +756,7 @@ var MultipleImagesWithTextImageList = class extends EffectCarousel3 {
       ]);
     } else {
       timeline8([
-        [this.children, { opacity: 1, transform: "rotate(var(--image-rotation, 0deg))" }, { duration: 0.3, delay: stagger2(0.1) }]
+        [this.children, { opacity: 1, transform: "rotate(var(--ul-image-rotation, 0deg))" }, { duration: 0.3, delay: stagger2(0.1) }]
       ]);
     }
   }
@@ -985,16 +985,16 @@ var Slideshow = class extends HTMLElement {
   }
   async _onSlideSelected(event) {
     const slideStyles = getComputedStyle(event.detail.slide);
-    this.style.setProperty("--slideshow-controls-background", slideStyles.getPropertyValue("--slideshow-slide-controls-background"));
-    this.style.setProperty("--slideshow-controls-color", slideStyles.getPropertyValue("--slideshow-slide-controls-color"));
+    this.style.setProperty("--ul-slideshow-controls-background", slideStyles.getPropertyValue("--ul-slideshow-slide-controls-background"));
+    this.style.setProperty("--ul-slideshow-controls-color", slideStyles.getPropertyValue("--ul-slideshow-slide-controls-color"));
     if (!this.classList.contains("slideshow--boxed")) {
       return;
     }
     const backgroundElement = this.querySelector(".slideshow__slide-background");
-    const background = slideStyles.getPropertyValue("--slideshow-slide-background");
+    const background = slideStyles.getPropertyValue("--ul-slideshow-slide-background");
     backgroundElement.style.background = background;
     await motionAnimate2(backgroundElement, { opacity: [0, 1] }, { duration: 0.2 }).finished;
-    this.style.setProperty("--slideshow-background", background);
+    this.style.setProperty("--ul-slideshow-background", background);
     motionAnimate2(backgroundElement, { opacity: 0 }, { duration: 0 });
   }
 };

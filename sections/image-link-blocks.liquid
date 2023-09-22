@@ -6,18 +6,18 @@
 
 
     #shopify-section-{{ section.id }} .image-link-blocks {
-        --image-link-blocks-item-width: {% if block_size == 'small' %}
+--ul-image-link-blocks-item-width: {% if block_size == 'small' %}
             32vw{% elsif block_size == 'medium' %}
             38vw{% else %}
             48vw{% endif %};
-        --image-link-blocks-grid: auto / auto-flow var(--image-link-blocks-item-width);
+--ul-image-link-blocks-grid: auto / auto-flow var(--ul-image-link-blocks-item-width);
 
-        --content-over-media-gap: var(--grid-gutter);
+--ul-content-over-media-gap: var(--ul-grid-gutter);
     }
 
     @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }} .image-link-blocks {
-            --image-link-blocks-item-width: {% if block_size == 'small' %}
+--ul-image-link-blocks-item-width: {% if block_size == 'small' %}
                 18vw{% elsif block_size == 'medium' %}
                 22vw{% else %}
                 26vw{% endif %};
@@ -26,17 +26,17 @@
 
     @media screen and (min-width: 1000px) {
         #shopify-section-{{ section.id }} .image-link-blocks {
-            --image-link-blocks-items-per-row: {% if block_size == 'small' %}
+--ul-image-link-blocks-items-per-row: {% if block_size == 'small' %}
                 6{% elsif block_size == 'medium' %}
                 5{% else %}
                 4{% endif %};
-            --image-link-blocks-grid: auto / auto-flow calc(var(--container-inner-width) / var(--image-link-blocks-items-per-row) -(var(--grid-gutter) / var(--image-link-blocks-items-per-row) *(var(--image-link-blocks-items-per-row) - 1)));
+--ul-image-link-blocks-grid: auto / auto-flow calc(var(--ul-container-inner-width) / var(--ul-image-link-blocks-items-per-row) -(var(--ul-grid-gutter) / var(--ul-image-link-blocks-items-per-row) *(var(--ul-image-link-blocks-items-per-row) - 1)));
         }
     }
 
     @media screen and (min-width: 1400px) {
         #shopify-section-{{ section.id }} .image-link-blocks {
-            --image-link-blocks-items-per-row: {% if block_size == 'small' %}
+--ul-image-link-blocks-items-per-row: {% if block_size == 'small' %}
                 7{% elsif block_size == 'medium' %}
                 6{% else %}
                 5{% endif %};
@@ -82,7 +82,7 @@
                             <a
                                 {% if block.settings.link_url %}href="{{ block.settings.link_url }}"{% endif %}
                                 class="content-over-media rounded"
-                                style="--content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+                                style="--ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
                                 {{- item_content -}}
                             </a>
                         {%- else -%}

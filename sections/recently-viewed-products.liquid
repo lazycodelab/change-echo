@@ -1,50 +1,47 @@
 {%- render 'section-spacing-collapsing' -%}
 
 {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
     CSS
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}<style>
     #shopify-section-{{ section.id }}.product-list {
-        --product-list-gap: {% if section.settings.stack_products %}
+        --ul-product-list-gap: {% if section.settings.stack_products %}
             {% if section.settings.products_per_row_mobile == '1' %}
-                var(--grid-gutter){% else %}
-                var(--product-list-row-gap){% endif %}
-            var(--spacing-2){% else %}
-            var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
-        --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }}
+                var(--ul-grid-gutter){% else %}
+                var(--ul-product-list-row-gap){% endif %}
+            var(--ul-spacing-2){% else %}
+            var(--ul-product-list-row-gap) var(--ul-product-list-column-gap){% endif %};
+        --ul-product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }}
         ;
-        --product-list-carousel-item-width: 74vw;
-        --product-list-grid: {% if section.settings.stack_products %}
-            auto / repeat(var(--product-list-items-per-row), minmax(0, 1fr)){% else %}
-            auto / auto-flow var(--product-list-carousel-item-width){% endif %};
+        --ul-product-list-carousel-item-width: 74vw;
+        --ul-product-list-grid: {% if section.settings.stack_products %}
+            auto / repeat(var(--ul-product-list-items-per-row), minmax(0, 1fr)){% else %}
+            auto / auto-flow var(--ul-product-list-carousel-item-width){% endif %};
     }
 
     @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }}.product-list {
-            --product-list-gap: var(--product-list-row-gap) var(--product-list-column-gap);
-            --product-list-items-per-row: 2;
-            --product-list-carousel-item-width: 36vw;
+            --ul-product-list-gap: var(--ul-product-list-row-gap) var(--ul-product-list-column-gap);
+            --ul-product-list-items-per-row: 2;
+            --ul-product-list-carousel-item-width: 36vw;
         }
     }
 
     @media screen and (min-width: 1000px) {
         #shopify-section-{{ section.id }}.product-list {
-            --product-list-items-per-row: {{ section.settings.products_per_row_desktop }}
+            --ul-product-list-items-per-row: {{ section.settings.products_per_row_desktop }}
             ;
-            --product-list-carousel-item-width: calc(var(--container-inner-width) / {{ section.settings.products_per_row_desktop }} -(var(--product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
+            --ul-product-list-carousel-item-width: calc(var(--ul-container-inner-width) / {{ section.settings.products_per_row_desktop }} -(var(--ul-product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
         }
     }
 </style>
 
 {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
     LIQUID
-    ------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}<recently-viewed-products
-    products-count="{{ section.settings.products_count }}"
-    {% if request.page_type == 'product' %}exclude-id="{{ product.id }}"{% endif %}
-    {% render 'section-attributes' %}>
+    --ul-----------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}<recently-viewed-products products-count="{{ section.settings.products_count }}" {% if request.page_type == 'product' %}exclude-id="{{ product.id }}"{% endif %}{% render 'section-attributes' %}>
     {%- if search.performed and search.results_count > 0 -%}
         <div class="section-stack">
             {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content -%}

@@ -3,37 +3,37 @@
 
     <style>
         #shopify-section-{{ section.id }}{
-            --testimonial-list-items-per-row: 1;
-            --testimonial-list-carousel-item-width: 74vw;
+            --ul-testimonial-list-items-per-row: 1;
+            --ul-testimonial-list-carousel-item-width: 74vw;
 
-            --testimonial-list-grid: {% if section.settings.stack_testimonials %}
-                auto / repeat(var(--testimonial-list-items-per-row), minmax(0, 1fr)){% else %}
-                auto / auto-flow var(--testimonial-list-carousel-item-width){% endif %};
+            --ul-testimonial-list-grid: {% if section.settings.stack_testimonials %}
+                auto / repeat(var(--ul-testimonial-list-items-per-row), minmax(0, 1fr)){% else %}
+                auto / auto-flow var(--ul-testimonial-list-carousel-item-width){% endif %};
         }
 
         #shopify-section-{{ section.id }}.scrollbar {
             {%- assign controls_color = section.settings.text_color | default: section.settings.heading_color | default: settings.text_color -%}
-            --text-color: {{ controls_color.rgb }}
+            --ul-text-color: {{ controls_color.rgb }}
             ;
         }
 
         @media screen and (min-width: 700px) {
             #shopify-section-{{ section.id }}{
-                --testimonial-list-items-per-row: 2;
-                --testimonial-list-carousel-item-width: 52vw;
+                --ul-testimonial-list-items-per-row: 2;
+                --ul-testimonial-list-carousel-item-width: 52vw;
             }
         }
 
         @media screen and (min-width: 1000px) {
             #shopify-section-{{ section.id }}{
-                --testimonial-list-carousel-item-width: 36vw;
+                --ul-testimonial-list-carousel-item-width: 36vw;
             }
         }
 
         @media screen and (min-width: 1150px) {
             #shopify-section-{{ section.id }}{
-                --testimonial-list-items-per-row: 3;
-                --testimonial-list-carousel-item-width: calc(100% / 3 -(var(--grid-gutter) / 3 * 2));
+                --ul-testimonial-list-items-per-row: 3;
+                --ul-testimonial-list-carousel-item-width: calc(100% / 3 -(var(--ul-grid-gutter) / 3 * 2));
             }
         }
     </style>

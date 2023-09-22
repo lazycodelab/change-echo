@@ -22,23 +22,22 @@
     <style>
         #shopify-section-{{ section.id }}{
             {%- if section.settings.full_width -%}
-                --section-outer-spacing-block: 0;
+                --ul-section-outer-spacing-block: 0;
             {%- else -%}
-                --section-spacing-block-end: 0;
+                --ul-section-spacing-block-end: 0;
             {%- endif -%}
 
-            --content-over-media-overlay: {{ section.settings.overlay_color.rgb }}
-            /{{ section.settings.overlay_opacity | divided_by: 100.0 }}
-            ;
+            --ul-content-over-media-overlay: {{ section.settings.overlay_color.rgb }}
+            /{{ section.settings.overlay_opacity | divided_by: 100.0 }};
 
             {%- if section.settings.allow_transparent_header -%}
-                margin-block-start: calc(-1 * var(--header-height) * var(--section-is-first));
+                margin-block-start: calc(-1 * var(--ul-header-height) * var(--ul-section-is-first));
             {%- endif -%}
         }
 
         {%- unless section.settings.full_width -%}
             .shopify-section:first-child .section[allow-transparent-header] {
-                padding-block-start: max(var(--section-inner-max-spacing-block), var(--header-height));
+                padding-block-start: max(var(--ul-section-inner-max-spacing-block), var(--ul-header-height));
             }
         {%- endunless -%}
     </style>
@@ -48,10 +47,7 @@
             {% if section.settings.full_width %}full-bleed{% else %}shadow-block rounded-lg{% endif %}
         {%- endcapture -%}
 
-        <image-banner
-            reveal-on-scroll="true"
-            {% if section.settings.enable_parallax %}parallax="0.3"{% endif %}
-            {% render 'surface', class: class, text_color: section.settings.text_color %}>
+        <image-banner reveal-on-scroll="true" {% if section.settings.enable_parallax %}parallax="0.3"{% endif %}{% render 'surface', class: class, text_color: section.settings.text_color %}>
             {%- assign desktop_image = section.settings.image | default: collection.image -%}
             {%- assign mobile_image = section.settings.mobile_image | default: section.settings.image | default: collection.image -%}
             {%- capture default_size -%}

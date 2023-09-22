@@ -29,14 +29,14 @@
             {{ class }} bg-gradient
         {%- endcapture -%}
         {%- capture style_attributes -%}
-            {{ style_attributes }} --gradient: {{ background_gradient }}; --background: {{ gradient_first_stop[0] }} {{ gradient_first_stop[1] }} {{ gradient_first_stop[2] }};
+            {{ style_attributes }} --ul-gradient: {{ background_gradient }}; --ul-background: {{ gradient_first_stop[0] }} {{ gradient_first_stop[1] }} {{ gradient_first_stop[2] }};
         {%- endcapture -%}
     {%- else -%}
         {%- capture class -%}
             {{ class }} bg-custom
         {%- endcapture -%}
         {%- capture style_attributes -%}
-            {{ style_attributes }} --background: {{ background.rgb }};
+            {{ style_attributes }} --ul-background: {{ background.rgb }};
         {%- endcapture -%}
     {%- endif -%}
 {%- endif -%}
@@ -46,19 +46,19 @@
         {{ class }} text-custom
     {%- endcapture -%}
     {%- capture style_attributes -%}
-        {{ style_attributes }} --text-color: {{ text_color.rgb }};
+        {{ style_attributes }} --ul-text-color: {{ text_color.rgb }};
     {%- endcapture -%}
 {%- endunless -%}
 
 {%- unless input_background == 'rgba(0,0,0,0)' or input_background == blank -%}
     {%- capture style_attributes -%}
-        {{ style_attributes }} --input-background: {{ input_background.rgb }};
+        {{ style_attributes }} --ul-input-background: {{ input_background.rgb }};
     {%- endcapture -%}
 {%- endunless -%}
 
 {%- unless input_text_color == 'rgba(0,0,0,0)' or input_text_color == blank -%}
     {%- capture style_attributes -%}
-        {{ style_attributes }} --input-text-color: {{ input_text_color.rgb }};
+        {{ style_attributes }} --ul-input-text-color: {{ input_text_color.rgb }};
     {%- endcapture -%}
 {%- endunless -%}
 

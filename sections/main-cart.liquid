@@ -26,11 +26,7 @@
 
         <div class="cart-order">
           <div class="cart-order__summary">
-            {%- comment -%}
-            ----------------------------------------------------------------------------------------------------------------
-            ORDER SUMMARY
-            ----------------------------------------------------------------------------------------------------------------
-            {%- endcomment -%}
+
             <table class="order-summary">
               <thead class="order-summary__header">
                 <tr>
@@ -67,11 +63,7 @@
               </tbody>
             </table>
 
-            {%- comment -%}
-            ----------------------------------------------------------------------------------------------------------------
-            SHIPPING ESTIMATOR
-            ----------------------------------------------------------------------------------------------------------------
-            {%- endcomment -%}
+
 
             {%- if section.settings.show_shipping_estimator and cart.requires_shipping -%}
               {%- assign accordion_title = 'cart.shipping_estimator.estimate_shipping' | t -%}

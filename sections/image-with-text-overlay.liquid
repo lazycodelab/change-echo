@@ -5,15 +5,14 @@
 <style>
     #shopify-section-{{ section.id }}{
         {%- if section.settings.full_width -%}
-            --section-outer-spacing-block: 0;
+            --ul-section-outer-spacing-block: 0;
         {%- endif -%}
 
-        --content-over-media-overlay: {{ section.settings.overlay_color.rgb }}
-        /{{ section.settings.overlay_opacity | divided_by: 100.0 }}
-        ;
+        --ul-content-over-media-overlay: {{ section.settings.overlay_color.rgb }}
+        /{{ section.settings.overlay_opacity | divided_by: 100.0 }};
 
         {%- if section.settings.allow_transparent_header -%}
-            margin-block-start: calc(-1 * var(--header-height) * var(--section-is-first));
+            margin-block-start: calc(-1 * var(--ul-header-height) * var(--ul-section-is-first));
         {%- endif -%}
     }
 </style>
@@ -23,10 +22,7 @@
         {% if section.settings.full_width %}full-bleed{% else %}shadow-block rounded-lg{% endif %}
     {%- endcapture -%}
 
-    <image-banner
-        reveal-on-scroll="true"
-        {% if section.settings.enable_parallax %}parallax="0.3"{% endif %}
-        {% render 'surface', class: class, text_color: section.settings.text_color %}>
+    <image-banner reveal-on-scroll="true" {% if section.settings.enable_parallax %}parallax="0.3"{% endif %}{% render 'surface', class: class, text_color: section.settings.text_color %}>
         {%- if section.settings.image != blank -%}
             {%- capture image_class -%}
                 {% if section.settings.mobile_image != blank %}hidden sm:block{% endif %}
@@ -56,10 +52,7 @@
 
                             {%- when 'heading' -%}
                             {%- if block.settings.text != blank -%}
-                                <p
-                                    class="{{ block.settings.heading_tag }}"
-                                    {% if settings.heading_apparition != 'none' %}reveal-on-scroll="true"{% endif %}
-                                    {{ block.shopify_attributes }}>
+                                <p class="{{ block.settings.heading_tag }}" {% if settings.heading_apparition != 'none' %}reveal-on-scroll="true"{% endif %}{{ block.shopify_attributes }}>
                                     {%- render 'styled-text', content: block.settings.text, apparition_effect: true -%}
                                 </p>
                             {%- endif -%}

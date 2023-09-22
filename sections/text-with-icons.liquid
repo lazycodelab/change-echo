@@ -5,42 +5,42 @@
 
     <style>
         #shopify-section-{{ section.id }}{
-            --text-with-icons-template: {% if section.settings.stack_on_mobile %}
+            --ul-text-with-icons-template: {% if section.settings.stack_on_mobile %}
                 minmax(0, 1fr){% else %}
                 auto-flow 100%{% endif %};
-            --text-with-icons-justify: center;
-            --text-with-icons-text-align: center;
-            --text-with-icons-gap: {% if section.settings.icon_spacing == 'small' %}
-                var(--spacing-5){% elsif section.settings.icon_spacing == 'medium' %}
-                var(--spacing-4){% else %}
-                var(--spacing-5){% endif %};
+            --ul-text-with-icons-justify: center;
+            --ul-text-with-icons-text-align: center;
+            --ul-text-with-icons-gap: {% if section.settings.icon_spacing == 'small' %}
+                var(--ul-spacing-5){% elsif section.settings.icon_spacing == 'medium' %}
+                var(--ul-spacing-4){% else %}
+                var(--ul-spacing-5){% endif %};
         }
 
         {%- if section.settings.stack_on_mobile -%}
             @media screen and (min-width: 699px) {
                 #shopify-section-{{ section.id }}{
-                    --text-with-icons-template: repeat(2, minmax(0, 1fr));
+                    --ul-text-with-icons-template: repeat(2, minmax(0, 1fr));
                 }
             }
         {%- endif -%}
 
         @media screen and (min-width: 1150px) {
             #shopify-section-{{ section.id }}{
-                --text-with-icons-gap: {% if section.settings.icon_spacing == 'small' %}
-                    var(--spacing-5){% elsif section.settings.icon_spacing == 'medium' %}
-                    var(--spacing-6){% else %}
-                    var(--spacing-8){% endif %};
+                --ul-text-with-icons-gap: {% if section.settings.icon_spacing == 'small' %}
+                    var(--ul-spacing-5){% elsif section.settings.icon_spacing == 'medium' %}
+                    var(--ul-spacing-6){% else %}
+                    var(--ul-spacing-8){% endif %};
             }
         }
 
         {%- if section.blocks.size <= 3 -%}
             @media screen and (min-width: 1000px) {
                 #shopify-section-{{ section.id }}{
-                    --text-with-icons-template: repeat({{ section.blocks.size }}, minmax(0, 630px));
-                    --text-with-icons-justify: {% if section.settings.text_alignment == 'center' %}
+                    --ul-text-with-icons-template: repeat({{ section.blocks.size }}, minmax(0, 630px));
+                    --ul-text-with-icons-justify: {% if section.settings.text_alignment == 'center' %}
                         center{% else %}
                         start{% endif %};
-                    --text-with-icons-text-align: {% if section.settings.text_alignment == 'center' %}
+                    --ul-text-with-icons-text-align: {% if section.settings.text_alignment == 'center' %}
                         center{% else %}
                         start{% endif %};
                 }
@@ -48,11 +48,11 @@
         {%- else -%}
             @media screen and (min-width: 1150px) {
                 #shopify-section-{{ section.id }}{
-                    --text-with-icons-template: repeat({{ section.blocks.size }}, 1fr);
-                    --text-with-icons-justify: {% if section.settings.text_alignment == 'center' %}
+                    --ul-text-with-icons-template: repeat({{ section.blocks.size }}, 1fr);
+                    --ul-text-with-icons-justify: {% if section.settings.text_alignment == 'center' %}
                         center{% else %}
                         start{% endif %};
-                    --text-with-icons-text-align: {% if section.settings.text_alignment == 'center' %}
+                    --ul-text-with-icons-text-align: {% if section.settings.text_alignment == 'center' %}
                         center{% else %}
                         start{% endif %};
                 }

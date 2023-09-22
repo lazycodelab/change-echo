@@ -4,11 +4,11 @@
 
 <style>
     #shopify-section-{{ section.id }}{
-        --section-stack-intro: {% if text_position == 'center' %}
+        --ul-section-stack-intro: {% if text_position == 'center' %}
             66.6667%{% elsif section.settings.contact_form_size == 'small' %}
             50%{% else %}
             41.6667%{% endif %};
-        --section-stack-main: {% if section.settings.contact_form_size == 'small' %}
+        --ul-section-stack-main: {% if section.settings.contact_form_size == 'small' %}
             50%{% else %}
             58.3334%{% endif %};
     }

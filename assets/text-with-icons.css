@@ -41,8 +41,8 @@
 @media (max-width: 1199px) {
 	.text-with-icons__list {
 		grid-template-columns: repeat(4, 1fr);
-		padding-inline-start: var(--spacing-4);
-		padding-inline-end: var(--spacing-4);
+		padding-inline-start: var(--ul-spacing-4);
+		padding-inline-end: var(--ul-spacing-4);
 		gap: 10px;
 	}
 	.text-with-icons__list .text-with-icons__item {

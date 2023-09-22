@@ -3,19 +3,19 @@
 {%- assign visible_images_count = section.blocks | map: 'settings' | where: 'image' | size -%}
 
 {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
     CSS
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}<style>
     #shopify-section-{{ section.id }}{
-        --multiple-images-with-text-max-width: 580px;
-        --multiple-images-with-text-images-grid-template: {% if section.settings.images_layout != 'stacked' and visible_images_count > 1 %}
+        --ul-multiple-images-with-text-max-width: 580px;
+        --ul-multiple-images-with-text-images-grid-template: {% if section.settings.images_layout != 'stacked' and visible_images_count > 1 %}
             repeat({% if visible_images_count == 2 %}1{% else %}2{% endif %}, auto) / minmax(0, 0.75fr) minmax(0, 1fr){% else %}
             none{% endif %};
-        --multiple-images-with-text-images-alignment: {% if section.settings.images_layout == 'collage' and section.settings.collage_images_alignment == 'top' or section.settings.collage_images_alignment == 'shifted' %}
+        --ul-multiple-images-with-text-images-alignment: {% if section.settings.images_layout == 'collage' and section.settings.collage_images_alignment == 'top' or section.settings.collage_images_alignment == 'shifted' %}
             start{% else %}
             center{% endif %};
-        --multiple-images-with-text-main-image-offset: {% if section.settings.images_layout == 'collage' and section.settings.collage_images_alignment == 'shifted' and visible_images_count > 1 %}
+        --ul-multiple-images-with-text-main-image-offset: {% if section.settings.images_layout == 'collage' and section.settings.collage_images_alignment == 'shifted' and visible_images_count > 1 %}
             {% if visible_images_count == 2 %}
                 40px{% else %}
                 min(145px, 14vw){% endif %}
@@ -26,42 +26,42 @@
     {%- if section.settings.images_layout == 'stacked' or visible_images_count == 1 -%}
         @media screen and (min-width: 1000px) {
             #shopify-section-{{ section.id }}{
-                --multiple-images-with-text-max-width: none;
-                --multiple-images-with-text-grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
-                --multiple-images-with-text-column-gap: var(--spacing-20);
-                --multiple-images-with-text-alignment: start;
+                --ul-multiple-images-with-text-max-width: none;
+                --ul-multiple-images-with-text-grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+                --ul-multiple-images-with-text-column-gap: var(--ul-spacing-20);
+                --ul-multiple-images-with-text-alignment: start;
             }
         }
     {%- else -%}
         @media screen and (min-width: 1000px) {
             #shopify-section-{{ section.id }}{
-                --multiple-images-with-text-max-width: 690px;
+                --ul-multiple-images-with-text-max-width: 690px;
             }
         }
     {%- endif -%}
 
     @media screen and (min-width: 1150px) {
         #shopify-section-{{ section.id }}{
-            --multiple-images-with-text-max-width: none;
-            --multiple-images-with-text-grid-template-columns: {% if section.settings.images_layout == 'stacked' %}
+            --ul-multiple-images-with-text-max-width: none;
+            --ul-multiple-images-with-text-grid-template-columns: {% if section.settings.images_layout == 'stacked' %}
                 minmax(0, 0.8fr) minmax(0, 1fr){% else %}
                 minmax(0, {% if visible_images_count == 1 %}max-content{% else %}1fr{% endif %}) minmax(0, 0.7fr){% endif %};
-            --multiple-images-with-text-column-gap: var(--spacing-24);
-            --multiple-images-with-text-alignment: start;
+            --ul-multiple-images-with-text-column-gap: var(--ul-spacing-24);
+            --ul-multiple-images-with-text-alignment: start;
         }
     }
 
     @media screen and (min-width: 1400px) {
         #shopify-section-{{ section.id }}{
-            --multiple-images-with-text-column-gap: var(--spacing-28);
+            --ul-multiple-images-with-text-column-gap: var(--ul-spacing-28);
         }
     }
 </style>
 
 {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
     LIQUID
-    ------------------------------------------------------------------------------------------------------------------------
+    --ul-----------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}{%- assign is_narrow = false -%}
 
 {%- if section.settings.images_layout == 'stacked' -%}
@@ -108,10 +108,7 @@
 
                 {%- for block in section.blocks -%}
                     {%- if block.settings.subheading != blank or block.settings.title != blank or block.settings.content != blank -%}
-                        <div
-                            class="prose {% if outputted_text_count == 0 %}is-selected{% else %}reveal-invisible{% endif %}"
-                            {% if block.settings.image != blank %}image-id="image-{{ block.id }}"{% endif %}
-                            {{ block.shopify_attributes }}>
+                        <div class="prose {% if outputted_text_count == 0 %}is-selected{% else %}reveal-invisible{% endif %}" {% if block.settings.image != blank %}image-id="image-{{ block.id }}"{% endif %}{{ block.shopify_attributes }}>
                             {%- if block.settings.subheading != blank -%}
                                 <p class="bold">{{ block.settings.subheading | escape }}</p>
                             {%- endif -%}

@@ -67,13 +67,13 @@
     }
     @media screen and (min-width: 700px) {
         .shopify-section.shopify-section--navigator {
-            top: var(--header-height);
+            top: var(--ul-header-height);
         }
     }
 
     .section-navigator-li.active {
-        color: rgb(var(--button-background-secondary));
-        border-bottom: 4px solid rgb(var(--button-background-secondary));
+        color: rgb(var(--ul-button-background-secondary));
+        border-bottom: 4px solid rgb(var(--ul-button-background-secondary));
     }
     .hide-it {
         display: none !important;
@@ -126,7 +126,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll("{%- for block in section.blocks -%}#{{ block.settings.related_section_id }}{% unless forloop.last %},                        {% endunless %}{%- endfor -%}")
+        const sections = document.querySelectorAll("{%- for block in section.blocks -%}#{{ block.settings.related_section_id }}{% unless forloop.last %},                         {% endunless %}{%- endfor -%}")
 
         const sectionNavigator = document.querySelector(".shopify-section--navigator")
         if (sectionNavigator) {

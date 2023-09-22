@@ -12,17 +12,17 @@
     {%- endunless -%}
 
     #shopify-section-{{ section.id }} .product-list {
-        --product-list-gap: {% if section.settings.stack_products and section.settings.products_per_row_mobile == '2' %}
+--ul-product-list-gap: {% if section.settings.stack_products and section.settings.products_per_row_mobile == '2' %}
             {% if card_blends %}
-                var(--product-list-row-gap){% endif %}
-            var(--spacing-2){% else %}
-            var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
-        --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }}
+                var(--ul-product-list-row-gap){% endif %}
+            var(--ul-spacing-2){% else %}
+            var(--ul-product-list-row-gap) var(--ul-product-list-column-gap){% endif %};
+--ul-product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }}
         ;
-        --product-list-carousel-item-width: 74vw;
-        --product-list-grid: {% if section.settings.stack_products %}
-            auto / repeat(var(--product-list-items-per-row), minmax(0, 1fr)){% else %}
-            auto / auto-flow var(--product-list-carousel-item-width){% endif %};
+--ul-product-list-carousel-item-width: 74vw;
+--ul-product-list-grid: {% if section.settings.stack_products %}
+            auto / repeat(var(--ul-product-list-items-per-row), minmax(0, 1fr)){% else %}
+            auto / auto-flow var(--ul-product-list-carousel-item-width){% endif %};
         row-gap: 28px;
     }
     #shopify-section-{{ section.id }} .section-header .prose h2 {
@@ -61,9 +61,9 @@
             margin-bottom: 1rem;
         }
         #shopify-section-{{ section.id }} .product-list {
-            --product-list-gap: var(--product-list-row-gap) var(--product-list-column-gap);
-            --product-list-items-per-row: 2;
-            --product-list-carousel-item-width: 36vw;
+--ul-product-list-gap: var(--ul-product-list-row-gap) var(--ul-product-list-column-gap);
+--ul-product-list-items-per-row: 2;
+--ul-product-list-carousel-item-width: 36vw;
             row-gap: 40px;
         }
         #shopify-section-{{ section.id }} .section-header .prose h2 {
@@ -82,9 +82,9 @@
 
     @media screen and (min-width: 1000px) {
         #shopify-section-{{ section.id }} .product-list {
-            --product-list-items-per-row: {{ section.settings.products_per_row_desktop }}
+--ul-product-list-items-per-row: {{ section.settings.products_per_row_desktop }}
             ;
-            --product-list-carousel-item-width: calc(var(--container-inner-width) / {{ section.settings.products_per_row_desktop }} -(var(--product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
+--ul-product-list-carousel-item-width: calc(var(--ul-container-inner-width) / {{ section.settings.products_per_row_desktop }} -(var(--ul-product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
         }
     }
 

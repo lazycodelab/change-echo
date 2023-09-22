@@ -1,7 +1,7 @@
 {{- 'header.css' | asset_url | stylesheet_tag: preload: true -}}
 {%- assign check = 'shopify-section-' | append: section.id -%}
 <script>
-    document.documentElement.style.setProperty('--header-height', Math.round(document.getElementById('{{ check }}').clientHeight) + 'px');
+    document.documentElement.style.setProperty('--ul-header-height', Math.round(document.getElementById('{{ check }}').clientHeight) + 'px');
 </script>
 
 {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
@@ -14,27 +14,27 @@
 
 <style > :root
 {
-    --sticky-header-enabled: {%- if section.settings.enable_sticky -%}
+    --ul-sticky-header-enabled: {%- if section.settings.enable_sticky -%}
         1{% else %}
         0{% endif %};
 }
 
 #shopify-section-{{ section.id }}{
-    --header-grid-template: "main-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
-    --header-padding-block: {% if section.settings.reduce_padding %}
-        var(--spacing-3){% else %}
-        var(--spacing-4-5){% endif %};
-    --header-background-opacity: {{ section.settings.background_opacity | divided_by: 100.0 }}
+    --ul-header-grid-template: "main-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
+    --ul-header-padding-block: {% if section.settings.reduce_padding %}
+        var(--ul-spacing-3){% else %}
+        var(--ul-spacing-4-5){% endif %};
+    --ul-header-background-opacity: {{ section.settings.background_opacity | divided_by: 100.0 }}
     ;
-    --header-background-blur-radius: {{ section.settings.background_blur_radius }}
+    --ul-header-background-blur-radius: {{ section.settings.background_blur_radius }}
     px;
-    --header-transparent-text-color: {{ section.settings.transparent_header_text_color.rgb }}
+    --ul-header-transparent-text-color: {{ section.settings.transparent_header_text_color.rgb }}
     ;
 
     {%- if section.settings.logo != blank -%}
-        --header-logo-width: {{ section.settings.logo_mobile_max_width }}
+        --ul-header-logo-width: {{ section.settings.logo_mobile_max_width }}
         px;
-        --header-logo-height: {{ section.settings.logo_mobile_max_width | divided_by: section.settings.logo.aspect_ratio | round }}
+        --ul-header-logo-height: {{ section.settings.logo_mobile_max_width | divided_by: section.settings.logo.aspect_ratio | round }}
         px;
     {%- endif -%}
 
@@ -47,14 +47,14 @@
 
 {%- if section.settings.enable_sticky -%}
     .shopify-section--announcement-bar ~ #shopify-section-{{ section.id }}{
-        top: calc(var(--sticky-announcement-bar-enabled, 0) * var(--announcement-bar-height, 0px));
+        top: calc(var(--ul-sticky-announcement-bar-enabled, 0) * var(--ul-announcement-bar-height, 0px));
     }
 {%- endif -%}
 
 {%- if section.settings.opening_from == 'left' -%}
     @media screen and (max-width: 699px) {
         .navigation-drawer {
-            --drawer-content-max-height: calc(100vh -(var(--spacing-2) * 2));
+            --ul-drawer-content-max-height: calc(100vh -(var(--ul-spacing-2) * 2));
         }
     }
 {%- endif -%}
@@ -62,15 +62,15 @@
 @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }}{
         {%- if section.settings.logo != blank -%}
-            --header-logo-width: {{ section.settings.logo_max_width }}
+            --ul-header-logo-width: {{ section.settings.logo_max_width }}
             px;
-            --header-logo-height: {{ section.settings.logo_max_width | divided_by: section.settings.logo.aspect_ratio | round }}
+            --ul-header-logo-height: {{ section.settings.logo_max_width | divided_by: section.settings.logo.aspect_ratio | round }}
             px;
         {%- endif -%}
 
-        --header-padding-block: {% if section.settings.reduce_padding %}
-            var(--spacing-6){% else %}
-            var(--spacing-8-5){% endif %};
+        --ul-header-padding-block: {% if section.settings.reduce_padding %}
+            var(--ul-spacing-6){% else %}
+            var(--ul-spacing-8-5){% endif %};
     }
 }
 
@@ -83,7 +83,7 @@
         {%- endif -%}
 
         #shopify-section-{{ section.id }}{
-            --header-grid-template: "logo main-nav secondary-nav" /{% if section.settings.layout == 'logo_left_navigation_inline' %}auto minmax(0, 1fr) minmax(0, max-content){% else %}
+            --ul-header-grid-template: "logo main-nav secondary-nav" /{% if section.settings.layout == 'logo_left_navigation_inline' %}auto minmax(0, 1fr) minmax(0, max-content){% else %}
             minmax(0, 1fr) fit-content({{ max_percent }}) minmax(0, 1fr){% endif %};
     }
 }
@@ -94,11 +94,6 @@ border-bottom: 1px solid #EFEFEF;
 </style><height-observer variable="header">
 <store-header class="header" {% if section.settings.hide_on_scroll %}hide-on-scroll="100"{% endif %}{% if section.settings.enable_sticky %}sticky{% endif %}>
     <div class="header__wrapper {% if template == 'product' %} border-btm {% endif %}">
-        {%- comment -%}
-            --------------------------------------------------------------------------------------------------------------------
-            MAIN NAV AREA
-            --------------------------------------------------------------------------------------------------------------------
-        {%- endcomment -%}
 
         <div class="header__main-nav">
             <div class="header__icon-list">
@@ -238,12 +233,6 @@ border-bottom: 1px solid #EFEFEF;
             </div>
         </div>
 
-        {%- comment -%}
-            --------------------------------------------------------------------------------------------------------------------
-            LOGO AREA
-            --------------------------------------------------------------------------------------------------------------------
-        {%- endcomment -%}
-
         {%- capture logo_content -%}
             {%- if section.settings.logo -%}
                 {%- capture sizes -%}
@@ -268,12 +257,6 @@ border-bottom: 1px solid #EFEFEF;
         {% else %}
             <a href="{{ routes.root_url }}" class="header__logo">{{ logo_content }}</a>
         {% endif %}
-
-        {%- comment -%}
-            --------------------------------------------------------------------------------------------------------------------
-            SECONDARY NAV AREA
-            --------------------------------------------------------------------------------------------------------------------
-        {%- endcomment -%}
 
         <div class="header__secondary-nav">
             {%- if section.settings.header != 'drawer' and section.settings.secondary_menu.links.size > 0 -%}
@@ -325,11 +308,7 @@ border-bottom: 1px solid #EFEFEF;
             </div>
         </div>
     </div>
-</store-header></height-observer>{%- comment -%}
-        --------------------------------------------------------------------------------------------------------------------
-        NAVIGATION MENU DRAWER
-        --------------------------------------------------------------------------------------------------------------------
-    {%- endcomment -%}{%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}{%- assign secondary_menu = section.settings.secondary_menu -%}{%- if main_menu.links.size > 0 or secondary_menu.links.size > 0 -%}
+</store-header></height-observer>{%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}{%- assign secondary_menu = section.settings.secondary_menu -%}{%- if main_menu.links.size > 0 or secondary_menu.links.size > 0 -%}
 <navigation-drawer
     mobile-opening="{{ section.settings.opening_from }}"
     open-from="left"

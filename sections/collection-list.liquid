@@ -4,7 +4,7 @@
 
 <style>
     #shopify-section-{{ section.id }} .collection-list {
-        --collection-list-grid: {% if section.settings.stack_collections %}
+--ul-collection-list-grid: {% if section.settings.stack_collections %}
             none{% else %}
             auto / auto-flow 73vw{% endif %};
     }
@@ -14,7 +14,7 @@
     }
     @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }} .collection-list {
-            --collection-list-grid: {% if section.settings.stack_collections %}
+--ul-collection-list-grid: {% if section.settings.stack_collections %}
                 auto / repeat(2, minmax(0, 1fr)){% else %}
                 auto / auto-flow 36vw{% endif %};
         }
@@ -26,17 +26,17 @@
 
     @media screen and (min-width: 1000px) {
         #shopify-section-{{ section.id }} .collection-list {
-            --collection-list-grid: {% if section.settings.stack_collections %}
+--ul-collection-list-grid: {% if section.settings.stack_collections %}
                 auto / repeat({{ 3 | at_most: section.settings.collections_per_row }}, minmax(0, 1fr)){% else %}
-                auto / auto-flow calc(var(--container-inner-width) / {{ section.settings.collections_per_row }} -(var(--grid-gutter) / 3 * 2)){% endif %};
+                auto / auto-flow calc(var(--ul-container-inner-width) / {{ section.settings.collections_per_row }} -(var(--ul-grid-gutter) / 3 * 2)){% endif %};
         }
     }
 
     @media screen and (min-width: 1400px) {
         #shopify-section-{{ section.id }} .collection-list {
-            --collection-list-grid: {% if section.settings.stack_collections %}
+--ul-collection-list-grid: {% if section.settings.stack_collections %}
                 auto / repeat({{ section.settings.collections_per_row }}, minmax(0, 1fr)){% else %}
-                auto / auto-flow calc(var(--container-inner-width) / {{ section.settings.collections_per_row }} -(var(--grid-gutter) / {{ section.settings.collections_per_row }} * {{ section.settings.collections_per_row | minus: 1 }})){% endif %};
+                auto / auto-flow calc(var(--ul-container-inner-width) / {{ section.settings.collections_per_row }} -(var(--ul-grid-gutter) / {{ section.settings.collections_per_row }} * {{ section.settings.collections_per_row | minus: 1 }})){% endif %};
         }
     }
 </style>
@@ -59,7 +59,7 @@
                         {%- assign collection_url = block.settings.url | default: collection.url -%}
 
                         <a {% if collection_url != blank %}href="{{ collection_url }}"{% endif %}class="collection-card {% if block.settings.text_position contains 'place-self-end' %}collection-card--reverse-transition{% endif %}"reveal-js>
-                            <div class="content-over-media group rounded-sm" style="--content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+                            <div class="content-over-media group rounded-sm" style="--ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
                                 {%- if collection != blank or block.settings.image != blank -%}
                                     {%- assign image = block.settings.image | default: collection.featured_image -%}
 
@@ -73,7 +73,7 @@
                                         {{- image | image_url: width: image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '200,300,400,500,600,800,1000,1200,1400,1600', class: image_classes -}}
                                     {%- endif -%}
 
-                                    <div class="collection-card__content-wrapper text-custom {{ block.settings.text_position }}" style="--text-color: {{ block.settings.text_color.rgb }}">
+                                    <div class="collection-card__content-wrapper text-custom {{ block.settings.text_position }}" style="--ul-text-color: {{ block.settings.text_color.rgb }}">
                                         {%- if block.settings.text_position contains 'place-self-end' -%}
                                             {%- render 'icon' with 'circle-button-right-clipped', width: 40, height: 40 -%}
                                         {%- endif -%}
@@ -95,7 +95,7 @@
                                         {% cycle 'collection-1', 'collection-2', 'collection-3' %}{%- endcapture -%}
                                     {{- collection_placeholder | placeholder_svg_tag: 'placeholder zoom-image' -}}
 
-                                    <div class="collection-card__content-wrapper text-custom {{ block.settings.text_position }}" style="--text-color: {{ block.settings.text_color.rgb }}">
+                                    <div class="collection-card__content-wrapper text-custom {{ block.settings.text_position }}" style="--ul-text-color: {{ block.settings.text_color.rgb }}">
                                         {%- if block.settings.text_position contains 'place-self-end' -%}
                                             {%- render 'icon' with 'circle-button-right-clipped', width: 40, height: 40 -%}
                                         {%- endif -%}

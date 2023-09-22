@@ -3,7 +3,7 @@
 
     <style>
         #shopify-section-{{ section.id }}{
-            --rich-text-max-width: {% if section.settings.content_width == 'small' %}
+            --ul-rich-text-max-width: {% if section.settings.content_width == 'small' %}
                 650px{% elsif section.settings.content_width == 'medium' %}
                 780px{% else %}
                 100%{% endif %}
@@ -63,7 +63,7 @@
                                     {{ image_style_attribute }} --image-max-width: {{ block.settings.max_width }}px; --image-mobile-max-width: {{ block.settings.mobile_max_width }}px{%- endcapture -%}
                                 {%- capture image_sizes_attribute -%}(max-width: 699px) min({{ block.settings.mobile_max_width }}px, 100vw), min({{ block.settings.max_width }}px, 100vw){%- endcapture -%}
                             {%- else -%}
-                                {%- capture image_sizes_attribute -%}min(100vw, var(--page-width)){%- endcapture -%}
+                                {%- capture image_sizes_attribute -%}min(100vw, var(--ul-page-width)){%- endcapture -%}
                             {%- endif -%}
 
                             {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: image_sizes_attribute, widths: '200,300,400,500,600,800,1000,1200,1400,1600', style: image_style_attribute -}}

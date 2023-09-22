@@ -3,15 +3,9 @@
 {%- assign text_position = section.settings.text_position -%}
 {%- assign values_column_count = section.blocks | where: 'type', 'values' | size -%}
 
-{%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-CSS
-------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
-
 <style>
   #shopify-section-{{ section.id }} {
-    --feature-chart-values-columns-count: {{ values_column_count }};
+--ul-feature-chart-values-columns-count: {{ values_column_count }};
   }
 
   @media screen and (min-width: 700px) {
@@ -40,12 +34,6 @@ CSS
     {%- endif -%}
   }
 </style>
-
-{%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-LIQUID
-------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
 
 <div {% render 'section-attributes' %}>
   <div class="section-stack {% if text_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if text_position == 'end' %}section-stack--reverse{% endif %}">
@@ -201,11 +189,11 @@ LIQUID
 
                     <div class="feature-chart__value prose text-subdued" {% if outputted_count == 0 %}{{ values_blocks[i].shopify_attributes }}{% endif %}>
                       {%- if stripped_value == 'FALSE' -%}
-                        <svg fill="none" class="icon offset-icon" width="16" height="16" viewBox="0 0 16 16" style="--icon-height: 16px">
+                        <svg fill="none" class="icon offset-icon" width="16" height="16" viewBox="0 0 16 16" style="--ul-icon-height: 16px">
                           <path d="m.94 3.06 12 12 2.12-2.12-12-12L.94 3.06Zm2.12 12 12-12L12.94.94l-12 12 2.12 2.12Z" fill="{{ section.settings.chart_true_false_color | default: section.settings.chart_text_color | default: settings.text_color }}"></path>
                         </svg>
                       {%- elsif stripped_value == 'TRUE' -%}
-                        <svg fill="none" class="icon offset-icon" width="20" height="16" viewBox="0 0 20 16" style="--icon-height: 16px">
+                        <svg fill="none" class="icon offset-icon" width="20" height="16" viewBox="0 0 20 16" style="--ul-icon-height: 16px">
                           <path d="m2 7.6 5.259 5.6L18 2" stroke="{{ section.settings.chart_true_false_color | default: section.settings.chart_text_color | default: settings.text_color }}" stroke-width="3"></path>
                         </svg>
                       {%- else -%}

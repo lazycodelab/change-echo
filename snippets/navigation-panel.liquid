@@ -1,7 +1,7 @@
 {%- comment -%}
-    ----------------------------------------------------------------------------------------------------------------------
+    --ul---------------------------------------------------------------------------------------------------------------------
     MEGA MENU PANEL
-    ----------------------------------------------------------------------------------------------------------------------
+    --ul---------------------------------------------------------------------------------------------------------------------
 
     This component is used to show the different links in different panel for the menu drawer
 
@@ -18,7 +18,7 @@
 
 <div class="panel-list__wrapper">
     <div class="panel">
-        <div class="panel__wrapper" {% if mega_menu_block.settings.promo_content_layout == 'grid' or mega_menu_block.settings.promo_content_layout == 'collage' %}style="--panel-wrapper-justify-content: flex-start"{% endif %}>
+        <div class="panel__wrapper" {% if mega_menu_block.settings.promo_content_layout == 'grid' or mega_menu_block.settings.promo_content_layout == 'collage' %}style="--ul-panel-wrapper-justify-content: flex-start"{% endif %}>
             <div class="panel__scroller v-stack gap-8">
                 {%- if is_mega_menu -%}
                     <button
@@ -83,10 +83,7 @@
                             {%- capture link_level_2 -%}
                                 {{- link_level_2 -}}
 
-                                <div
-                                    class="panel__wrapper"
-                                    {% if mega_menu_block.settings.promo_content_layout == 'grid' or mega_menu_block.settings.promo_content_layout == 'collage' %}style="--panel-wrapper-justify-content: flex-start"{% endif %}
-                                    hidden>
+                                <div class="panel__wrapper" {% if mega_menu_block.settings.promo_content_layout == 'grid' or mega_menu_block.settings.promo_content_layout == 'collage' %}style="--ul-panel-wrapper-justify-content: flex-start"{% endif %}hidden>
                                     <ul class="v-stack {% if is_mega_menu and is_image_shown == 'show' %}gap-3{% else %}gap-4{% endif %}">
                                         <li class="{% if layout != 'drawer' %}lg:hidden{% endif %}">
                                             <button class="text-with-icon h6 text-subdued" data-panel="0">
@@ -217,9 +214,9 @@
                 {%- render 'navigation-promo-block', navigation_layout: layout, mega_menu_block: mega_menu_block, is_navigation_drawer: true, link_col: link.links.size -%}
                 {%- else -%}
                 {%- comment -%}
-                    ----------------------------------------------------------------------------------------------------------------
+                    --ul---------------------------------------------------------------------------------------------------------------
                     SOCIAL MEDIA + LOCALIZATION
-                    ----------------------------------------------------------------------------------------------------------------
+                    --ul---------------------------------------------------------------------------------------------------------------
                 {%- endcomment -%}
 
                 {%- if section.settings.show_social_media -%}

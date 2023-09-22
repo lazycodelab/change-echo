@@ -2,7 +2,7 @@
 {%- assign text_position = section.settings.text_position -%}
 <style>
     #shopify-section-{{ section.id }}{
-        --rich-text-max-width: {% if section.settings.content_width == 'small' %}
+        --ul-rich-text-max-width: {% if section.settings.content_width == 'small' %}
             650px{% elsif section.settings.content_width == 'medium' %}
             780px{% else %}
             100%{% endif %}

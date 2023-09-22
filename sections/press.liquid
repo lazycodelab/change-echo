@@ -2,15 +2,14 @@
     {%- render 'section-spacing-collapsing' -%}
 
     {%- comment -%}
-        ------------------------------------------------------------------------------------------------------------------------
+        --ul-----------------------------------------------------------------------------------------------------------------------
         CSS
-        ------------------------------------------------------------------------------------------------------------------------
+        --ul-----------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}<style>
         #shopify-section-{{ section.id }}{
-            --press-items-border: {{ section.settings.logo_item_border.rgb }}
-            /{{ section.settings.logo_item_border.alpha }}
-            ;
-            --press-max-width: {% if section.settings.content_size == 'small' %}
+            --ul-press-items-border: {{ section.settings.logo_item_border.rgb }}
+            /{{ section.settings.logo_item_border.alpha }};
+            --ul-press-max-width: {% if section.settings.content_size == 'small' %}
                 760{% elsif section.settings.content_size == 'medium' %}
                 1000{% elsif section.settings.content_size == 'large' %}
                 1260{% endif %}px;
@@ -31,9 +30,9 @@
     </style>
 
     {%- comment -%}
-        ------------------------------------------------------------------------------------------------------------------------
+        --ul-----------------------------------------------------------------------------------------------------------------------
         LIQUID
-        ------------------------------------------------------------------------------------------------------------------------
+        --ul-----------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}<div {% render 'section-attributes' %}>
         <div class="section-stack">
             {%- if section.settings.title != blank -%}

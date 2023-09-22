@@ -1,7 +1,7 @@
 {%- comment -%}
-    ----------------------------------------------------------------------------------------------------------------------
+    --ul---------------------------------------------------------------------------------------------------------------------
     SECTION SPACING
-    ----------------------------------------------------------------------------------------------------------------------
+    --ul---------------------------------------------------------------------------------------------------------------------
 
     This component creates CSS variables by generating a number hash from the current section color. It then sets the same
     value on the next section, which allows doing advanced calculation and detect if two consecutive sections have the
@@ -49,23 +49,23 @@
 
 <style>
     #shopify-section-{{ section.id }}{
-        --section-background-hash: {{ background_numeric_hash }}
+        --ul-section-background-hash: {{ background_numeric_hash }}
         ;
     }
 
     #shopify-section-{{ section.id }}+ * {
-        --previous-section-background-hash: {{ background_numeric_hash }}
+        --ul-previous-section-background-hash: {{ background_numeric_hash }}
         ;
     }
 
     {%- if section_boxed and block_margin_collapsing != true -%}
         @media screen and (min-width: 700px) {
             #shopify-section-{{ section.id }}{
-                --section-background-hash: 0;
+                --ul-section-background-hash: 0;
             }
 
             #shopify-section-{{ section.id }}+ * {
-                --previous-section-background-hash: 0;
+                --ul-previous-section-background-hash: 0;
             }
         }
     {%- endif -%}

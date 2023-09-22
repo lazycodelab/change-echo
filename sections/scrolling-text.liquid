@@ -3,8 +3,8 @@
 
     {% style %}
         #shopify-section-{{ section.id }}{
-            --section-spacing-inline: 0;
-            --scrolling-text-font-size: {% if section.settings.text_size == 'xsmall' %}
+            --ul-section-spacing-inline: 0;
+            --ul-scrolling-text-font-size: {% if section.settings.text_size == 'xsmall' %}
                 1.125rem{% elsif section.settings.text_size == 'small' %}
                 2.5rem{% elsif section.settings.text_size == 'medium' %}
                 3.75rem{% elsif section.settings.text_size == 'large' %}
@@ -41,7 +41,7 @@
         }
         @media screen and (min-width: 700px) {
             #shopify-section-{{ section.id }}{
-                --scrolling-text-font-size: {% if section.settings.text_size == 'xsmall' %}
+                --ul-scrolling-text-font-size: {% if section.settings.text_size == 'xsmall' %}
                     1.5rem{% elsif section.settings.text_size == 'small' %}
                     3.75rem{% elsif section.settings.text_size == 'medium' %}
                     5rem{% elsif section.settings.text_size == 'large' %}
