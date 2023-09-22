@@ -89,7 +89,7 @@
 	border-bottom: 1px solid #EFEFEF;
 	}
 </style>
-<height-observer variable='header'>
+<height-change-listener variable='header'>
 	<store-header
 		class='header'
 		{% if section.settings.hide_on_scroll %}
@@ -374,7 +374,7 @@
 				</div>
 			</div>
 		</div>
-	</store-header></height-observer
+	</store-header></height-change-listener
 >
 {%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
 {%- assign secondary_menu = section.settings.secondary_menu -%}
