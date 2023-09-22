@@ -5,7 +5,7 @@
 {%- assign article_image = section.settings.image | default: article.image -%}
 
 <style>
-    #shopify-section-{{ section.id }}.article-banner {
+    #shopify-section-{{ section.id }} .article-banner {
         --ul-article-banner-background: {%- if background_color != blank -%}
             {{ background_color.rgb }}
         {%- else -%}

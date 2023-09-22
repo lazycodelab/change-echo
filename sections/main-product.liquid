@@ -32,11 +32,11 @@
     }
 
     {%- if section.settings.desktop_media_layout == 'grid_highlight' -%}
-        #shopify-section-{{ section.id }}.product-gallery__media-list > :not([hidden]) {
+        #shopify-section-{{ section.id }} .product-gallery__media-list > :not([hidden]) {
             grid-column: span 2;
         }
 
-        #shopify-section-{{ section.id }}.product-gallery__media-list > :not([hidden]) ~ *:not(.product-gallery__media--expand) {
+        #shopify-section-{{ section.id }} .product-gallery__media-list > :not([hidden]) ~ *:not(.product-gallery__media--expand) {
             grid-column: span 1;
         }
     {%- endif -%}
