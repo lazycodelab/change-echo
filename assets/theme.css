@@ -2538,7 +2538,7 @@ scroll-carousel {
 
 .section {
 	--ul-context-section-spacing-block-start: var(
-		--section-outer-spacing-block
+		--ul-section-outer-spacing-block
 	);
 	--ul-context-section-spacing-block-end: var(
 		--ul-section-outer-spacing-block

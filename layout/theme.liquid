@@ -38,7 +38,6 @@
 		{%- endif -%}
 
 		{%- unless settings.heading_font.system? -%}
-			hellooo
 			{{- settings.heading_font | font_url | preload_tag: as: 'font' -}}
 		{%- endunless -%}
 
