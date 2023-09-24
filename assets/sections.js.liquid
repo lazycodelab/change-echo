@@ -129,7 +129,7 @@ if (!window.customElements.get("account-login")) {
 import { animate, timeline as timeline3, stagger, Delegate as Delegate2 } from "{{ 'app.min.js' | asset_url }}";
 import { AnimatedDetails, EffectCarousel as EffectCarousel2, Drawer, throttle } from "{{ 'theme.js' | asset_url }}";
 var reduceMenuAnimation = false;
-var StoreHeader = class extends HTMLElement {
+var SiteHeader = class extends HTMLElement {
   connectedCallback() {
     if (this.hasAttribute("hide-on-scroll") && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
       this._lastScrollTop = 0;
@@ -462,8 +462,8 @@ var NavigationDrawer = class extends Drawer {
     }
   }
 };
-if (!window.customElements.get("store-header")) {
-  window.customElements.define("store-header", StoreHeader);
+if (!window.customElements.get("site-header")) {
+  window.customElements.define("site-header", SiteHeader);
 }
 if (!window.customElements.get("dropdown-disclosure")) {
   window.customElements.define("dropdown-disclosure", DropdownDisclosure, { extends: "details" });

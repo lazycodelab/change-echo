@@ -90,7 +90,7 @@
 	}
 </style>
 <height-change-listener variable='header'>
-	<store-header
+	<site-header
 		class='header'
 		{% if section.settings.hide_on_scroll %}
 			hide-on-scroll='100'
@@ -374,7 +374,7 @@
 				</div>
 			</div>
 		</div>
-	</store-header></height-change-listener
+	</site-header></height-change-listener
 >
 {%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
 {%- assign secondary_menu = section.settings.secondary_menu -%}
