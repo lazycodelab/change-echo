@@ -27,12 +27,12 @@
 	color: rgb(var(--ul-button-background-primary));
 }
 
-.product-info__teaser-text {
+/*.product-info__teaser-text {
 	font-size: var(--ul-title-size);
 	font-weight: var(--ul-title-weight);
 	line-height: var(--ul-title-height);
 	margin-top: 28px;
-}
+}*/
 
 .product-info__input-value {
 	display: flex;
@@ -317,9 +317,9 @@
 }
 
 @media (min-width: 1200px) {
-	.product-info__teaser-text {
+	/*.product-info__teaser-text {
 		margin-top: 40px;
-	}
+	}*/
 
 	.product-info__buy-buttons {
 		margin-top: 35px;
