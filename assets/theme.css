@@ -932,6 +932,11 @@ recently-viewed-products {
 	display: grid;
 }
 
+.circle-chevron:hover {
+	transform: translateX(5px);
+	animation-duration: 300ms;
+}
+
 .circle-chevron[disabled] {
 	opacity: 0.5;
 }

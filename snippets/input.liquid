@@ -12,38 +12,46 @@
     {% if required %}required{% endif %}
 {%- endcapture -%}
 
-<div class="form-control" {{ block.shopify_attributes }}>
-    {%- if multiline != blank -%}
-        <textarea
-            id="{{ id }}"
-            class="textarea is-floating"
-            is="resizable-textarea"
-            name="{{ name }}"
-            placeholder=" "
-            rows="{{ multiline }}"
-            {{ optional_attributes }}>{{- value -}}</textarea>
-    {%- else -%}
-        <input
-            id="{{ id }}"
-            class="input is-floating"
-            type="{{ type | default: 'text' }}"
-            {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %}name="{{ name }}"placeholder=" "{{ optional_attributes }}>
-    {%- endif -%}
+<div class='form-control' {{ block.shopify_attributes }}>
+	{%- if multiline != blank -%}
+		<textarea
+			id='{{ id }}'
+			class='textarea is-floating'
+			is='resizable-textarea'
+			name='{{ name }}'
+			placeholder=' '
+			rows='{{ multiline }}'
+			{{ optional_attributes -}}
+		>{{- value -}}</textarea>
+	{%- else -%}
+		<input
+			id='{{ id }}'
+			class='input is-floating'
+			type='{{ type | default: 'text' }}'
+			{% if type == 'email' or type == 'tel' %}
+				dir='ltr'
+			{% endif -%}
+			name='{{ name }}'
+			placeholder=' '
+			{{ optional_attributes }}
+		>
+	{%- endif -%}
 
-    {%- if show_max_characters_count and maxlength > 0 -%}
-        <span class="form-control__max-characters-count text-sm text-subdued text-end">{{ 'general.form.max_characters' | t: max_chars: maxlength }}</span>
-    {%- endif -%}
+	{%- if show_max_characters_count and maxlength > 0 -%}
+		<span class='form-control__max-characters-count text-sm text-subdued text-end'>
+			{{- 'general.form.max_characters' | t: max_chars: maxlength -}}
+		</span>
+	{%- endif -%}
 
-    {%- if label != blank -%}
-        <label for="{{ id }}" class="floating-label">{{ label }}</label>
-    {%- endif -%}
+	{%- if label != blank -%}
+		<label for='{{ id }}' class='floating-label'>{{ label }}</label>
+	{%- endif -%}
 
-    {%- if self_submit -%}
-        <div class="self-submit-button">
-            <button type="submit" class="circle-chevron hover:colors">
-                <span class="sr-only">{{ 'general.newsletter.subscribe' | t }}</span>
-                {%- render 'icon' with 'chevron-right-small', direction_aware: true -%}
-            </button>
-        </div>
-    {%- endif -%}
+	{%- if self_submit -%}
+		<div class='self-submit-button'>
+			<button type='submit' class='circle-chevron'>
+				{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}
+			</button>
+		</div>
+	{%- endif -%}
 </div>
