@@ -50,13 +50,18 @@
 					{{ product.selected_or_first_available_variant.sku -}}
 				</variant-sku>
 
-			{%- when 'price' -%}
+			{%- when 'show_countdown_timer' -%}
 				{% if product.metafields.custom.show_coundown and product.metafields.custom.end_time %}
-					<div class='countdown_timer_sec'>
-						<h4>Hurry up! Raffle ends in</h4>
-						<countdown-timer data-end-time='{{product.metafields.custom.end_time}}'></countdown-timer>
-					</div>
+					<countdown-timer
+						data-end-time='3'
+						data-timer-text='{{ block.settings.timer_text }}'
+						data-timer-over-text='{{ block.settings.timer_over_text }}'
+					></countdown-timer>
+				{%- else -%}
+					<p>Meta value is not set</p>
 				{% endif %}
+
+			{%- when 'price' -%}
 				<div class='product-info__price'>
 					<div class='rating-with-text'>
 						{%- render 'price-list',

@@ -271,14 +271,6 @@
 	border-radius: var(--ul-button-border-radius) !important;
 }
 
-.countdown_timer_sec h4 {
-	color: #000;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 700;
-	margin-bottom: 8px;
-}
-
 @media (min-width: 1024px) and (max-width: 1199px) {
 	.buy-buttons.buy-buttons--multiple .button {
 		font-size: 13px !important;

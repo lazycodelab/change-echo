@@ -6906,13 +6906,18 @@ class CountdownTimer extends HTMLElement {
 							text-align: center;
 							text-transform: uppercase;
 						}
+						#countdown h4 {
+							color: #000;
+							font-size: 24px;
+							font-style: normal;
+							font-weight: 700;
+							margin-bottom: 8px;
+						}
 						</style>
-						<div class="timer-box" id="countdown">
-						<div>
-							<slot/>
-						</div>
+						<div id="countdown">
+						<h4 data-text></h4>
 						<ul>
-							<li><span id="timer-days">00</span>days</li>
+							<li><span id="timer-days">00</span>Days</li>
 							<li><span id="timer-hours">00</span>Hours</li>
 							<li><span id="timer-minutes">00</span>Minutes</li>
 							<li><span id="timer-seconds">00</span>Seconds</li>
@@ -6928,6 +6933,8 @@ class CountdownTimer extends HTMLElement {
 		this.shadowRoot.appendChild(
 			this.templateElement.content.cloneNode(true),
 		)
+		this.shadowRoot.querySelector('h4[data-text]').innerHTML =
+			this.dataset.timerText
 	}
 
 	connectedCallback() {
@@ -6942,14 +6949,15 @@ class CountdownTimer extends HTMLElement {
 			hour = minute * 60,
 			day = hour * 24
 
-		let countDownDate = new Date(this.dataset.endTime)
+		const textElm = this.shadowRoot.querySelector('h4[data-text]')
 
+		let countDownDate = new Date(this.dataset.endTime)
 		let now = new Date().getTime()
 		let timeleft = countDownDate - now
-		if (timeleft < 0) {
+
+		if (timeleft <= 0) {
 			clearInterval(this.timer)
-			this.closest('.countdown_timer_sec').querySelector('h4').innerHTML =
-				'Raffle ended!'
+			textElm.innerHTML = this.dataset.timerOverText
 			return
 		}
 
