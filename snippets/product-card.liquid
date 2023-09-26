@@ -36,8 +36,8 @@
 	{%- assign card_class = card_class | append: ' single-product-card' -%}
 {%- endif -%}
 
-<product-card
-	handle='{{ product.handle | escape }}'
+<product-item
+	uri='{{ product.handle | escape }}'
 	{% if reveal %}
 		reveal-js
 	{% endif %}
@@ -330,4 +330,4 @@
 			</div>
 		{%- endif -%}
 	</div>
-</product-card>
+</product-item>

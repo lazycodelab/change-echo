@@ -73,6 +73,17 @@
 	}
 </style>
 
+{%- if section.settings.make_text_large -%}
+	<style>
+		.product-card__info .text-subdued,
+		.product-card__title {
+			font-size: {{ section.settings.custom_font_size }}px;
+			font-weight: 900;
+			color: #000;
+		}
+	</style>
+{%- endif -%}
+
 <div class='container'>
 	{%- if collection.all_products_count == 0 -%}
 		<div class='empty-state'>
@@ -820,6 +831,22 @@
 			"id": "custom_button_text",
 			"label": "Custom button text",
 			"default": "View Product"
+		},
+		{
+			"type": "checkbox",
+			"id": "make_text_large",
+			"label": "Use custom font size",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "custom_font_size",
+			"label": "Custom font size",
+			"info": "This will affect title and price font size",
+			"min": 16,
+			"max": 32,
+			"step": 1,
+			"default": 20
 		}
 	]
 }
