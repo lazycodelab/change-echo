@@ -1,19 +1,19 @@
 {%- comment -%}
-    --ul---------------------------------------------------------------------------------------------------------------------
-    PRODUCT BADGES COMPONENT
-    --ul---------------------------------------------------------------------------------------------------------------------
+	--ul---------------------------------------------------------------------------------------------------------------------
+	PRODUCT BADGES COMPONENT
+	--ul---------------------------------------------------------------------------------------------------------------------
 
-    This component is used in product listing and product page to render the badges of a given product
+	This component is used in product listing and product page to render the badges of a given product
 
-    ********************************************
-    Supported variables
-    ********************************************
+	********************************************
+	Supported variables
+	********************************************
 
-    * product: the product to render the badges
-    * types: the types of badge to output. Can be "custom", "sold_out" or "discount" (or a combination separated by comma). If nothing is set, all badges are outputted.
-    * form_id: an optional form ID to use to update the badges when a given variant changes
-    * block: an optional block to output theme editor attributes
-    * class: an extra class added on the container
+	* product: the product to render the badges
+	* types: the types of badge to output. Can be "custom", "sold_out" or "discount" (or a combination separated by comma). If nothing is set, all badges are outputted.
+	* form_id: an optional form ID to use to update the badges when a given variant changes
+	* block: an optional block to output theme editor attributes
+	* class: an extra class added on the container
 {%- endcomment -%}
 
 {%- assign badge_types = types | default: 'custom, sold_out, discount' | split: ',' -%}
@@ -81,7 +81,7 @@
 {%- endcapture -%}
 
 {%- if badges != blank -%}
-    <div class="{{ class }}" {{ block.shopify_attributes }}>
-        {{- badges -}}
-    </div>
+	<div class='{{ class }}' {{ block.shopify_attributes }}>
+		{{- badges -}}
+	</div>
 {%- endif -%}

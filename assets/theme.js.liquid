@@ -2832,7 +2832,7 @@ var ShippingEstimator = class extends HTMLElement {
             }</li>`;
         });
         this.resultsElement.innerHTML = `
-      <div class="v-stack gap-2">
+      <div class="grid gap-2">
         <p>${
             shippingRates.length === 0
                 ? window.themeVariables.strings.shippingEstimatorNoResults
@@ -2857,7 +2857,7 @@ var ShippingEstimator = class extends HTMLElement {
             }</li>`;
         });
         this.resultsElement.innerHTML = `
-      <div class="v-stack gap-2">
+      <div class="grid gap-2">
         <p>${
             window.themeVariables.strings.shippingEstimatorError
         }</p>

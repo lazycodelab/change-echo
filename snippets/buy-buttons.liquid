@@ -53,9 +53,9 @@
         {{ 'product.general.answer_quiz_placeholder' | t }}
     {% endcapture %}
 
-	<div class='v-stack gap-4'>
+	<div class='grid gap-4'>
 		{%- if product.gift_card? and show_gift_card_recipient -%}
-			<gift-card-recipient class='gift-card-recipient v-stack gap-3'>
+			<gift-card-recipient class='gift-card-recipient grid gap-3'>
 				{%- assign checkbox_label = 'gift_card.recipient.checkbox' | t -%}
 				{%- render 'checkbox',
 					label: checkbox_label,

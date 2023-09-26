@@ -656,7 +656,7 @@ recently-viewed-products {
 	background-color: rgb(var(--ul-button-background));
 	color: rgb(var(--ul-button-text-color));
 	text-align: center;
-	font-size: var(--ul-cta-size) !important;
+	font-size: var(--ul-cta-size);
 	padding-block-start: var(--ul-spacing-2-5);
 	padding-block-end: var(--ul-spacing-2-5);
 	padding-inline-start: var(--ul-spacing-5);
@@ -2402,7 +2402,7 @@ scroll-carousel {
 	}
 }
 
-.v-stack {
+.grid {
 	display: grid;
 }
 
@@ -3630,7 +3630,9 @@ model-media .shopify-model-viewer-ui {
 	--ul-product-card-quick-buy-inset: var(--ul-spacing-2);
 	border-radius: var(--ul-rounded-sm);
 	grid-template-columns: minmax(0, 1fr);
-	display: grid;
+	display: flex;
+	flex-direction: column;
+	/*align-content: start;*/
 	position: relative;
 	margin-bottom: 0.3rem;
 }
@@ -3757,10 +3759,10 @@ model-media .shopify-model-viewer-ui {
 	display: none;
 }
 
-.product-card__title {
+/*.product-card__title {
 	line-height: 1.5;
 	font-size: 16px;
-}
+}*/
 
 .product-card__quick-buy {
 	position: absolute;
@@ -3841,16 +3843,17 @@ model-media .shopify-model-viewer-ui {
 	grid-template-columns: minmax(0, 1fr);
 	justify-items: start;
 	display: grid;
+	flex: 1;
 }
 
-.product-card__info .price-list {
+/*.product-card__info .price-list {
 	font-size: 16px;
 	font-weight: 800;
-}
+}*/
 
-.product-card__info .price-list .text-subdued {
+/*.product-card__info .price-list .text-subdued {
 	color: rgb(var(--ul-text-color));
-}
+}*/
 
 .product-card--blends .product-card__info {
 	padding-block-end: 0;
@@ -3869,9 +3872,9 @@ model-media .shopify-model-viewer-ui {
 }
 
 @media screen and (min-width: 700px) {
-	.product-list .product-card__info .product-card__title a {
+	/*.product-list .product-card__info .product-card__title a {
 		min-height: 60px;
-	}
+	}*/
 	.product-card {
 		--ul-product-card-badge-spacing: var(--ul-spacing-4);
 		--ul-product-card-info-padding: var(--ul-spacing-5);
@@ -3888,18 +3891,16 @@ model-media .shopify-model-viewer-ui {
 		margin-block-start: var(--ul-spacing-2);
 		display: flex;
 	}
-
+	/*
 	.product-card__title {
 		font-size: 20px;
-	}
+	}*/
 
-	.product-card__info .price-list {
+	/*.product-card__info .price-list {
 		font-size: 20px;
-	}
+	}*/
 }
-.product-card__info {
-	row-gap: 15px;
-}
+/*
 .product-list .product-card__info .product-card__title a {
 	min-height: 40px;
 }
@@ -3913,7 +3914,7 @@ model-media .shopify-model-viewer-ui {
 	width: 100%;
 	display: block;
 	min-height: 50px;
-}
+}*/
 
 @media screen and (max-width: 425px) {
 	.product-list .product-card__info {
@@ -3928,21 +3929,22 @@ model-media .shopify-model-viewer-ui {
 }
 
 @media screen and (min-width: 1400px) {
-	.product-list .product-card__info .product-card__title a {
+	/*.product-list .product-card__info .product-card__title a {
 		min-height: 90px;
-	}
+	}*/
 	.product-card__info {
 		--ul-product-card-info-padding: var(--ul-spacing-6) var(--ul-spacing-8)
 			var(--ul-spacing-8) var(--ul-spacing-8);
-		row-gap: 30px;
+		/*row-gap: 30px;*/
+		gap: var(--ul-spacing-5);
 	}
-	.product-card__info .price-list {
+	/*.product-card__info .price-list {
 		font-size: 32px;
-	}
-	.product-card__title {
+	}*/
+	/*.product-card__title {
 		line-height: 1.5;
 		font-size: 32px;
-	}
+	}*/
 }
 
 @media screen and (pointer: fine) {
@@ -12705,14 +12707,13 @@ product-card {
 .product-card-button-wrapper .button {
 	width: 100%;
 	border-radius: 10px;
-	padding: 15px;
-	text-transform: uppercase;
+	padding: 10px;
 }
 
 @media screen and (min-width: 1200px) {
 	.product-card-button-wrapper .button {
-		padding: 20px;
-		font-size: 20px;
+		padding: 14px;
+		font-size: 16px;
 	}
 	.custom-progress-bar__info {
 		margin-bottom: 24px;
@@ -12740,16 +12741,18 @@ product-card {
 .custom-progress-bar {
 	background: #d9d9d9;
 	height: 7px;
+	border-radius: 4px;
+	overflow: hidden;
 }
 
 .custom-progress-bar .progress-bar-line {
-	height: 7px;
-	background: #e4b752;
+	height: 100%;
+	background: rgb(var(--ul-button-background-secondary));
 }
 
 .product-info__badge-list .badge.badge--primary,
 .product-card__badge-list .badge.badge--primary {
-	background: #e1b146;
+	background: rgb(var(--ul-button-background-secondary));
 	font-size: 15px;
 	font-weight: 500;
 	padding: 4px 16px;
