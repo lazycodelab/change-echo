@@ -1,25 +1,3 @@
-{%- comment -%}
-	--ul---------------------------------------------------------------------------------------------------------------------
-	BUY BUTTONS
-	--ul---------------------------------------------------------------------------------------------------------------------
-
-	This component is used to show the buy buttons
-
-	********************************************
-	Supported variables
-	********************************************
-
-	* product: the product from which to show the buttons
-	* show_payment_button: if we show or not the dynamic checkout button
-	* show_gift_card_recipient: for gift card products, an optional message/email to be sent to the recipient
-	* button_size: the size of the button (default to xl if none is passed)
-	* atc_button_background: the background of the ATC button
-	* atc_button_text_color: the text color of the ATC button
-	* payment_button_background: the custom dynamic checkout button background
-	* payment_button_text_color: the custom dynamic checkout button text color
-	* form_id: if specified, define the form ID linked to this input
-{%- endcomment -%}
-
 {%- assign variant_picker_block = section.blocks | where: 'type', 'variant_picker' | first -%}
 
 {%- form 'product', product, is: 'product-form', id: form_id -%}
