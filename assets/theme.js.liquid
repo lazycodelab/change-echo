@@ -902,7 +902,6 @@ if (!window.customElements.get('reveal-items')) {
 	window.customElements.define('reveal-items', RevealItems)
 }
 
-// js/common/behavior/custom-cursor.js
 var _abortController,
 	_onPointerLeave,
 	onPointerLeave_fn,
@@ -2689,9 +2688,9 @@ var Drawer = class extends DialogElement {
 			])
 		}
 		animate11 ? animationControls.play() : animationControls.finish()
-		return animationControls.finished.then(() =>
-			this.classList.add('show-close-cursor'),
-		)
+		//return animationControls.finished.then(() =>
+		//	this.classList.add('show-close-cursor'),
+		//)
 	}
 	_hideTransition() {
 		let animationControls
@@ -2751,9 +2750,9 @@ var Drawer = class extends DialogElement {
 				],
 			])
 		}
-		return animationControls.finished.then(() =>
-			this.classList.remove('show-close-cursor'),
-		)
+		//return animationControls.finished.then(() =>
+		//	this.classList.remove('show-close-cursor'),
+		//)
 	}
 	_updateSlotVisibility(slot) {
 		if (!['header', 'footer', 'body'].includes(slot.name)) {

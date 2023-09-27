@@ -1,6 +1,8 @@
 {{- 'slideshow.css' | asset_url | stylesheet_tag: preload: true -}}
+{%- assign control_type = 'dots' -%}
+
 <style>
-	  {%- if section.settings.controls_type == 'filled_arrows' -%}
+	  {%- if control_type == 'filled_arrows' -%}
 	    {%- assign controls_background = section.blocks.first.settings.button_background -%}
 	    {%- assign controls_color = section.blocks.first.settings.button_text_color -%}
 	  {%- else -%}
@@ -19,7 +21,7 @@
 
 	  {%- for block in section.blocks -%}
 	    #block-{{ block.id }} {
-	      {%- if section.settings.controls_type == 'filled_arrows' -%}
+	      {%- if control_type == 'filled_arrows' -%}
 	        {%- assign controls_background = block.settings.button_background -%}
 	        {%- assign controls_color = block.settings.button_text_color -%}
 	      {%- else -%}
@@ -53,7 +55,7 @@
 
 {%- assign slideshow_id = 'slideshow-' | append: section.id -%}
 
-<x-slideshow
+<swiper-wrapper
 	class='slideshow {% unless section.settings.full_width %}slideshow--boxed{% endunless %} {% if section.blocks.size > 1 %}slideshow--multiple-slides{% endif %}'
 	{% if section.settings.allow_transparent_header %}
 		allow-transparent-header
@@ -63,7 +65,7 @@
 		<span class='slideshow__slide-background'></span>
 	{%- endunless -%}
 
-	<slideshow-carousel
+	<swiper-slider
 		id='{{ slideshow_id }}'
 		class='slideshow__carousel'
 		reveal-on-scroll='true'
@@ -74,31 +76,10 @@
 		{% endif %}
 		role='region'
 	>
-		{%- unless section.blocks.size == 1 or section.settings.controls_type contains 'arrows' -%}
-			<custom-cursor
-				class='slideshow__cursor circle-button circle-button--lg circle-button--fill'
-				aria-hidden='true'
-			>
-				{%- render 'icon' with 'chevron-right' -%}
-
-				<svg
-					class='slideshow__cursor-ring'
-					viewBox='-28 -28 56 56'
-					width='56'
-					height='56'
-					fill='none'
-					stroke='currentColor'
-					stroke-width='2'
-				>
-					<circle r="27" stroke-dasharray="158.33626974092556" stroke-dashoffset="158.33626974092556px"></circle>
-				</svg>
-			</custom-cursor>
-		{%- endunless -%}
-
 		{%- for block in section.blocks -%}
 			{%- capture slide -%}
         <div class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--ul-content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
-          {%- comment -%}---------------- MEDIA ----------------{%- endcomment -%}
+
           {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
 
           {%- if block.settings.image != blank -%}
@@ -116,7 +97,7 @@
             {{- placeholder_image | placeholder_svg_tag: 'placeholder' | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"' -}}
           {%- endif -%}
 
-          {%- comment -%}---------------- CONTENT ----------------{%- endcomment -%}
+
           {%- capture content_class -%}{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}{%- endcapture -%}
 
           <div {% render 'surface', class: content_class, text_color: block.settings.text_color %}>
@@ -178,15 +159,15 @@
 			{%- endif -%}
 		{%- endfor -%}
 
-		{%- if section.blocks.size > 1 and section.settings.controls_type != 'none' -%}
+		{%- if section.blocks.size > 1 and control_type != 'none' -%}
 			<div class='slideshow__controls'>
-				{%- case section.settings.controls_type -%}
+				{%- case control_type -%}
 					{%- when 'filled_arrows', 'outline_arrows' -%}
 						<div class='prev-next-buttons'>
 							<button
 								is='prev-button'
 								aria-controls='{{ slideshow_id }}'
-								class='circle-button circle-button--lg {% if section.settings.controls_type == 'filled_arrows' %}circle-button--fill{% else %}circle-button--bordered{% endif %} group'
+								class='circle-button circle-button--lg {% if control_type == 'filled_arrows' %}circle-button--fill{% else %}circle-button--bordered{% endif %} group'
 							>
 								<span class='sr-only'>{{ 'general.accessibility.previous' | t }}</span>
 								<span class='animated-arrow animated-arrow--reverse'></span>
@@ -195,7 +176,7 @@
 							<button
 								is='next-button'
 								aria-controls='{{ slideshow_id }}'
-								class='circle-button circle-button--lg {% if section.settings.controls_type == 'filled_arrows' %}circle-button--fill{% else %}circle-button--bordered{% endif %} group'
+								class='circle-button circle-button--lg {% if control_type == 'filled_arrows' %}circle-button--fill{% else %}circle-button--bordered{% endif %} group'
 							>
 								<span class='sr-only'>{{ 'general.accessibility.next' | t }}</span>
 								<span class='animated-arrow'></span>
@@ -243,8 +224,8 @@
 				{%- endcase -%}
 			</div>
 		{%- endif -%}
-	</slideshow-carousel>
-</x-slideshow>
+	</swiper-slider>
+</swiper-wrapper>
 
 {% schema %}
 {
@@ -297,34 +278,6 @@
 			],
 			"info": "Choose \"Original image ratio\" to not cut images. [Learn more](https://help.shopify.com/en/manual/online-store/images/theme-images#best-practices-for-slideshows-and-full-width-images)",
 			"default": "auto"
-		},
-		{
-			"type": "select",
-			"id": "controls_type",
-			"label": "Controls",
-			"options": [
-				{
-					"value": "none",
-					"label": "None"
-				},
-				{
-					"value": "filled_arrows",
-					"label": "Filled arrows"
-				},
-				{
-					"value": "outline_arrows",
-					"label": "Outline arrows"
-				},
-				{
-					"value": "numbers",
-					"label": "Numbers"
-				},
-				{
-					"value": "dots",
-					"label": "Dots"
-				}
-			],
-			"default": "dots"
 		},
 		{
 			"type": "select",
