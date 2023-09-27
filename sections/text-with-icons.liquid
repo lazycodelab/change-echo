@@ -123,7 +123,7 @@
                 </scroll-carousel>
 
                 {%- if section.blocks.size > 1 -%}
-                    <page-dots aria-controls="carousel-{{ section.id }}" class="page-dots peer-not-scrollable:hidden">
+                    <swiper-dots aria-controls="carousel-{{ section.id }}" class="swiper-dots peer-not-scrollable:hidden">
                         {%- for index in (1..section.blocks.size) -%}
                             <button
                                 type="button"
@@ -132,7 +132,7 @@
                                 <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: index }}</span>
                             </button>
                         {%- endfor -%}
-                    </page-dots>
+                    </swiper-dots>
                 {%- endif -%}
             </div>
         </div>

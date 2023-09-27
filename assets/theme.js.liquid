@@ -544,8 +544,8 @@ var NextButton = class extends HTMLButtonElement {
 			: null
 	}
 }
-if (!window.customElements.get('page-dots')) {
-	window.customElements.define('page-dots', PageDots)
+if (!window.customElements.get('swiper-dots')) {
+	window.customElements.define('swiper-dots', PageDots)
 }
 if (!window.customElements.get('prev-button')) {
 	window.customElements.define('prev-button', PrevButton, {
@@ -5296,7 +5296,7 @@ var ProductGallery = class extends HTMLElement {
 			this._onVariantChangedListener,
 		)
 		this._carousels = Array.from(this.querySelectorAll('media-carousel'))
-		this._pageDots = Array.from(this.querySelectorAll('page-dots'))
+		this._pageDots = Array.from(this.querySelectorAll('swiper-dots'))
 		this._viewInSpaceButton = this.querySelector('[data-shopify-xr]')
 		this._customCursor = this.querySelector('.product-gallery__cursor')
 		this.addEventListener('carousel:change', this._onCarouselChanged)
@@ -7027,7 +7027,6 @@ if (!window.customElements.get('section-header')) {
 	window.customElements.define('section-header', SectionHeader)
 }
 
-// js/common/ui/marquee-text.js
 var MarqueeText = class extends HTMLElement {
 	constructor() {
 		super()
@@ -7053,8 +7052,8 @@ var MarqueeText = class extends HTMLElement {
 		)
 	}
 }
-if (!window.customElements.get('marquee-text')) {
-	window.customElements.define('marquee-text', MarqueeText)
+if (!window.customElements.get('moving-text')) {
+	window.customElements.define('moving-text', MarqueeText)
 }
 
 // js/theme.js

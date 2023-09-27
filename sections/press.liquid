@@ -133,7 +133,7 @@
 							<span class='animated-arrow animated-arrow--reverse'></span>
 						</button>
 
-						<page-dots aria-controls='carousel-{{ section.id }}' class='page-dots'>
+						<swiper-dots aria-controls='carousel-{{ section.id }}' class='swiper-dots'>
 							{%- for index in (1..section.blocks.size) -%}
 								<button
 									type='button'
@@ -145,7 +145,7 @@
 									</span>
 								</button>
 							{%- endfor -%}
-						</page-dots>
+						</swiper-dots>
 
 						<button
 							class='circle-button ring group'

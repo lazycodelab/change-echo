@@ -50,7 +50,7 @@
 			%}
 		>
 			{%- if section.settings.navigation_mode == 'scrolling' -%}
-				<marquee-text
+				<moving-text
 					scrolling-speed='{{ section.settings.scrolling_speed }}'
 					class='announcement-bar__scrolling-list'
 				>
@@ -78,10 +78,10 @@
 							{{- content -}}
 						</span>
 					{%- endfor -%}
-				</marquee-text>
+				</moving-text>
 			{%- else -%}
 				<div class='mobile_only'>
-					<marquee-text
+					<moving-text
 						scrolling-speed='{{ section.settings.scrolling_speed }}'
 						class='announcement-bar__scrolling-list'
 					>
@@ -109,7 +109,7 @@
 								{{- content -}}
 							</span>
 						{%- endfor -%}
-					</marquee-text>
+					</moving-text>
 				</div>
 
 				<div class='desktop_only'>

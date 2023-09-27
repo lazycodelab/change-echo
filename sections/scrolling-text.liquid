@@ -139,9 +139,9 @@
 					{{- section_content -}}
 				</visibility-progress>
 			{%- else -%}
-				<marquee-text scrolling-speed='{{ section.settings.scrolling_speed }}' class='scrolling-text__wrapper'>
+				<moving-text scrolling-speed='{{ section.settings.scrolling_speed }}' class='scrolling-text__wrapper'>
 					{{- section_content -}}
-				</marquee-text>
+				</moving-text>
 			{%- endif -%}
 		</div>
 	</div>

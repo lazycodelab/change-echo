@@ -184,7 +184,7 @@
 						</div>
 
 					{%- when 'numbers' -%}
-						<page-dots class='numbered-dots' aria-controls='{{ slideshow_id }}'>
+						<swiper-dots class='numbered-dots' aria-controls='{{ slideshow_id }}'>
 							{%- for i in (1..section.blocks.size) -%}
 								<button
 									type='button'
@@ -205,10 +205,10 @@
 									<span>{{- forloop.index -}}</span>
 								</button>
 							{%- endfor -%}
-						</page-dots>
+						</swiper-dots>
 
 					{%- when 'dots' -%}
-						<page-dots class='stretching-dots' aria-controls='{{ slideshow_id }}'>
+						<swiper-dots class='wider-dots' aria-controls='{{ slideshow_id }}'>
 							{%- for i in (1..section.blocks.size) -%}
 								<button
 									type='button'
@@ -220,7 +220,7 @@
 									</span>
 								</button>
 							{%- endfor -%}
-						</page-dots>
+						</swiper-dots>
 				{%- endcase -%}
 			</div>
 		{%- endif -%}
