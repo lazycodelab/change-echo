@@ -14,6 +14,23 @@
 	        width: {% if values_column_count == 1 %}680px{% elsif values_column_count == 2 %}900px{% else %}auto{% endif %};
 	        min-width: 680px;
 	      }
+		{%- elsif text_position == 'right' -%}
+		#shopify-section-{{ section.id }} .section-stack {
+	        flex-wrap: wrap;
+	        justify-content: flex-end;
+	      }
+
+	      #shopify-section-{{ section.id }} .section-stack__intro {
+	        flex: 1 0 350px; /* Allow to grow and shrink with a range from 350px to 750px */
+	        max-width: 750px;
+	        width: auto;
+	      }
+
+	      #shopify-section-{{ section.id }} .section-stack__main {
+	        flex: 1 1 {% if values_column_count == 1 %}600px{% elsif values_column_count == 2 %}900px{% else %}auto{% endif %};
+	        min-width: 450px;
+	        width: auto;
+	      }
 	    {%- else -%}
 	      #shopify-section-{{ section.id }} .section-stack {
 	        flex-wrap: wrap;
@@ -42,7 +59,7 @@
 			or section.settings.content != blank
 			or section.settings.button_text != blank
 		-%}
-			<div class='section-stack__intro'>
+			<div class='section-stack__intro' {% if text_position == 'right' %}style='order:1;'{% endif %}>
 				<div class='prose {% if text_position == 'center' %}text-center{% endif %}'>
 					{%- if section.settings.subheading != blank -%}
 						<p class='bold'>{{ section.settings.subheading | escape }}</p>
@@ -344,6 +361,10 @@
 				{
 					"value": "center",
 					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
 				}
 			],
 			"default": "start"
