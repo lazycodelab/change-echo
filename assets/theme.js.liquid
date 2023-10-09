@@ -3421,7 +3421,6 @@ if (!window.customElements.get('free-shipping-bar')) {
 	window.customElements.define('free-shipping-bar', FreeShippingBar)
 }
 
-// js/common/cart/line-item-quantity.js
 var LineItemQuantity = class extends HTMLElement {
 	constructor() {
 		super()
@@ -4191,6 +4190,7 @@ var QuantitySelector = class extends HTMLElement {
 		this._abortController.abort()
 	}
 }
+
 var QuantityInput = class extends HTMLInputElement {
 	constructor() {
 		super()
@@ -5283,7 +5283,6 @@ if (!window.customElements.get('variant-sku')) {
 	window.customElements.define('variant-sku', VariantSku)
 }
 
-// js/common/product/product-gallery.js
 import { PhotoSwipeLightbox } from "{{ 'app.min.js' | asset_url }}"
 var ProductGallery = class extends HTMLElement {
 	constructor() {
