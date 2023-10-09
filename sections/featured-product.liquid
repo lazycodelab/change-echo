@@ -103,10 +103,10 @@
 							</div>
 
 						{%- when 'separator' -%}
-							<hr class='product-info__separator' {{ block.shopify_attributes }}>
+							<hr class='product-info__separator' {{ block.shopify_attributes }} style="margin-top:5px">
 
 						{%- when 'description' -%}
-							<div class='product-info__description' {{ block.shopify_attributes }}>
+							<div class='product-info__description' {{ block.shopify_attributes }} style="margin:20px 0">
 								<div class='prose'>
 									{{- 'general.on_boarding.product_description' | t -}}
 								</div>
@@ -152,7 +152,7 @@
 							</div>
 
 						{%- when 'buy_buttons' -%}
-							<div class='product-info__buy-buttons' {{ block.shopify_attributes }}>
+							<div class='product-info__buy-buttons' {{ block.shopify_attributes }} style="margin:20px 0">
 								<buy-buttons class='buy-buttons'>
 									{%- capture button_content -%}
 									{{ 'product.general.add_to_cart_button' | t }}{%- endcapture -%}
