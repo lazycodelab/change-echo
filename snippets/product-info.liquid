@@ -292,13 +292,14 @@
 
 			{%- when 'quantity_selector' -%}
 				{%- if product.available -%}
-					<div class='quantity_selector__wrap'>
+					{%- if block.settings.use_simple_qty_selector -%}
 						<div class='product-info__quantity-selector {{ block.shopify_attributes }}'>
 							<div class='form-control'>
-								<div class='product-info__input-value'>
-									<span class='product-info__input-value__label'>Choose Quantity</span>
-									<span class='product-info__input-value__count' data-input-counter>25</span>
-								</div>
+								<label for='{{ product_form_id }}-quantity' class='block-label text-subdued'>
+									{{- 'product.quantity.label' | t -}}
+									:</label
+								>
+
 								<quantity-selector class='quantity-selector'>
 									<button
 										type='button'
@@ -307,22 +308,18 @@
 									>
 										{% render 'icon' with 'minus', width: 10, height: 2 %}
 									</button>
-
-									<div class='product-info__slider-wrap'>
-										<input
-											id='{{ product_form_id }}-quantity'
-											type='range'
-											is='quantity-input'
-											inputmode='numeric'
-											class='quantity-selector__input input__slider'
-											name='quantity'
-											form='{{ product_form_id }}'
-											size='2'
-											value='25'
-											autocomplete='off'
-											max='100'
-										>
-									</div>
+									<input
+										id='{{ product_form_id }}-quantity'
+										type='text'
+										is='quantity-input'
+										inputmode='numeric'
+										class='quantity-selector__input'
+										name='quantity'
+										form='{{ product_form_id }}'
+										size='2'
+										value='1'
+										autocomplete='off'
+									>
 									<button
 										type='button'
 										class='quantity-selector__button'
@@ -333,17 +330,60 @@
 								</quantity-selector>
 							</div>
 						</div>
-						<div class='product-info__available-stock {{ block.shopify_attributes }}'>
-							{% assign current_variant = product.selected_or_first_available_variant %}
-							{% assign sold_quantity = current_variant.metafields.inventory.initial_stock.value
-								| minus: current_variant.inventory_quantity
-							%}
-							{{ sold_quantity }}
-							{% for variant in product.variants %}
-								/ {{ variant.metafields.inventory.initial_stock }}
-							{% endfor %}
+					{%- else -%}
+						<div class='quantity_selector__wrap'>
+							<div class='product-info__quantity-selector {{ block.shopify_attributes }}'>
+								<div class='form-control'>
+									<div class='product-info__input-value'>
+										<span class='product-info__input-value__label'>Choose Quantity</span>
+										<span class='product-info__input-value__count' data-input-counter>25</span>
+									</div>
+									<quantity-selector class='quantity-selector'>
+										<button
+											type='button'
+											class='quantity-selector__button'
+											aria-label='{{ 'product.quantity.decrease_quantity' | t }}'
+										>
+											{% render 'icon' with 'minus', width: 10, height: 2 %}
+										</button>
+
+										<div class='product-info__slider-wrap'>
+											<input
+												id='{{ product_form_id }}-quantity'
+												type='range'
+												is='quantity-input'
+												inputmode='numeric'
+												class='quantity-selector__input input__slider'
+												name='quantity'
+												form='{{ product_form_id }}'
+												size='2'
+												value='{{ block.settings.qty_selector_range_val }}'
+												autocomplete='off'
+												max='100'
+											>
+										</div>
+										<button
+											type='button'
+											class='quantity-selector__button'
+											aria-label='{{ 'product.quantity.increase_quantity' | t }}'
+										>
+											{% render 'icon' with 'plus', width: 10, height: 10 %}
+										</button>
+									</quantity-selector>
+								</div>
+							</div>
+							<div class='product-info__available-stock {{ block.shopify_attributes }}'>
+								{% assign current_variant = product.selected_or_first_available_variant %}
+								{% assign sold_quantity = current_variant.metafields.inventory.initial_stock.value
+									| minus: current_variant.inventory_quantity
+								%}
+								{{ sold_quantity }}
+								{% for variant in product.variants %}
+									/ {{ variant.metafields.inventory.initial_stock }}
+								{% endfor %}
+							</div>
 						</div>
-					</div>
+					{%- endif -%}
 				{%- endif -%}
 
 			{% when 'quiz' %}
