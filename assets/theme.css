@@ -2672,7 +2672,7 @@ scroll-carousel {
 			)
 		);
 		--ul-context-section-spacing-inline: var(
-			--section-inner-spacing-inline
+			--ul-section-inner-spacing-inline
 		);
 		--ul-container-inner-width: calc(
 			var(--ul-container-max-width) - var(--ul-container-outer-width) * 2
