@@ -131,7 +131,7 @@
 				</payment-terms>
 
 			{%- when 'separator' -%}
-				<hr class='product-info__separator' {{ block.shopify_attributes }}  style="margin-top:5px">
+				<hr class='product-info__separator' {{ block.shopify_attributes }} style='margin-top:5px'>
 
 			{%- when 'description' -%}
 				{%- if block.settings.collapse_content -%}
@@ -151,7 +151,7 @@
 					{%- endif -%}
 				{%- else -%}
 					{%- if product.description != blank -%}
-						<div class='product-info__description' {{ block.shopify_attributes }} style="margin:20px 0">
+						<div class='product-info__description' {{ block.shopify_attributes }} style='margin:20px 0'>
 							<div class='prose'>
 								{{- product.description -}}
 							</div>
@@ -372,16 +372,18 @@
 									</quantity-selector>
 								</div>
 							</div>
-							<div class='product-info__available-stock {{ block.shopify_attributes }}'>
-								{% assign current_variant = product.selected_or_first_available_variant %}
-								{% assign sold_quantity = current_variant.metafields.inventory.initial_stock.value
-									| minus: current_variant.inventory_quantity
-								%}
-								{{ sold_quantity }}
-								{% for variant in product.variants %}
-									/ {{ variant.metafields.inventory.initial_stock }}
-								{% endfor %}
-							</div>
+							{% assign current_variant = product.selected_or_first_available_variant %}
+							{% if current_variant.metafields.inventory != blank %}
+								<div class='product-info__available-stock {{ block.shopify_attributes }}'>
+									{% assign sold_quantity = current_variant.metafields.inventory.initial_stock.value
+										| minus: current_variant.inventory_quantity
+									%}
+									{{ sold_quantity }}
+									{% for variant in product.variants %}
+										/ {{ variant.metafields.inventory.initial_stock }}
+									{% endfor %}
+								</div>
+							{% endif %}
 						</div>
 					{%- endif -%}
 				{%- endif -%}
@@ -406,7 +408,7 @@
 				{%- assign main_form_exists = true -%}
 
 				{%- if request.page_type != 'password' -%}
-					<div class='product-info__buy-buttons' {{ block.shopify_attributes }} style="margin:20px 0">
+					<div class='product-info__buy-buttons' {{ block.shopify_attributes }} style='margin:20px 0'>
 						{%- render 'buy-buttons',
 							product: product,
 							form_id: product_form_id,
