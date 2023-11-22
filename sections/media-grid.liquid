@@ -36,9 +36,11 @@
 
 {% assign render_content = true %}
 
-{% if section.settings.from_metafields and data_length.size == 0 %}
-	{% assign render_content = false %}
-{% endif %}
+{% comment %}
+	{% if section.settings.from_metafields and data_length.size == 0 %}
+		{% assign render_content = false %}
+	{% endif %}
+{% endcomment %}
 
 {% if render_content %}
 	<div {% render 'section-attributes', narrow: section.settings.reduce_width %}>
@@ -84,27 +86,27 @@
 						%}
 					>
 						{%- case block.type -%}
-							{%- when 'image' -%}
-								{% unless section.settings.from_metafields %}
-									{%- if block.settings.image -%}
-										{%- capture sizes -%}(max-width: 699px) 100vw, min({{ 390 | times: block.settings.desktop_column_span }}px, {{ 25 | times: block.settings.desktop_column_span }}vw){%- endcapture -%}
-										{{-
-											block.settings.image
-											| image_url: width: block.settings.image.width
-											| image_tag:
-												loading: 'lazy',
-												sizes: sizes,
-												widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000,2200,2400',
-												class: 'content-over-media__media zoom-image'
-										-}}
-									{%- endif -%}
-								{% endunless %}
+							{% when 'image' %}
+								{%- if block.settings.image -%}
+									{%- capture sizes -%}(max-width: 699px) 100vw, min({{ 390 | times: block.settings.desktop_column_span }}px, {{ 25 | times: block.settings.desktop_column_span }}vw){%- endcapture -%}
+									{{-
+										block.settings.image
+										| image_url: width: block.settings.image.width
+										| image_tag:
+											loading: 'lazy',
+											sizes: sizes,
+											widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000,2200,2400',
+											class: 'content-over-media__media zoom-image'
+									-}}
+								{%- endif -%}
 
 								{% if image_url != null %}
 									<img
 										src='{{image_url | strip}}'
 										alt='grid image'
 										loading='eager'
+										width='32'
+										height='32'
 									>
 								{% endif %}
 
