@@ -12099,6 +12099,10 @@ split-lines {
 	justify-content: safe center;
 }
 
+.flex-column {
+	flex-direction: column;
+}
+
 .justify-end {
 	justify-content: end;
 }
@@ -12161,6 +12165,10 @@ split-lines {
 
 .align-self-stretch {
 	align-self: stretch;
+}
+
+.d-flex {
+	display: flex;
 }
 
 .place-self-start {

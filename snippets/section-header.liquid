@@ -20,7 +20,7 @@
 {%- endcomment -%}
 
 {% if subheading != blank or heading != blank or content != blank or link_text != blank %}
-    <section-header class="section-header {% if text_alignment != blank %}justify-{{ text_alignment | escape }} justify-items-{{ text_alignment | escape }} text-{{ text_alignment | escape }}{% endif %}">
+    <section-header class="section-header {% if text_alignment == 'center' %} {% if featured_section == true %}d-flex align-center flex-column{% endif %}{% endif %} {% if text_alignment != blank %}justify-{{ text_alignment | escape }} justify-items-{{ text_alignment | escape }} text-{{ text_alignment | escape }}{% endif %}">
         {%- if subheading != blank or heading != blank or content != blank -%}
             <div class="prose">
                 {%- if subheading != blank -%}
