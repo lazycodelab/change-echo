@@ -714,6 +714,11 @@ recently-viewed-products {
 	box-shadow: inset 0 0 0 2px;
 }
 
+.button--no-outline {
+	box-shadow: none !important;
+	border: none !important;
+}
+
 .button__loader,
 .button__feedback {
 	gap: var(--ul-spacing-1-5);

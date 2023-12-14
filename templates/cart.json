@@ -18,12 +18,6 @@
 				"checkout_button": {
 					"type": "checkout_button",
 					"settings": {}
-				},
-				"34e1fdf9-e00f-4def-90ab-6bd6f0da0e6a": {
-					"type": "text",
-					"settings": {
-						"content": "<p>🚨 After your purchase:</p><p>Check your <strong>junk/spam</strong> folder for your ticket numbers 📧</p>"
-					}
 				}
 			},
 			"block_order": [
