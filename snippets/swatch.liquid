@@ -39,7 +39,7 @@
     {%- assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
 
     {%- assign value_downcase = value | downcase -%}
-    {%- assign swatch_style = '--swatch-background: ' | append: value_downcase -%}
+    {%- assign swatch_style = '--ul-swatch-background: ' | append: value_downcase -%}
 
     {%- for swatch_item in swatch_config -%}
         {%- assign swatch_parts = swatch_item | split: ':' -%}
@@ -49,10 +49,10 @@
             {%- assign swatch_value = swatch_parts.last | strip -%}
 
             {%- if swatch_value contains '#' -%}
-                {%- assign swatch_style = '--swatch-background: ' | append: swatch_value -%}
+                {%- assign swatch_style = '--ul-swatch-background: ' | append: swatch_value -%}
             {%- elsif images[swatch_value] != blank -%}
                 {%- assign swatch_image = images[swatch_value] | image_url: width: 72 -%}
-                {%- assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')' -%}
+                {%- assign swatch_style = '--ul-swatch-background: url(' | append: swatch_image | append: ')' -%}
             {%- endif -%}
 
             {%- break -%}
