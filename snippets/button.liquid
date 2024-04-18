@@ -40,7 +40,7 @@
 		endif
 
 		if style == 'outline'
-			echo ' button--outline button--no-outline'
+			echo ' button--outline'
 		endif
 
 		if secondary and disabled != true
@@ -100,22 +100,22 @@
 {%- if href != blank -%}
 	<a {{ attributes }} {{ block.shopify_attributes }}>
 		{% if svg_icon != blank %}
-			<span class='button_svg'>{{ svg_icon }}</span>
+			<span class="button_svg">{{ svg_icon }}</span>
 		{% endif %}
 		{{- button_content -}}
 	</a>
 {%- else -%}
 	<button
-		type='{{ type | default: 'button' }}'
+		type="{{ type | default: 'button' }}"
 		{{ attributes }}
 		{{ block.shopify_attributes }}
 	>
-		<span class='button_svg'>{{ svg_icon }}</span>
+		<span class="button_svg">{{ svg_icon }}</span>
 		<span
-			class='button_font'
+			class="button_font"
 			data-add-to-cart-text
-			data-default-text='{{button_content | escape}}'
-			data-override-text='{{override_default_text}}'
+			data-default-text="{{button_content | escape}}"
+			data-override-text="{{override_default_text}}"
 		>
 			{{- button_content -}}
 		</span>
