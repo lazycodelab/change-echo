@@ -35,7 +35,7 @@
             {% if color_label_list contains option_downcase %}
                 {%- assign selector_type = block.settings.color_mode -%}
 
-                    {%- if selector_type == 'variant_image' -%}
+                {%- if selector_type == 'variant_image' -%}
                     {%- comment -%}To use this mode every variant must have an attached media{%- endcomment -%}
 
                     {%- for variant in product.variants -%}

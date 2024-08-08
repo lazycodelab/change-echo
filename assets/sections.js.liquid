@@ -53,70 +53,46 @@ if (!window.customElements.get('announcement-bar')) {
 	window.customElements.define('announcement-bar', AnnouncementBar)
 }
 
-// js/sections/before-after-image.js
 var SplitCursor = class extends HTMLElement {
-	connectedCallback() {
-		this._parentSection = this.closest('.shopify-section')
-		this._dragging = false
-		this._offsetX = this._currentX = 0
-		this._parentSection.addEventListener(
-			'pointerdown',
-			this._onPointerDown.bind(this),
-		)
-		this._parentSection.addEventListener(
-			'pointermove',
-			this._onPointerMove.bind(this),
-		)
-		this._parentSection.addEventListener(
-			'pointerup',
-			this._onPointerUp.bind(this),
-		)
-		this._recalculateOffset()
-		window.addEventListener('resize', this._recalculateOffset.bind(this))
-	}
-	get minOffset() {
-		return (
-			-this.offsetLeft - (document.dir === 'rtl' ? this.clientWidth : 0)
-		)
-	}
-	get maxOffset() {
-		return this.offsetParent.clientWidth + this.minOffset
-	}
-	_onPointerDown(event) {
-		if (event.target === this || this.contains(event.target)) {
-			this._initialX = event.clientX - this._offsetX
-			this._dragging = true
-		}
-	}
-	_onPointerMove(event) {
-		if (!this._dragging) {
-			return
-		}
-		this._currentX = Math.min(
-			Math.max(event.clientX - this._initialX, this.minOffset),
-			this.maxOffset,
-		)
-		this._offsetX = this._currentX
-		this._parentSection.style.setProperty(
-			'--ul-clip-path-offset',
-			`${this._currentX.toFixed(1)}px`,
-		)
-	}
-	_onPointerUp() {
-		this._dragging = false
-	}
-	_recalculateOffset() {
-		this._parentSection.style.setProperty(
-			'--ul-clip-path-offset',
-			`${Math.min(
-				Math.max(this.minOffset, this._currentX.toFixed(1)),
-				this.maxOffset,
-			)}px`,
-		)
-	}
-}
-if (!window.customElements.get('split-cursor')) {
-	window.customElements.define('split-cursor', SplitCursor)
+  connectedCallback() {
+    this._parentSection = this.closest(".shopify-section");
+    this._dragging = false;
+    this._offsetX = this._currentX = 0;
+    this._parentSection.addEventListener("pointerdown", this._onPointerDown.bind(this));
+    this._parentSection.addEventListener("pointermove", this._onPointerMove.bind(this));
+    this._parentSection.addEventListener("pointerup", this._onPointerUp.bind(this));
+    this._recalculateOffset();
+    window.addEventListener("resize", this._recalculateOffset.bind(this));
+  }
+  get minOffset() {
+    return -this.offsetLeft - (document.dir === "rtl" ? this.clientWidth : 0);
+  }
+  get maxOffset() {
+    return this.offsetParent.clientWidth + this.minOffset;
+  }
+  _onPointerDown(event) {
+    if (event.target === this || this.contains(event.target)) {
+      this._initialX = event.clientX - this._offsetX;
+      this._dragging = true;
+    }
+  }
+  _onPointerMove(event) {
+    if (!this._dragging) {
+      return;
+    }
+    this._currentX = Math.min(Math.max(event.clientX - this._initialX, this.minOffset), this.maxOffset);
+    this._offsetX = this._currentX;
+    this._parentSection.style.setProperty("--ul-clip-path-offset", `${this._currentX.toFixed(1)}px`);
+  }
+  _onPointerUp() {
+    this._dragging = false;
+  }
+  _recalculateOffset() {
+    this._parentSection.style.setProperty("--ul-clip-path-offset", `${Math.min(Math.max(this.minOffset, this._currentX.toFixed(1)), this.maxOffset)}px`);
+  }
+};
+if (!window.customElements.get("split-cursor")) {
+  window.customElements.define("split-cursor", SplitCursor);
 }
 
 // js/sections/collection-list.js
@@ -1003,6 +979,47 @@ var ImageLinkBlocks = class extends HTMLElement {
 }
 if (!window.customElements.get('image-link-blocks')) {
 	window.customElements.define('image-link-blocks', ImageLinkBlocks)
+}
+
+// js/sections/impact-text.js
+import { animate as animate4, inView as inView4 } from "{{ 'app.min.js' | asset_url }}"
+var ImpactText = class extends HTMLElement {
+  connectedCallback() {
+    if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+      return;
+    }
+    inView4(this, ({ target }) => this._onBecameVisible(target), { margin: "-100px" });
+  }
+  async _onBecameVisible(target) {
+    animate4(target, { opacity: 1, transform: ["translateY(10px)", "translateY(0)"] }, { duration: 0.3 });
+    if (this.hasAttribute("count-up")) {
+      const itemToSearch = this.childElementCount === 0 ? this : this.firstElementChild, matches = itemToSearch.textContent.trim().match(/\d+(?:[,. ]\d+)*/);
+      if (!matches) {
+        return;
+      }
+      itemToSearch.innerHTML = itemToSearch.textContent.replace(/\d+(?:[,. ]\d+)*/, `<span>${matches[0]}</span>`);
+      const numberSpan = itemToSearch.querySelector("span");
+      numberSpan.style.textAlign = matches[0] === matches["input"] ? null : "end";
+      if (!itemToSearch.classList.contains("text-gradient")) {
+        numberSpan.style.display = "inline-block";
+        numberSpan.style.minWidth = `${numberSpan.clientWidth}px`;
+      }
+      const toReplace = matches[0].replace(/[,\. ]+/, ""), charactersMatches = [...matches[0].matchAll(/[,\. ]+/g)];
+      await animate4((progress) => {
+        let formattedString = Math.round(progress * parseInt(toReplace)).toString();
+        charactersMatches.forEach((character) => {
+          if (formattedString.length >= matches[0].length - character.index) {
+            formattedString = formattedString.slice(0, character.index) + character[0] + formattedString.slice(character.index);
+          }
+        });
+        numberSpan.textContent = progress === 1 ? matches[0] : formattedString;
+      }, { duration: parseFloat(this.getAttribute("count-up")), easing: [0.16, 1, 0.3, 1] }).finished;
+      numberSpan.style.minWidth = null;
+    }
+  }
+};
+if (!window.customElements.get("impact-text")) {
+  window.customElements.define("impact-text", ImpactText);
 }
 
 // js/sections/images-with-text-scrolling.js
