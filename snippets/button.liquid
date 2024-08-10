@@ -62,7 +62,7 @@
 %}
 
 {%- capture style_attribute -%}
-    {%- if text_color != blank or text_color != 'rgba(0,0,0,0)' -%}
+    {%- if text_color != blank and text_color != 'rgba(0,0,0,0)' -%}
         --ul-button-text-color: {{ text_color.rgb }};
 		--ul-button-background: {{ background.rgb }};
 

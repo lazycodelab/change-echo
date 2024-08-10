@@ -73,7 +73,7 @@
         {%- endif -%}
 
         {%- if section.blocks.size > 0 -%}
-            <div class="place-self-center text-center">
+            <div class="place-self-center text-center" style="pointer-events: all">
                 <div class="prose">
                     {%- for block in section.blocks -%}
                         {%- case block.type -%}
@@ -107,6 +107,7 @@
 
                             {%- when 'button' -%}
                             {%- if block.settings.text != blank -%}
+
                                 {% render 'button', content: block.settings.text, href: block.settings.url, size: block.settings.size, style: block.settings.style, background: block.settings.background, text_color: block.settings.text_color, block: block %}
                             {%- endif -%}
                         {%- endcase -%}
