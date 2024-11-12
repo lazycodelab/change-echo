@@ -3693,11 +3693,11 @@ model-media .shopify-model-viewer-ui {
 	display: grid;
 }
 
-.product-card--blends .product-card__info {
+/*.product-card--blends .product-card__info {
 	padding-block-end: 0;
 	padding-inline-start: 0;
 	padding-inline-end: 0;
-}
+}*/
 
 .product-card__info--center {
 	text-align: center;

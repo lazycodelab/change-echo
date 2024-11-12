@@ -2,7 +2,7 @@
 	{
 		"name": "theme_info",
 		"theme_name": "Change Online - Echo",
-		"theme_version": "2.0.2",
+		"theme_version": "2.0.3",
 		"theme_author": "LazyCodeLab",
 		"theme_documentation_url": "https://lazycodelab.com",
 		"theme_support_url": "https://lazycodelab.com"
@@ -87,7 +87,7 @@
 				"max": 60,
 				"step": 2,
 				"unit": "px",
-				"label": "Button corner radius",
+				"label": "Button/CTA corner radius",
 				"default": 0
 			},
 			{
