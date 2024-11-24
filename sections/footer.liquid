@@ -17,6 +17,66 @@
 	</style>
 {%- endif -%}
 
+<style>
+	@media screen and (min-width: 1000px) {
+		.footer__block--menu .footer__menu-icon {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 999px) {
+		.footer__block-list {
+			display: flex !important;
+			flex-direction: column;
+		}
+
+		.footer__block--menu {
+			width: 100%;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+			gap: 0;
+			max-width: 100%;
+		}
+
+		.footer__block--menu .footer__menu-trigger {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 0;
+			background: none;
+			cursor: pointer;
+		}
+
+		.footer__block--menu .footer__menu-content {
+			display: grid;
+			grid-template-rows: 0fr;
+			transition: grid-template-rows 0.3s ease;
+		}
+
+		.footer__block--menu .footer__menu-content.is-open {
+			grid-template-rows: 1fr;
+			padding-bottom: 1rem;
+		}
+
+		.footer__block--menu .footer__menu-inner {
+			overflow: hidden;
+		}
+
+		.footer__block--menu .footer__menu-icon {
+			transition: transform 0.3s ease;
+		}
+
+		.footer__block--menu .footer__menu-icon.is-open {
+			transform: rotate(180deg);
+		}
+
+		.footer__block--menu ul {
+			margin: 0;
+			padding: 0;
+		}
+	}
+</style>
+
 <div class="footer">
 	<div class="container">
 		<div class="footer__wrapper">
@@ -54,25 +114,34 @@
 							{%- when 'links' -%}
 								{%- if block.settings.menu != blank -%}
 									<div class="footer__block footer__block--menu" {{ block.shopify_attributes }}>
-										{%- if block.settings.show_menu_title -%}
-											<p class="bold">{{ block.settings.menu.title }}</p>
-										{%- endif -%}
+										<button class="footer__menu-trigger" aria-expanded="false">
+											{%- if block.settings.show_menu_title -%}
+												<span class="bold">{{ block.settings.menu.title }}</span>
+											{%- endif -%}
+											<span class="footer__menu-icon">
+												{%- render 'icon' with 'chevron-bottom' -%}
+											</span>
+										</button>
 
-										<ul class="grid gap-3" role="list">
-											{%- for link in block.settings.menu.links -%}
-												<li>
-													<a
-														href="{{ link.url }}"
-														class="link-faded inline-block break-all"
-														{% if block.settings.menu.title == 'Social' %}
-															target="_blank"
-														{% endif %}
-													>
-														{{- link.title -}}
-													</a>
-												</li>
-											{%- endfor -%}
-										</ul>
+										<div class="footer__menu-content">
+											<div class="footer__menu-inner">
+												<ul class="grid gap-3" role="list">
+													{%- for link in block.settings.menu.links -%}
+														<li>
+															<a
+																href="{{ link.url }}"
+																class="link-faded inline-block break-all"
+																{% if block.settings.menu.title == 'Social' %}
+																	target="_blank"
+																{% endif %}
+															>
+																{{- link.title -}}
+															</a>
+														</li>
+													{%- endfor -%}
+												</ul>
+											</div>
+										</div>
 									</div>
 								{%- endif -%}
 
@@ -233,6 +302,20 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	document.querySelectorAll('.footer__menu-trigger').forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			const content = trigger.nextElementSibling
+			const icon = trigger.querySelector('.footer__menu-icon')
+			const isOpen = trigger.getAttribute('aria-expanded') === 'true'
+
+			trigger.setAttribute('aria-expanded', !isOpen)
+			content.classList.toggle('is-open')
+			icon.classList.toggle('is-open')
+		})
+	})
+</script>
 
 {% schema %}
 {
