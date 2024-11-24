@@ -83,6 +83,45 @@
 	.border-btm {
 	border-bottom: 1px solid #EFEFEF;
 	}
+
+	.header__mobile-nav {
+		width: 100%;
+		grid-column: 1 / -1;
+		padding: var(--ul-spacing-3) 0;
+		border-top: 1px solid #EFEFEF;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.header__mobile-nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	.header__mobile-menu-items {
+		display: flex;
+		gap: var(--ul-spacing-4);
+		align-items: center;
+		white-space: nowrap;
+		padding-right: var(--ul-spacing-4);
+		justify-content: center;
+		padding: 0 var(--ul-spacing-4);
+		color: rgb(var(--ul-text-color));
+	}
+
+	@media screen and (max-width: 1149px) {
+		.header__mobile-menu-items {
+			gap: var(--ul-spacing-3);
+			font-size: 0.9em;
+		}
+	}
+
+	@media screen and (min-width: 1149px) {
+		.header__mobile-nav {
+			display: none;
+		}
+	}
 </style>
 <height-change-listener variable="header">
 	<site-header
@@ -97,14 +136,16 @@
 		<div class="header__wrapper {% if template == 'product' %} border-btm {% endif %}">
 			<div class="header__main-nav">
 				<div class="header__icon-list">
-					<button
-						type="button"
-						class="tap-area {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}"
-						aria-controls="header-sidebar-menu"
-					>
-						<span class="sr-only">{{ 'header.general.open_menu' | t }}</span>
-						{%- render 'icon' with 'hamburger' -%}
-					</button>
+					{% if section.settings.mobile_menu_visibility == 'hamburger' %}
+						<button
+							type="button"
+							class="tap-area {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}"
+							aria-controls="header-sidebar-menu"
+						>
+							<span class="sr-only">{{ 'header.general.open_menu' | t }}</span>
+							{%- render 'icon' with 'hamburger' -%}
+						</button>
+					{% endif %}
 
 					{% unless section.settings.hide_search %}
 						<a href="{{ routes.search_url }}" class="tap-area sm:hidden" aria-controls="search-drawer">
@@ -387,8 +428,23 @@
 				</div>
 			</div>
 		</div>
-	</site-header></height-change-listener
->
+
+		{%- if section.settings.mobile_menu_visibility == 'visible' and section.settings.menu.links.size > 0 -%}
+			<nav class="header__mobile-nav" role="navigation">
+				<ul class="header__mobile-menu-items">
+					{%- for link in section.settings.menu.links -%}
+						<li>
+							<a href="{{ link.url }}" class="bold link-faded-reverse">
+								{{- link.title -}}
+							</a>
+						</li>
+					{%- endfor -%}
+				</ul>
+			</nav>
+		{%- endif -%}
+	</site-header>
+</height-change-listener>
+
 {%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
 {%- assign secondary_menu = section.settings.secondary_menu -%}
 {%- if main_menu.links.size > 0 or secondary_menu.links.size > 0 -%}
@@ -396,7 +452,7 @@
 		mobile-opening="{{ section.settings.opening_from }}"
 		open-from="left"
 		id="header-sidebar-menu"
-		class="navigation-drawer drawer {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}"
+		class="navigation-drawer drawer {% if section.settings.layout != 'drawer' and section.settings.mobile_menu_visibility != 'visible' %}lg:hidden{% endif %}"
 		{% if request.design_mode %}
 			handle-section-events
 		{% endif %}
@@ -518,6 +574,23 @@
 				}
 			],
 			"default": "click"
+		},
+		{
+			"type": "select",
+			"id": "mobile_menu_visibility",
+			"label": "Mobile menu visibility",
+			"options": [
+				{
+					"value": "hamburger",
+					"label": "Show hamburger menu"
+				},
+				{
+					"value": "visible",
+					"label": "Show menu items"
+				}
+			],
+			"default": "hamburger",
+			"info": "Control how navigation menu appears on mobile devices"
 		},
 		{
 			"type": "header",
