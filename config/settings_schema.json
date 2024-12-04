@@ -2,7 +2,7 @@
 	{
 		"name": "theme_info",
 		"theme_name": "Change Mentor Hub - Echo",
-		"theme_version": "2.1",
+		"theme_version": "2.1.1",
 		"theme_author": "LazyCodeLab",
 		"theme_documentation_url": "https://lazycodelab.com",
 		"theme_support_url": "https://lazycodelab.com"
@@ -876,6 +876,77 @@
 				"id": "favicon",
 				"label": "Image",
 				"info": "180 x 180px .png recommended"
+			}
+		]
+	},
+	{
+		"name": "Shipping & Benefits",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Free Shipping & Benefits"
+			},
+			{
+				"type": "number",
+				"id": "shipping_threshold",
+				"label": "First Threshold Amount",
+				"default": 50
+			},
+			{
+				"type": "product",
+				"id": "first_threshold_product",
+				"label": "Product for First Threshold"
+			},
+			{
+				"type": "text",
+				"id": "first_threshold_message",
+				"label": "First Threshold Message",
+				"default": "You're $$$ away from getting ###"
+			},
+			{
+				"type": "number",
+				"id": "second_threshold",
+				"label": "Second Threshold Amount",
+				"default": 100
+			},
+			{
+				"type": "select",
+				"id": "second_threshold_benefit",
+				"label": "Second Threshold Benefit",
+				"options": [
+					{
+						"value": "free_shipping",
+						"label": "Free Shipping"
+					},
+					{
+						"value": "discount",
+						"label": "Discount"
+					},
+					{
+						"value": "free_product",
+						"label": "Free Product"
+					}
+				],
+				"default": "free_shipping"
+			},
+			{
+				"type": "product",
+				"id": "second_threshold_product",
+				"label": "Product for Second Threshold",
+				"info": "Required if benefit is free product"
+			},
+			{
+				"type": "number",
+				"id": "discount_amount",
+				"label": "Discount Amount (%)",
+				"default": 10,
+				"info": "Required if benefit is discount"
+			},
+			{
+				"type": "text",
+				"id": "second_threshold_message",
+				"label": "Second Threshold Message",
+				"default": "You're $$$ away from @@@"
 			}
 		]
 	}
