@@ -1,41 +1,41 @@
-<div class='container'>
+<div class="container">
 	{%- if cart.item_count == 0 -%}
-		<div class='empty-state'>
-			<div class='empty-state__icon-wrapper'>
+		<div class="empty-state">
+			<div class="empty-state__icon-wrapper">
 				{%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
-				<span class='count-bubble count-bubble--lg'>0</span>
+				<span class="count-bubble count-bubble--lg">0</span>
 			</div>
 
-			<div class='prose'>
-				<p class='h4'>{{ 'cart.general.empty' | t }}</p>
+			<div class="prose">
+				<p class="h4">{{ 'cart.general.empty' | t }}</p>
 
 				{%- assign button_content = 'cart.general.continue_shopping' | t -%}
 				{%- render 'button', href: settings.cart_empty_button_link, size: 'xl', content: button_content -%}
 			</div>
 		</div>
 	{%- else -%}
-		<div class='page-spacer'>
-			<div class='cart'>
-				<div class='cart-header'>
-					<h1 class='h2'>{{ 'cart.general.title' | t }}</h1>
+		<div class="page-spacer">
+			<div class="cart">
+				<div class="cart-header">
+					<h1 class="h2">{{ 'cart.general.title' | t }}</h1>
 
 					{%- if settings.cart_show_free_shipping_threshold -%}
 						{%- render 'free-shipping-bar' -%}
 					{%- endif -%}
 				</div>
 
-				<div class='cart-order'>
-					<div class='cart-order__summary'>
-						<table class='order-summary'>
-							<thead class='order-summary__header'>
+				<div class="cart-order">
+					<div class="cart-order__summary">
+						<table class="order-summary">
+							<thead class="order-summary__header">
 								<tr>
 									<th>{{ 'customer.order.product' | t }}</th>
-									<th class='w-0'>{{ 'customer.order.quantity' | t }}</th>
-									<th class='text-end'>{{ 'customer.order.total' | t }}</th>
+									<th class="w-0">{{ 'customer.order.quantity' | t }}</th>
+									<th class="text-end">{{ 'customer.order.total' | t }}</th>
 								</tr>
 							</thead>
 
-							<tbody class='order-summary__body'>
+							<tbody class="order-summary__body">
 								{%- for line_item in cart.items -%}
 									{%- assign line_max_quantity = '' -%}
 
@@ -48,30 +48,30 @@
 									<tr>
 										<td>{%- render 'line-item', line_item: line_item -%}</td>
 
-										<td class='hidden align-center text-center text-subdued sm:table-cell'>
-											<line-item-quantity class='grid justify-center gap-2'>
+										<td class="align-center text-subdued hidden text-center sm:table-cell">
+											<line-item-quantity class="grid justify-center gap-2">
 												<input
-													class='quantity-input'
-													type='text'
-													is='quantity-input'
-													inputmode='numeric'
+													class="quantity-input"
+													type="text"
+													is="quantity-input"
+													inputmode="numeric"
 													{% if line_max_quantity != blank %}
-														max='{{ line_max_quantity }}'
+														max="{{ line_max_quantity }}"
 													{% endif %}
-													data-line-key='{{ line_item.key }}'
-													aria-label='{{ 'cart.order.change_quantity' | t | escape }}'
-													value='{{ line_item.quantity }}'
+													data-line-key="{{ line_item.key }}"
+													aria-label="{{ 'cart.order.change_quantity' | t | escape }}"
+													value="{{ line_item.quantity }}"
 												>
 
-												<span class='text-xs'>
-													<a href='{{ line_item.url_to_remove }}' class='link'>
+												<span class="text-xs">
+													<a href="{{ line_item.url_to_remove }}" class="link">
 														{{- 'cart.order.remove' | t -}}
 													</a>
 												</span>
 											</line-item-quantity>
 										</td>
 
-										<td class='hidden align-center text-subdued text-end sm:table-cell'>
+										<td class="align-center text-subdued hidden text-end sm:table-cell">
 											{{ line_item.final_line_price | money }}
 										</td>
 									</tr>
@@ -92,73 +92,73 @@
 						{%- endif -%}
 					</div>
 
-					<safe-sticky class='cart-order__recap grid gap-6'>
-						<form action='{{ routes.cart_url }}' method='POST' class='cart-form rounded'>
+					<safe-sticky class="cart-order__recap grid gap-6">
+						<form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
 							{%- for block in section.blocks -%}
 								{%- case block.type -%}
 									{%- when '@app' -%}
 										{%- render block -%}
 
 									{%- when 'totals' -%}
-										<div class='cart-form__totals grid gap-2' {{ block.shopify_attributes }}>
+										<div class="cart-form__totals grid gap-2" {{ block.shopify_attributes }}>
 											{%- if block.settings.show_order_weight -%}
-												<div class='h-stack gap-4 justify-between'>
-													<span class='text-subdued'>{{ 'cart.general.weight' | t }}</span>
-													<span class='text-subdued'>
+												<div class="h-stack justify-between gap-4">
+													<span class="text-subdued">{{ 'cart.general.weight' | t }}</span>
+													<span class="text-subdued">
 														{{- cart.total_weight | weight_with_unit -}}
 													</span>
 												</div>
 											{%- endif -%}
 
-											<div class='h-stack gap-4 justify-between'>
-												<span class='text-subdued'>{{ 'cart.general.subtotal' | t }}</span>
-												<span class='text-subdued'>
+											<div class="h-stack justify-between gap-4">
+												<span class="text-subdued">{{ 'cart.general.subtotal' | t }}</span>
+												<span class="text-subdued">
 													{{- cart.items_subtotal_price | money -}}
 												</span>
 											</div>
 
 											{% for discount_application in cart.cart_level_discount_applications %}
-												<div class='h-stack gap-4 justify-between'>
-													<div class='badge'>
+												<div class="h-stack justify-between gap-4">
+													<div class="badge">
 														{%- render 'icon' with 'discount' -%}
 														{{- discount_application.title -}}
 													</div>
 
-													<span class='text-subdued'
+													<span class="text-subdued"
 														>-{{ discount_application.total_allocated_amount | money -}}
 													</span>
 												</div>
 											{% endfor %}
 
-											<div class='h-stack gap-4 justify-between'>
-												<span class='h5'>{{ 'cart.general.total' | t }}</span>
-												<span class='h5'>{{- cart.total_price | money_with_currency -}}</span>
+											<div class="h-stack justify-between gap-4">
+												<span class="h5">{{ 'cart.general.total' | t }}</span>
+												<span class="h5">{{- cart.total_price | money_with_currency -}}</span>
 											</div>
 
 											{%- if block.settings.show_shipping_text -%}
 												{%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-													<span class='text-subdued text-sm'>
+													<span class="text-subdued text-sm">
 														{{-
 															'cart.general.taxes_included_and_shipping_policy_html'
 															| t: link: shop.shipping_policy.url
 														-}}
 													</span>
 												{%- elsif cart.taxes_included -%}
-													<span class='text-subdued text-sm'>
+													<span class="text-subdued text-sm">
 														{{-
 															'cart.general.taxes_included_but_shipping_at_checkout'
 															| t
 														-}}
 													</span>
 												{%- elsif shop.shipping_policy.body != blank -%}
-													<span class='text-subdued text-sm'>
+													<span class="text-subdued text-sm">
 														{{-
 															'cart.general.taxes_and_shipping_policy_at_checkout_html'
 															| t: link: shop.shipping_policy.url
 														-}}
 													</span>
 												{%- else -%}
-													<span class='text-subdued text-sm'>
+													<span class="text-subdued text-sm">
 														{{- 'cart.general.taxes_and_shipping_at_checkout' | t -}}
 													</span>
 												{%- endif -%}
@@ -166,7 +166,7 @@
 										</div>
 
 									{%- when 'cart_note' -%}
-										<cart-note class='cart-form__note block' {{ block.shopify_attributes }}>
+										<cart-note class="cart-form__note block" {{ block.shopify_attributes }}>
 											{%- assign order_note = 'cart.general.order_note' | t -%}
 											{%- render 'input',
 												name: 'note',
@@ -179,7 +179,7 @@
 
 									{%- when 'text' -%}
 										{%- if block.settings.content != blank -%}
-											<div class='prose text-subdued' {{ block.shopify_attributes }}>
+											<div class="prose text-subdued" {{ block.shopify_attributes }}>
 												{{- block.settings.content -}}
 											</div>
 										{%- endif -%}
@@ -189,7 +189,7 @@
 										{%- assign next_block_index = forloop.index0 | plus: 1 -%}
 
 										{%- if section.blocks[next_block_index].type == 'offer' -%}
-											<div class='grid gap-4'>
+											<div class="grid gap-4">
 										{%- endif -%}
 
 										{%- render 'offer', block: block -%}
@@ -201,7 +201,7 @@
 									{%- when 'accelerated_buttons' -%}
 										{% if additional_checkout_buttons %}
 											<div
-												class='additional-checkout-buttons additional-checkout-buttons--vertical'
+												class="additional-checkout-buttons additional-checkout-buttons--vertical"
 												{{ block.shopify_attributes }}
 											>
 												{{- content_for_additional_checkout_buttons -}}
@@ -224,10 +224,10 @@
 						</form>
 
 						{%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
-							<div class='grid gap-4'>
-								<span class='text-xs text-subdued text-center'>{{ 'cart.general.we_accept' | t }}</span>
+							<div class="grid gap-4">
+								<span class="text-subdued text-center text-xs">{{ 'cart.general.we_accept' | t }}</span>
 
-								<div class='h-stack gap-2 wrap justify-center'>
+								<div class="h-stack wrap justify-center gap-2">
 									{%- for type in shop.enabled_payment_types -%}
 										{{- type | payment_type_svg_tag -}}
 									{%- endfor -%}
