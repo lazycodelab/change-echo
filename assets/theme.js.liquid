@@ -3350,6 +3350,7 @@ var FreeShippingBar = class extends HTMLElement {
 	constructor() {
 		super()
 		this._onCartChangedListener = this._onCartChanged.bind(this)
+		this.previousPrice = 0
 	}
 
 	async connectedCallback() {
@@ -3381,58 +3382,281 @@ var FreeShippingBar = class extends HTMLElement {
 		const progressBarElement = this.querySelector('progress-bar')
 		const messageElement = this.querySelector('.message')
 
-		//if (!progressBar || !messageElement) return;
-
 		// Calculate progress percentage
 		const progress = Math.min(this.totalPrice / this.secondThreshold, 1)
 		progressBarElement.style.setProperty('--ul-progress', progress.toString())
 
-		// Set appropriate message based on total
-		if (this.totalPrice >= this.secondThreshold) {
-			// Reached second threshold
-			messageElement.innerHTML = this.getAttribute( 'reached-message' )
+				// Store previous state
+		const wasBelowFirstThreshold = this.previousPrice < this.firstThreshold;
+		const wasBelowSecondThreshold = this.previousPrice < this.secondThreshold;
 
-		} else if (this.totalPrice >= this.firstThreshold) {
-			// Between first and second threshold
-			const remaining = this.secondThreshold - this.totalPrice
-			const message = this.getAttribute('second-message')
-				.replace('$$$', formatMoney(remaining))
-				.replace('@@@', `<strong>${this.getAttribute('second-benefit')}</strong>`)
-				console.log('up herreh hshhere', message);
-			messageElement.innerHTML = message
+		this.previousPrice = this.totalPrice;
+
+		// Check thresholds and update cart accordingly
+		if ( this.totalPrice >= this.secondThreshold && wasBelowSecondThreshold ) {
+			await this._addFirstProductToCart();
+			await this._handleSecondThresholdReached();
+			messageElement.innerHTML = this.getAttribute('reached-message');
+		} else if ( this.totalPrice >= this.firstThreshold && wasBelowFirstThreshold ) {
+			await this._addFirstProductToCart();
+			// Show appropriate message based on current total after adding product
+			if ( this.totalPrice >= this.secondThreshold ) {
+				// is this check useful?
+				messageElement.innerHTML = this.getAttribute('reached-message');
+			} else {
+				const remaining = this.secondThreshold - this.totalPrice;
+				const message = this.getAttribute('second-message')
+					.replace('$$$', formatMoney(remaining))
+					.replace('@@@', `<strong>${this.getAttribute('second-benefit')}</strong>`);
+				messageElement.innerHTML = message;
+			}
 		} else {
-			// Below first threshold
-			const remaining = this.firstThreshold - this.totalPrice
-			const message = this.getAttribute('unreached-message')
-			.replace('$$$', formatMoney(remaining))
-			.replace(
-				'###',
-				`<strong>${this.getAttribute('first-product')}</strong>`
-			)
-			messageElement.innerHTML = message
+			// Update messages based on current cart total
+			if (this.totalPrice >= this.secondThreshold) {
+				messageElement.innerHTML = this.getAttribute('reached-message');
+			} else if (this.totalPrice >= this.firstThreshold) {
+				const remaining = this.secondThreshold - this.totalPrice;
+				const message = this.getAttribute('second-message')
+					.replace('$$$', formatMoney(remaining))
+					.replace('@@@', `<strong>${this.getAttribute('second-benefit')}</strong>`);
+				messageElement.innerHTML = message;
+			} else {
+				const remaining = this.firstThreshold - this.totalPrice;
+				const message = this.getAttribute('unreached-message')
+					.replace('$$$', formatMoney(remaining))
+					.replace('###', `<strong>${this.getAttribute('first-product')}</strong>`);
+				messageElement.innerHTML = message;
+			}
 		}
 	}
 
-	_onCartChanged(event) {
-		const priceForItems = event.detail['cart']['items']
-			.filter(item => item['requires_shipping'])
-			.reduce((sum, item) => sum + item['final_line_price'], 0)
+	async _addFirstProductToCart() {
+		const productId = this.getAttribute('first-product-id')
+		if (!productId) return
 
-		const cartDiscount = event.detail['cart'][
-			'cart_level_discount_applications'
-		].reduce(
-			(sum, discountAllocation) =>
-				sum + discountAllocation['total_allocated_amount'],
-			0
+		try {
+			await this._addProductToCart(productId)
+		} catch (error) {
+			console.error('Error adding first threshold product:', error)
+		}
+	}
+
+	async _handleSecondThresholdReached() {
+		const benefit = this.getAttribute('second-threshold-benefit')
+		const secondProductId = this.getAttribute('second-product-id')
+
+		try {
+			switch (benefit) {
+				case 'free_product':
+					if (secondProductId) {
+						await this._addProductToCart(secondProductId)
+					}
+					break
+
+				case 'discount':
+					await this._applyDiscount()
+					break
+
+				case 'free_shipping':
+					await this._applyFreeShipping()
+					break
+			}
+		} catch (error) {
+			console.error('Error handling second threshold:', error);
+		}
+	}
+
+	async _addProductToCart( productId ) {
+		// First check if the product is already in cart
+		const cartContent = await fetchCart;
+		const existingItem = cartContent.items.find(item => item.id.toString() === productId.toString());
+
+		// If item already exists in cart, don't add it again
+		if (existingItem) {
+			console.log('Product already in cart, skipping addition');
+			return;
+		}
+
+		let sectionsToBundle = ['variant-added', 'cart-drawer', 'cart-icon-bubble']
+		document.documentElement.dispatchEvent(
+			new CustomEvent('cart:prepare-bundled-sections', {
+				bubbles: true,
+				detail: {
+					sections: sectionsToBundle,
+				},
+			}),
 		)
 
-		this.totalPrice = priceForItems - cartDiscount
+		const response = await fetch(`${Shopify.routes.root}cart/add.js`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest',
+			},
+			body: JSON.stringify({
+				items: [{
+					id: productId,
+					quantity: 1
+				}],
+				sections: sectionsToBundle,
+				//sections_url: `${Shopify.routes.root}variants/${this.id.value}`,
+			}),
+		} );
+
+
+		const responseJson = await response.json();
+
+		if ( response.ok ) {
+			if (
+				window.themeVariables.settings.cartType === 'page' ||
+				window.themeVariables.settings.pageType === 'cart'
+			) {
+				return (window.location.href = `${Shopify.routes.root}cart`)
+			}
+			const cartContent = await (
+				await fetch(`${Shopify.routes.root}cart.js`)
+			).json()
+			cartContent['sections'] = responseJson['sections']
+			this.dispatchEvent(
+				new CustomEvent('variant:add', {
+					bubbles: true,
+					detail: {
+						items: responseJson.hasOwnProperty('items')
+							? responseJson['items']
+							: [responseJson],
+						cart: cartContent,
+					},
+				}),
+			)
+			document.documentElement.dispatchEvent(
+				new CustomEvent('cart:change', {
+					bubbles: true,
+					detail: {
+						baseEvent: 'free-shipping-bar:product-added',
+						cart: cartContent,
+					},
+				}),
+			)
+		} else {
+			this.dispatchEvent(
+				new CustomEvent('cart:error', {
+					bubbles: true,
+					detail: {
+						error: responseJson['description'],
+					},
+				}),
+			)
+		}
+
+		// Dispatch cart:change event
+		//document.documentElement.dispatchEvent(
+		//	new CustomEvent('cart:change', {
+		//		bubbles: true,
+		//		detail: {
+		//			baseEvent: 'free-shipping-bar:product-added',
+		//			cart: responseJson
+		//		}
+		//	})
+		//);
+	}
+
+	async _applyDiscount() {
+		const discountAmount = this.getAttribute('discount-amount')
+		if (!discountAmount) return
+
+		// Here you would implement the logic to apply the discount
+		// This might involve adding a discount code or updating the cart
+		// The exact implementation will depend on your store's setup
+		console.log('Applying discount:', discountAmount)
+	}
+
+	async _applyFreeShipping() {
+		// Here you would implement the logic to apply free shipping
+		// This might involve adding a shipping discount or updating shipping rates
+		// The exact implementation will depend on your store's setup
+		console.log('Applying free shipping')
+	}
+
+	async _onCartChanged(event) {
+		const priceForItems = event.detail['cart']['items']
+			.filter(item => item['requires_shipping'])
+			.reduce((sum, item) => sum + item['final_line_price'], 0);
+
+		const cartDiscount = event.detail['cart']['cart_level_discount_applications']
+			.reduce((sum, discountAllocation) => sum + discountAllocation['total_allocated_amount'], 0);
+
+		const newTotalPrice = priceForItems - cartDiscount;
+
+		// Check if we need to remove benefits when total drops below thresholds
+		if (this.totalPrice >= this.secondThreshold && newTotalPrice < this.secondThreshold) {
+			// Remove second threshold benefits
+			await this._removeSecondThresholdBenefits(event.detail.cart);
+		}
+
+		if (this.totalPrice >= this.firstThreshold && newTotalPrice < this.firstThreshold) {
+			// Remove first threshold benefits
+			await this._removeFirstThresholdBenefits(event.detail.cart);
+		}
+
+		this.totalPrice = newTotalPrice;
+	}
+
+	async _removeFirstThresholdBenefits(cart) {
+		const firstProductId = this.getAttribute('first-product-id');
+		if (!firstProductId) return;
+
+		// Find the benefit product in cart
+		const itemToRemove = cart.items.find(item => item.id.toString() === firstProductId.toString());
+		if (itemToRemove) {
+			await this._removeItemFromCart(itemToRemove.key);
+		}
+	}
+
+	async _removeSecondThresholdBenefits(cart) {
+		const benefit = this.getAttribute('second-threshold-benefit');
+		const secondProductId = this.getAttribute('second-product-id');
+
+		switch (benefit) {
+			case 'free_product':
+				if ( secondProductId ) {
+					const itemToRemove = cart.items.find(item => item.id.toString() === secondProductId.toString());
+					if (itemToRemove) {
+						await this._removeItemFromCart(itemToRemove.key);
+					}
+				}
+				break;
+
+			case 'discount':
+				await this._removeDiscount();
+				break;
+
+			case 'free_shipping':
+				await this._removeFreeShipping();
+				break;
+		}
+	}
+
+	async _removeItemFromCart( itemKey ) {
+		// Get existing LineItemQuantity class and call its static method directly
+		const g = new LineItemQuantity()
+		await g._changeLineItemQuantity( itemKey, 0 );
+	}
+
+	async _removeDiscount() {
+		// Here you would implement the logic to remove the discount
+		// This might involve removing a discount code or updating the cart
+		console.log('Removing discount...');
+	}
+
+	async _removeFreeShipping() {
+		// Here you would implement the logic to remove free shipping
+		// This might involve removing a shipping discount or updating rates
+		console.log('Removing free shipping...');
 	}
 }
 
-
 if (!window.customElements.get('free-shipping-bar')) {
-	window.customElements.define('free-shipping-bar', FreeShippingBar);
+	window.customElements.define('free-shipping-bar', FreeShippingBar)
 }
 
 var LineItemQuantity = class extends HTMLElement {
@@ -7052,8 +7276,8 @@ var MarqueeText = class extends HTMLElement {
 				this.getAttribute('scrolling-speed') || 5,
 			),
 			contentWidth = entries[0].contentRect.width,
-			slowFactor = 1 + (Math.min(1600, contentWidth) - 375) / (1600 - 375)
-		console.log(entries[0].contentRect.width)
+			slowFactor = 1 + ( Math.min( 1600, contentWidth ) - 375 ) / ( 1600 - 375 )
+
 		this.style.setProperty(
 			'--ul-marquee-animation-duration',
 			`${(
