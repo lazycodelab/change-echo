@@ -748,25 +748,25 @@
 				"id": "cart_empty_button_link",
 				"label": "Empty button link",
 				"default": "/collections/all"
-			},
-			{
-				"type": "header",
-				"content": "Free shipping bar",
-				"info": "Show a shipping bar advancement on cart page and cart drawer. Configure your [shipping rates](/admin/settings/shipping) to match the amount."
-			},
-			{
-				"type": "checkbox",
-				"id": "cart_show_free_shipping_threshold",
-				"label": "Show shipping bar",
-				"default": false
-			},
-			{
-				"type": "number",
-				"id": "cart_free_shipping_threshold",
-				"label": "Free shipping minimum amount",
-				"info": "Indicate the value in your store main currency.",
-				"default": 50
 			}
+			//{
+			//	"type": "header",
+			//	"content": "Free shipping bar",
+			//	"info": "Show a shipping bar advancement on cart page and cart drawer. Configure your [shipping rates](/admin/settings/shipping) to match the amount."
+			//},
+			//{
+			//	"type": "checkbox",
+			//	"id": "cart_show_free_shipping_threshold",
+			//	"label": "Show shipping bar",
+			//	"default": false
+			//},
+			//{
+			//	"type": "number",
+			//	"id": "cart_free_shipping_threshold",
+			//	"label": "Free shipping minimum amount",
+			//	"info": "Indicate the value in your store main currency.",
+			//	"default": 50
+			//}
 		]
 	},
 	{
@@ -880,51 +880,54 @@
 		]
 	},
 	{
-		"name": "Shipping & Benefits",
+		"name": "Shipping and benefits",
 		"settings": [
 			{
 				"type": "header",
-				"content": "Free Shipping & Benefits"
+				"content": "Free shipping and benefits",
+				"info": "Show a shipping bar advancement on cart page and cart drawer. Configure your [shipping rates](/admin/settings/shipping) to match the amount."
+			},
+			{
+				"type": "checkbox",
+				"id": "cart_show_free_shipping_threshold",
+				"label": "Enable benefits",
+				"default": false
 			},
 			{
 				"type": "number",
 				"id": "shipping_threshold",
-				"label": "First Threshold Amount",
+				"label": "First threshold amount",
 				"default": 50
 			},
 			{
 				"type": "product",
 				"id": "first_threshold_product",
-				"label": "Product for First Threshold"
+				"label": "First benefit product"
 			},
 			{
 				"type": "text",
 				"id": "first_threshold_message",
-				"label": "First Threshold Message",
+				"label": "First benefit message",
 				"default": "You're $$$ away from getting ###"
 			},
 			{
 				"type": "number",
 				"id": "second_threshold",
-				"label": "Second Threshold Amount",
+				"label": "Second threshold amount",
 				"default": 100
 			},
 			{
 				"type": "select",
 				"id": "second_threshold_benefit",
-				"label": "Second Threshold Benefit",
+				"label": "Second benefit",
 				"options": [
 					{
 						"value": "free_shipping",
-						"label": "Free Shipping"
-					},
-					{
-						"value": "discount",
-						"label": "Discount"
+						"label": "Free shipping"
 					},
 					{
 						"value": "free_product",
-						"label": "Free Product"
+						"label": "Product"
 					}
 				],
 				"default": "free_shipping"
@@ -932,20 +935,20 @@
 			{
 				"type": "product",
 				"id": "second_threshold_product",
-				"label": "Product for Second Threshold",
+				"label": "Second benefit product",
 				"info": "Required if benefit is free product"
 			},
-			{
-				"type": "number",
-				"id": "discount_amount",
-				"label": "Discount Amount (%)",
-				"default": 10,
-				"info": "Required if benefit is discount"
-			},
+			//{
+			//	"type": "number",
+			//	"id": "discount_amount",
+			//	"label": "Discount Amount (%)",
+			//	"default": 10,
+			//	"info": "Required if benefit is discount"
+			//},
 			{
 				"type": "text",
 				"id": "second_threshold_message",
-				"label": "Second Threshold Message",
+				"label": "Second benefit message",
 				"default": "You're $$$ away from @@@"
 			}
 		]
