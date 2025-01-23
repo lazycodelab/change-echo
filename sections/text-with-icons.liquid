@@ -59,25 +59,25 @@
 	</style>
 
 	<div {% render 'section-attributes' %}>
-		<div class='section-stack'>
+		<div class="section-stack">
 			{%- if section.settings.title != blank -%}
-				<div class='justify-self-center'>
-					<h2 class='h3'>{{ section.settings.title | escape }}</h2>
+				<div class="justify-self-center">
+					<h2 class="h3">{{ section.settings.title | escape }}</h2>
 				</div>
 			{%- endif -%}
 
-			<div class='text-with-icons'>
+			<div class="text-with-icons">
 				<scroll-carousel
-					class='text-with-icons__list scroll-area full-bleed {% if section.blocks.size <= 3 %}md:unbleed{% else %}lg:unbleed{% endif %}'
-					id='carousel-{{ section.id }}'
-					role='region'
+					class="text-with-icons__list scroll-area full-bleed {% if section.blocks.size <= 3 %}md:unbleed{% else %}lg:unbleed{% endif %}"
+					id="carousel-{{ section.id }}"
+					role="region"
 				>
 					{%- for block in section.blocks -%}
 						<div
-							id='block-{{ section.id }}-{{ block.id }}'
-							class='text-with-icons__item snap-center'
-							role='group'
-							aria-label='{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}'
+							id="block-{{ section.id }}-{{ block.id }}"
+							class="text-with-icons__item snap-center"
+							role="group"
+							aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}"
 							{{ block.shopify_attributes }}
 						>
 							{%- capture icon -%}
@@ -116,10 +116,10 @@
 								{%- endif -%}
 							{%- endif -%}
 
-							<div class='text-with-icons__text-wrapper'>
-								<div class='prose'>
+							<div class="text-with-icons__text-wrapper">
+								<div class="prose">
 									{%- if block.settings.title != blank -%}
-										<p class='{{ section.settings.heading_tag }}'>
+										<p class="{{ section.settings.heading_tag }}">
 											{{ block.settings.title | escape }}
 										</p>
 									{%- endif -%}
@@ -133,16 +133,16 @@
 
 				{%- if section.blocks.size > 1 -%}
 					<swiper-dots
-						aria-controls='carousel-{{ section.id }}'
-						class='swiper-dots peer-not-scrollable:hidden'
+						aria-controls="carousel-{{ section.id }}"
+						class="swiper-dots peer-not-scrollable:hidden"
 					>
 						{%- for index in (1..section.blocks.size) -%}
 							<button
-								type='button'
-								class='tap-area'
-								aria-current='{% if forloop.first %}true{% else %}false{% endif %}'
+								type="button"
+								class="tap-area"
+								aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
 							>
-								<span class='sr-only'>{{ 'general.accessibility.go_to_item' | t: index: index }}</span>
+								<span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: index }}</span>
 							</button>
 						{%- endfor -%}
 					</swiper-dots>
