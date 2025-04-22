@@ -1,4 +1,4 @@
-{{- 'header.css' | asset_url | stylesheet_tag: preload: true -}}
+{% comment %}{{- 'header.css' | asset_url | stylesheet_tag: preload: true -}}{% endcomment %}
 
 {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
 	{%- assign will_show_country_selector = true -%}
@@ -482,12 +482,14 @@
 {%- endif -%}
 
 {%- assign check = 'shopify-section-' | append: section.id -%}
-<script>
-	document.documentElement.style.setProperty(
-		'--ul-header-height',
-		Math.round(document.getElementById('{{ check }}').clientHeight) + 'px',
-	)
-</script>
+{% comment %}
+	<script>
+		document.documentElement.style.setProperty(
+			'--ul-header-height',
+			Math.round(document.getElementById('{{ check }}').clientHeight) + 'px',
+		)
+	</script>
+{% endcomment %}
 
 {% schema %}
 {
