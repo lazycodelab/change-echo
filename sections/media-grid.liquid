@@ -44,7 +44,7 @@
 
 {% if render_content %}
 	<div {% render 'section-attributes', narrow: section.settings.reduce_width %}>
-		<media-grid class='media-grid'>
+		<media-grid class="media-grid">
 			{%- assign image_url = null -%}
 
 			{%- for block in section.blocks -%}
@@ -61,12 +61,12 @@
 				{% endif %}
 				<a
 					{% if block.settings.link_url != blank %}
-						href='{{ block.settings.link_url }}'
+						href="{{ block.settings.link_url }}"
 					{% endif -%}
-					class='media-grid__item shadow group'
+					class="media-grid__item group shadow"
 					{{ block.shopify_attributes -}}
-					reveal-jsstyle='--ul-media-grid-column-span: {{ block.settings.desktop_column_span }}; --ul-media-grid-row-span: {{ block.settings.desktop_row_span }}'
-					style='order:{{forloop.index}}; --ul-media-grid-column-span: {{ block.settings.desktop_column_span }}; --ul-media-grid-row-span: {{ block.settings.desktop_row_span }}'
+					reveal-jsstyle="--ul-media-grid-column-span: {{ block.settings.desktop_column_span }}; --ul-media-grid-row-span: {{ block.settings.desktop_row_span }}"
+					style="order:{{forloop.index}}; --ul-media-grid-column-span: {{ block.settings.desktop_column_span }}; --ul-media-grid-row-span: {{ block.settings.desktop_row_span }}"
 				>
 					{%- capture style -%}
                         --ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }};
@@ -77,7 +77,7 @@
                     {%- endcapture -%}
 
 					<div
-						id='media-grid-{{ block.id }}'
+						id="media-grid-{{ block.id }}"
 						{% render 'surface',
 							class: 'content-over-media rounded',
 							background: block.settings.background,
@@ -102,17 +102,17 @@
 
 								{% if image_url != null %}
 									<img
-										src='{{image_url | strip}}'
-										alt='grid image'
-										loading='eager'
-										width='32'
-										height='32'
+										src="{{image_url | strip}}"
+										alt="grid image"
+										loading="eager"
+										width="32"
+										height="32"
 									>
 								{% endif %}
 
 							{%- when 'video' -%}
 								{%- if block.settings.video -%}
-									<video-media autoplay style='--ul-aspect-ratio: auto'>
+									<video-media autoplay style="--ul-aspect-ratio: auto">
 										{%- if block.settings.show_video_controls -%}
 											{%- assign loop_video = false -%}
 										{%- else -%}
@@ -132,22 +132,22 @@
 									</video-media>
 								{%- else -%}
 									<video-media
-										host='{{ block.settings.external_video_url.type }}'
+										host="{{ block.settings.external_video_url.type }}"
 										autoplay
-										style='--ul-aspect-ratio: auto'
+										style="--ul-aspect-ratio: auto"
 									>
 										<template>
 											{%- if block.settings.external_video_url.type == 'youtube' -%}
 												<iframe
-													src='https://www.youtube.com/embed/{{ block.settings.external_video_url.id }}?playsinline=1&autoplay=1&controls=0&mute=1&loop=1&playlist={{ block.settings.external_video_url.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}'
-													allow='autoplay; encrypted-media'
-													allowfullscreen='allowfullscreen'
+													src="https://www.youtube.com/embed/{{ block.settings.external_video_url.id }}?playsinline=1&autoplay=1&controls=0&mute=1&loop=1&playlist={{ block.settings.external_video_url.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}"
+													allow="autoplay; encrypted-media"
+													allowfullscreen="allowfullscreen"
 												></iframe>
 											{%- elsif block.settings.external_video_url.type == 'vimeo' -%}
 												<iframe
-													src='https://player.vimeo.com/video/{{ block.settings.external_video_url.id }}?autoplay=1&autopause=1&background=1&loop=1&muted=1&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.text_color | remove_first: '#' }}'
-													allow='autoplay; encrypted-media;'
-													allowfullscreen='allowfullscreen'
+													src="https://player.vimeo.com/video/{{ block.settings.external_video_url.id }}?autoplay=1&autopause=1&background=1&loop=1&muted=1&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.text_color | remove_first: '#' }}"
+													allow="autoplay; encrypted-media;"
+													allowfullscreen="allowfullscreen"
 												></iframe>
 											{%- endif -%}
 										</template>
@@ -156,10 +156,10 @@
 						{%- endcase -%}
 
 						{%- if block.settings.title != blank or block.settings.link_text != blank -%}
-							<div class='{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}'>
-								<div class='prose'>
+							<div class="{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}">
+								<div class="prose">
 									{%- if block.settings.title != blank -%}
-										<p class='{{ block.settings.heading_tag }}'>
+										<p class="{{ block.settings.heading_tag }}">
 											{% render 'styled-text',
 												content: block.settings.title,
 												gradient: block.settings.text_gradient

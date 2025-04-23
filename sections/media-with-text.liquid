@@ -1,10 +1,5 @@
 {%- render 'section-spacing-collapsing' -%}
 
-{%- comment -%}
-	--ul-----------------------------------------------------------------------------------------------------------------------
-	CSS
-	--ul-----------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
 <style>
 	#shopify-section-{{ section.id }}{
 	    --ul-media-with-text-gap: {% if section.settings.spacing == 'none' %}
@@ -42,11 +37,6 @@
 	{%- endfor -%}
 </style>
 
-{%- comment -%}
-	--ul-----------------------------------------------------------------------------------------------------------------------
-	LIQUID
-	--ul-----------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
 <div {% render 'section-attributes' %}>
 	<media-with-text class="media-with-text {% if section.settings.spacing == 'none' %}{% if section.settings.full_width %}full-bleed{% else %}rounded{% endif %}{% endif %}">
 		{%- for block in section.blocks -%}
@@ -89,6 +79,13 @@
                         {%- endcapture -%}
 
 						{%- if block.settings.video -%}
+							{%- unless block.settings.video_aspect -%}
+								<style>
+									video-media {
+										--ul-default-aspect-ratio: auto;
+									}
+								</style>
+							{%- endunless -%}
 							<video-media
 								{% if block.settings.autoplay %}
 									autoplay
@@ -717,6 +714,13 @@
 					"label": "Autoplay",
 					"info": "Video are muted to allow autoplay.",
 					"default": true
+				},
+				{
+					"type": "checkbox",
+					"id": "video_aspect",
+					"label": "Use 16 / 9 video aspect",
+					"info": "Enabling can crop the video",
+					"default": false
 				},
 				{
 					"type": "range",
