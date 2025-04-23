@@ -5,7 +5,7 @@
 <style>
 	    #shopify-section-{{ section.id }} .collection-list {
 	--ul-collection-list-grid: {% if section.settings.stack_collections %}
-	            none{% else %}
+	            auto / repeat({{ section.settings.collections_mobile_column }}, minmax(0, 1fr)){% else %}
 	            auto / auto-flow 73vw{% endif %};
 	    }
 	    #shopify-section-{{ section.id }} .section-header .prose h2 {
@@ -41,8 +41,8 @@
 	    }
 </style>
 
-<div {% render 'section-attributes' %} id='{{section.settings.related_section_id}}'>
-	<div class='section-stack'>
+<div {% render 'section-attributes' %} id="{{section.settings.related_section_id}}">
+	<div class="section-stack">
 		{%- assign link_url = section.settings.link_url | default: section.settings.collection.url -%}
 		{%- render 'section-header',
 			subheading: section.settings.subheading,
@@ -55,29 +55,29 @@
 			link_url: link_url
 		-%}
 
-		<div class='{% if section.settings.show_progress_bar %}scrollable-with-controls{% else %}floating-controls-container{% endif %}'>
+		<div class="{% if section.settings.show_progress_bar %}scrollable-with-controls{% else %}floating-controls-container{% endif %}">
 			{%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
 
 			<scroll-carousel
-				selector='.collection-card'
-				id='{{ scroll_area_id }}'
-				class='scroll-area bleed {% if section.blocks.size > section.settings.collections_per_row %}is-scrollable{% endif %}'
+				selector=".collection-card"
+				id="{{ scroll_area_id }}"
+				class="scroll-area bleed {% if section.blocks.size > section.settings.collections_per_row %}is-scrollable{% endif %}"
 			>
-				<collection-list class='collection-list'>
+				<collection-list class="collection-list">
 					{%- for block in section.blocks -%}
 						{%- assign collection = block.settings.collection -%}
 						{%- assign collection_url = block.settings.url | default: collection.url -%}
 
 						<a
 							{% if collection_url != blank %}
-								href='{{ collection_url }}'
+								href="{{ collection_url }}"
 							{% endif -%}
-							class='collection-card {% if block.settings.text_position contains 'place-self-end' %}collection-card--reverse-transition{% endif %}'
+							class="collection-card {% if block.settings.text_position contains 'place-self-end' %}collection-card--reverse-transition{% endif %}"
 							reveal-js
 						>
 							<div
-								class='content-over-media group rounded-sm'
-								style='--ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}'
+								class="content-over-media group rounded-sm"
+								style="--ul-content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}"
 							>
 								{%- if collection != blank or block.settings.image != blank -%}
 									{%- assign image = block.settings.image | default: collection.featured_image -%}
@@ -101,8 +101,8 @@
 									{%- endif -%}
 
 									<div
-										class='collection-card__content-wrapper text-custom {{ block.settings.text_position }}'
-										style='--ul-text-color: {{ block.settings.text_color.rgb }}'
+										class="collection-card__content-wrapper text-custom {{ block.settings.text_position }}"
+										style="--ul-text-color: {{ block.settings.text_color.rgb }}"
 									>
 										{%- if block.settings.text_position contains 'place-self-end' -%}
 											{%- render 'icon' with 'circle-button-right-clipped',
@@ -111,12 +111,12 @@
 											-%}
 										{%- endif -%}
 
-										<div class='collection-card__content prose'>
+										<div class="collection-card__content prose">
 											{%- if block.settings.subheading != blank -%}
-												<p class='bold'>{{ block.settings.subheading | escape }}</p>
+												<p class="bold">{{ block.settings.subheading | escape }}</p>
 											{%- endif -%}
 
-											<p class='{{ block.settings.heading_tag }}'>
+											<p class="{{ block.settings.heading_tag }}">
 												{{ block.settings.title | default: collection.title | escape }}
 											</p>
 										</div>
@@ -134,8 +134,8 @@
 									{{- collection_placeholder | placeholder_svg_tag: 'placeholder zoom-image' -}}
 
 									<div
-										class='collection-card__content-wrapper text-custom {{ block.settings.text_position }}'
-										style='--ul-text-color: {{ block.settings.text_color.rgb }}'
+										class="collection-card__content-wrapper text-custom {{ block.settings.text_position }}"
+										style="--ul-text-color: {{ block.settings.text_color.rgb }}"
 									>
 										{%- if block.settings.text_position contains 'place-self-end' -%}
 											{%- render 'icon' with 'circle-button-right-clipped',
@@ -144,8 +144,8 @@
 											-%}
 										{%- endif -%}
 
-										<div class='collection-card__content prose'>
-											<p class='{{ block.settings.heading_tag }}'>
+										<div class="collection-card__content prose">
+											<p class="{{ block.settings.heading_tag }}">
 												{{- 'general.on_boarding.collection_title' | t -}}
 											</p>
 										</div>
@@ -177,22 +177,22 @@
 					-%}
 				{%- else -%}
 					<button
-						is='prev-button'
-						class='circle-button circle-button--lg circle-button--fill border group'
-						aria-controls='{{ scroll_area_id }}'
+						is="prev-button"
+						class="circle-button circle-button--lg circle-button--fill group border"
+						aria-controls="{{ scroll_area_id }}"
 						disabled
 					>
-						<span class='sr-only'>{{ 'general.accessibility.previous' | t }}</span>
-						<span class='animated-arrow animated-arrow--reverse'></span>
+						<span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+						<span class="animated-arrow animated-arrow--reverse"></span>
 					</button>
 
 					<button
-						is='next-button'
-						class='circle-button circle-button--lg circle-button--fill border group'
-						aria-controls='{{ scroll_area_id }}'
+						is="next-button"
+						class="circle-button circle-button--lg circle-button--fill group border"
+						aria-controls="{{ scroll_area_id }}"
 					>
-						<span class='sr-only'>{{ 'general.accessibility.next' | t }}</span>
-						<span class='animated-arrow'></span>
+						<span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+						<span class="animated-arrow"></span>
 					</button>
 				{%- endif -%}
 			{%- endif -%}
@@ -229,6 +229,22 @@
 			"max": 5,
 			"label": "Collections per row (desktop)",
 			"default": 3
+		},
+		{
+			"type": "select",
+			"id": "collections_mobile_column",
+			"label": "Mobile columns",
+			"options": [
+				{
+					"value": "1",
+					"label": "1"
+				},
+				{
+					"value": "2",
+					"label": "2"
+				}
+			],
+			"default": "2"
 		},
 		{
 			"type": "checkbox",
