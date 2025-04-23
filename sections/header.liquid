@@ -1,5 +1,3 @@
-{% comment %}{{- 'header.css' | asset_url | stylesheet_tag: preload: true -}}{% endcomment %}
-
 {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
 	{%- assign will_show_country_selector = true -%}
 {%- endif -%}
@@ -37,6 +35,10 @@
 	        relative{% endif %};
 	    top: 0;
 	    z-index: 10;
+
+		.header__wrapper .header__icon-list .header__link-list li a {
+			text-transform: {{ section.settings.nav_text_transform }};
+		}
 	}
 
 	{%- if section.settings.enable_sticky -%}
@@ -549,6 +551,25 @@
 			"id": "menu",
 			"label": "Menu",
 			"default": "main-menu"
+		},
+		{
+			"type": "select",
+			"id": "nav_text_transform",
+			"label": "Text transform",
+			"options": [
+				{
+					"value": "lowercase",
+					"label": "lowercase"
+				},
+				{
+					"value": "capitalize",
+					"label": "Capitalize (default)"
+				},
+				{
+					"value": "uppercase",
+					"label": "UPPERCASE"
+				}
+			]
 		},
 		{
 			"type": "link_list",
