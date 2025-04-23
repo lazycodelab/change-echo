@@ -482,14 +482,15 @@
 {%- endif -%}
 
 {%- assign check = 'shopify-section-' | append: section.id -%}
-{% comment %}
-	<script>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
 		document.documentElement.style.setProperty(
 			'--ul-header-height',
 			Math.round(document.getElementById('{{ check }}').clientHeight) + 'px',
 		)
-	</script>
-{% endcomment %}
+	})
+</script>
 
 {% schema %}
 {
