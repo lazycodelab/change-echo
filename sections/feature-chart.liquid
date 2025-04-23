@@ -1,5 +1,6 @@
 {%- render 'section-spacing-collapsing' -%}
 
+{%- assign heading_position = section.settings.heading_position -%}
 {%- assign text_position = section.settings.text_position -%}
 {%- assign values_column_count = section.blocks | where: 'type', 'values' | size -%}
 
@@ -9,12 +10,12 @@
 	  }
 
 	  @media screen and (min-width: 700px) {
-	    {%- if text_position == 'center' -%}
+	    {%- if heading_position == 'center' -%}
 	      #shopify-section-{{ section.id }} .section-stack__main {
 	        width: {% if values_column_count == 1 %}680px{% elsif values_column_count == 2 %}900px{% else %}auto{% endif %};
 	        min-width: 680px;
 	      }
-		{%- elsif text_position == 'right' -%}
+		{%- elsif heading_position == 'right' -%}
 		#shopify-section-{{ section.id }} .section-stack {
 	        flex-wrap: wrap;
 	        justify-content: flex-end;
@@ -53,20 +54,25 @@
 </style>
 
 <div {% render 'section-attributes' %}>
-	<div class='section-stack {% if text_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if text_position == 'end' %}section-stack--reverse{% endif %}'>
+	<div class="section-stack {% if heading_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if heading_position == 'end' %}section-stack--reverse{% endif %}">
 		{%- if section.settings.subheading != blank
 			or section.settings.title != blank
 			or section.settings.content != blank
 			or section.settings.button_text != blank
 		-%}
-			<div class='section-stack__intro' {% if text_position == 'right' %}style='order:1;'{% endif %}>
-				<div class='prose {% if text_position == 'center' %}text-center{% endif %}'>
+			<div
+				class="section-stack__intro"
+				{% if heading_position == 'right' %}
+					style="order:1;"
+				{% endif %}
+			>
+				<div class="prose {% if heading_position == 'center' %}text-center{% endif %}">
 					{%- if section.settings.subheading != blank -%}
-						<p class='bold'>{{ section.settings.subheading | escape }}</p>
+						<p class="bold">{{ section.settings.subheading | escape }}</p>
 					{%- endif -%}
 
 					{%- if section.settings.title != blank -%}
-						<h2 class='h2'>
+						<h2 class="h2">
 							{%- render 'styled-text',
 								content: section.settings.title,
 								text_color: section.settings.heading_color,
@@ -90,7 +96,7 @@
 			</div>
 		{%- endif -%}
 
-		<div class='section-stack__main'>
+		<div class="section-stack__main">
 			{%- assign text_color = section.settings.chart_text_color | default: settings.text_color -%}
 			{%- assign background_color = section.settings.chart_background -%}
 
@@ -99,7 +105,7 @@
 			{%- endif -%}
 
 			<feature-chart
-				max-rows='{{ section.settings.max_rows }}'
+				max-rows="{{ section.settings.max_rows }}"
 				{% render 'surface', class: 'feature-chart', background: background_color, text_color: text_color %}
 			>
 				{%- assign has_product = false -%}
@@ -111,7 +117,7 @@
 					{%- endif -%}
 				{%- endfor -%}
 
-				<div class='feature-chart__table {% if values_column_count > 1 %}feature-chart__table--multi-columns{% endif %} {% if has_product %}feature-chart__table--product{% endif %} divide-y scroll-area'>
+				<div class="feature-chart__table {% if values_column_count > 1 %}feature-chart__table--multi-columns{% endif %} {% if has_product %}feature-chart__table--product{% endif %} scroll-area divide-y">
 					{%- assign headings_block = section.blocks | where: 'type', 'headings' | first -%}
 					{%- assign values_blocks = section.blocks | where: 'type', 'values' -%}
 					{%- assign outputted_count = 0 -%}
@@ -157,7 +163,7 @@
 
                         {%- for color_label in color_label_list -%}
                           {%- if chart_product.options_by_name[color_label] != blank -%}
-                            <div class="h-stack gap-2 sm:gap-2-5">
+                            <div class="h-stack sm:gap-2-5 gap-2">
                               {%- for color_name in chart_product.options_by_name[color_label].values -%}
                                 {%- assign product_option = chart_product.options_by_name[color_label] -%}
                                 {%- assign product_option_name = 'option' | append: product_option.position -%}
@@ -194,12 +200,12 @@
               {%- endfor -%}
             {%- endcapture -%}
 
-						<div class='feature-chart__table-row feature-chart__table-row--product'>
+						<div class="feature-chart__table-row feature-chart__table-row--product">
 							{{- product_row -}}
 						</div>
 
 						{%- if total_rows_count > 6 -%}
-							<div class='feature-chart__table-row feature-chart__table-row--product feature-chart__table-row--sticky'>
+							<div class="feature-chart__table-row feature-chart__table-row--product feature-chart__table-row--sticky">
 								{{- product_row -}}
 							</div>
 						{%- endif -%}
@@ -220,14 +226,15 @@
 							{%- assign outputted_count = outputted_count | plus: 1 -%}
 
 							<div
-								class='feature-chart__table-row'
+								class="feature-chart__table-row"
+								style="text-align: {{ text_position }}"
 								{% if outputted_count > section.settings.max_rows %}
 									hidden
 								{% endif %}
 							>
 								{%- if heading_value != blank -%}
 									<div
-										class='feature-chart__heading bold'
+										class="feature-chart__heading bold"
 										{% if outputted_count == 0 %}
 											{{- headings_block.shopify_attributes -}}
 										{% endif %}
@@ -242,30 +249,30 @@
 										{%- assign stripped_value = value | strip_html | strip -%}
 
 										<div
-											class='feature-chart__value prose text-subdued'
+											class="feature-chart__value prose text-subdued"
 											{% if outputted_count == 0 %}
 												{{- values_blocks[i].shopify_attributes -}}
 											{% endif %}
 										>
 											{%- if stripped_value == 'FALSE' -%}
 												<svg
-													fill='none'
-													class='icon offset-icon'
-													width='16'
-													height='16'
-													viewBox='0 0 16 16'
-													style='--ul-icon-height: 16px'
+													fill="none"
+													class="icon offset-icon"
+													width="16"
+													height="16"
+													viewBox="0 0 16 16"
+													style="--ul-icon-height: 16px"
 												>
 													<path d="m.94 3.06 12 12 2.12-2.12-12-12L.94 3.06Zm2.12 12 12-12L12.94.94l-12 12 2.12 2.12Z" fill="{{ section.settings.chart_true_false_color | default: section.settings.chart_text_color | default: settings.text_color }}"></path>
 												</svg>
 											{%- elsif stripped_value == 'TRUE' -%}
 												<svg
-													fill='none'
-													class='icon offset-icon'
-													width='20'
-													height='16'
-													viewBox='0 0 20 16'
-													style='--ul-icon-height: 16px'
+													fill="none"
+													class="icon offset-icon"
+													width="20"
+													height="16"
+													viewBox="0 0 20 16"
+													style="--ul-icon-height: 16px"
 												>
 													<path d="m2 7.6 5.259 5.6L18 2" stroke="{{ section.settings.chart_true_false_color | default: section.settings.chart_text_color | default: settings.text_color }}" stroke-width="3"></path>
 												</svg>
@@ -281,17 +288,17 @@
 				</div>
 
 				{%- if outputted_count > section.settings.max_rows -%}
-					<div class='feature-chart__toggle'>
+					<div class="feature-chart__toggle">
 						<button
-							data-action='toggle-rows'
-							data-view-more='{{ section.settings.view_all_text | escape }}'
-							data-view-less='{{ section.settings.view_less_text | escape }}'
-							class='text-with-icon group'
+							data-action="toggle-rows"
+							data-view-more="{{ section.settings.view_all_text | escape }}"
+							data-view-less="{{ section.settings.view_less_text | escape }}"
+							class="text-with-icon group"
 						>
-							<span class='feature-chart__toggle-text reversed-link'>
+							<span class="feature-chart__toggle-text reversed-link">
 								{{- section.settings.view_all_text | escape -}}
 							</span>
-							<span class='circle-chevron group-hover:colors'>
+							<span class="circle-chevron group-hover:colors">
 								{%- render 'icon' with 'chevron-bottom-small' -%}
 							</span>
 						</button>
@@ -334,6 +341,26 @@
 			"default": "Product specification"
 		},
 		{
+			"type": "select",
+			"id": "heading_position",
+			"label": "Heading position",
+			"options": [
+				{
+					"value": "start",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "start"
+		},
+		{
 			"type": "richtext",
 			"id": "content",
 			"label": "Content",
@@ -352,7 +379,7 @@
 		{
 			"type": "select",
 			"id": "text_position",
-			"label": "Text position",
+			"label": "Table text position",
 			"options": [
 				{
 					"value": "start",
