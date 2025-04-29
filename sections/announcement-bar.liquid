@@ -25,22 +25,22 @@
 		        top: calc(var(--ul-sticky-header-enabled, 0) * var(--ul-header-height, 0px));
 		    }
 		{%- endif -%}
-		.mobile_only {
+		{% comment %}.mobile_only {
 		    display: block;
 		}
 		.desktop_only {
 		    display: none;
-		}
-		@media(min-width:768px) {
+		}{% endcomment %}
+		{% comment %}@media(min-width:768px) {
 		    .mobile_only {
 		        display: none;
 		    }
 		    .desktop_only {
 		        display: block;
 		    }
-		}
+		}{% endcomment %}
 	</style>
-	<height-change-listener variable='announcement-bar'>
+	<height-change-listener variable="announcement-bar">
 		<div
 			{% render 'surface',
 				class: 'announcement-bar',
@@ -51,8 +51,8 @@
 		>
 			{%- if section.settings.navigation_mode == 'scrolling' -%}
 				<moving-text
-					scrolling-speed='{{ section.settings.scrolling_speed }}'
-					class='announcement-bar__scrolling-list'
+					scrolling-speed="{{ section.settings.scrolling_speed }}"
+					class="announcement-bar__scrolling-list"
 				>
 					{%- capture content -%}
                     {%- for block in section.blocks -%}
@@ -70,9 +70,9 @@
 
 					{%- for i in (1..10) -%}
 						<span
-							class='announcement-bar__item'
+							class="announcement-bar__item"
 							{% unless forloop.first %}
-								aria-hidden='true'
+								aria-hidden="true"
 							{% endunless %}
 						>
 							{{- content -}}
@@ -80,84 +80,86 @@
 					{%- endfor -%}
 				</moving-text>
 			{%- else -%}
-				<div class='mobile_only'>
-					<moving-text
-						scrolling-speed='{{ section.settings.scrolling_speed }}'
-						class='announcement-bar__scrolling-list'
-					>
-						{%- capture content -%}
-                        {%- for block in section.blocks -%}
-                            <p class="{{ section.settings.text_size }}" {{ block.shopify_attributes }}>
-                                {%- if block.settings.url != blank -%}
-                                    <a href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
-                                {%- else -%}
-                                    {{ block.settings.text | escape }}
-                                {%- endif -%}
-                            </p>
+				{% comment %}
+					<div class='mobile_only'>
+						<moving-text
+							scrolling-speed='{{ section.settings.scrolling_speed }}'
+							class='announcement-bar__scrolling-list'
+						>
+							{%- capture content -%}
+					                    {%- for block in section.blocks -%}
+					                        <p class="{{ section.settings.text_size }}" {{ block.shopify_attributes }}>
+					                            {%- if block.settings.url != blank -%}
+					                                <a href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+					                            {%- else -%}
+					                                {{ block.settings.text | escape }}
+					                            {%- endif -%}
+					                        </p>
 
-                            <span class="shape-circle shape--sm"></span>
-                        {%- endfor -%}
-                    {%- endcapture -%}
+					                        <span class="shape-circle shape--sm"></span>
+					                    {%- endfor -%}
+					                {%- endcapture -%}
 
-						{%- for i in (1..10) -%}
-							<span
-								class='announcement-bar__item'
-								{% unless forloop.first %}
-									aria-hidden='true'
-								{% endunless %}
-							>
-								{{- content -}}
-							</span>
-						{%- endfor -%}
-					</moving-text>
-				</div>
-
-				<div class='desktop_only'>
-					<div class='container'>
-						<div class='announcement-bar__wrapper {% if section.blocks.size == 1 %}justify-center{% else %}justify-between{% endif %}'>
-							{%- if section.blocks.size > 1 -%}
-								<button
-									class='tap-area'
-									is='prev-button'
-									aria-controls='announcement-bar'
-									aria-label='{{ 'general.accessibility.previous' | t }}'
+							{%- for i in (1..10) -%}
+								<span
+									class='announcement-bar__item'
+									{% unless forloop.first %}
+										aria-hidden='true'
+									{% endunless %}
 								>
-									{%- render 'icon' with 'chevron-left', direction_aware: true -%}
-								</button>
-							{%- endif -%}
+									{{- content -}}
+								</span>
+							{%- endfor -%}
+						</moving-text>
+					</div>
+				{% endcomment %}
 
-							<announcement-bar
-								swipeable
-								id='announcement-bar'
-								class='announcement-bar__static-list'
+				{% comment %}<div class="desktop_only">{% endcomment %}
+				<div class="container">
+					<div class="announcement-bar__wrapper {% if section.blocks.size == 1 %}justify-center{% else %}justify-between{% endif %}">
+						{%- if section.blocks.size > 1 -%}
+							<button
+								class="tap-area"
+								is="prev-button"
+								aria-controls="announcement-bar"
+								aria-label="{{ 'general.accessibility.previous' | t }}"
 							>
-								{%- for block in section.blocks -%}
-									<p
-										class='{{ section.settings.text_size }} {% unless forloop.first %}reveal-invisible{% endunless %}'
-										{{ block.shopify_attributes }}
-									>
-										{%- if block.settings.url != blank -%}
-											<a href='{{ block.settings.url }}'>{{ block.settings.text | escape }}</a>
-										{%- else -%}
-											{{ block.settings.text | escape }}
-										{%- endif -%}
-									</p>
-								{%- endfor -%}
-							</announcement-bar>
+								{%- render 'icon' with 'chevron-left', direction_aware: true -%}
+							</button>
+						{%- endif -%}
 
-							{%- if section.blocks.size > 1 -%}
-								<button
-									class='tap-area'
-									is='next-button'
-									aria-controls='announcement-bar'
-									aria-label='{{ 'general.accessibility.next' | t }}'
+						<announcement-bar
+							swipeable
+							id="announcement-bar"
+							class="announcement-bar__static-list"
+						>
+							{%- for block in section.blocks -%}
+								<p
+									class="{{ section.settings.text_size }} {% unless forloop.first %}reveal-invisible{% endunless %}"
+									{{ block.shopify_attributes }}
 								>
-									{%- render 'icon' with 'chevron-right', direction_aware: true -%}
-								</button>
-							{%- endif -%}
-						</div>
+									{%- if block.settings.url != blank -%}
+										<a href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+									{%- else -%}
+										{{ block.settings.text | escape }}
+									{%- endif -%}
+								</p>
+							{%- endfor -%}
+						</announcement-bar>
+
+						{%- if section.blocks.size > 1 -%}
+							<button
+								class="tap-area"
+								is="next-button"
+								aria-controls="announcement-bar"
+								aria-label="{{ 'general.accessibility.next' | t }}"
+							>
+								{%- render 'icon' with 'chevron-right', direction_aware: true -%}
+							</button>
+						{%- endif -%}
 					</div>
 				</div>
+				{% comment %}</div>{% endcomment %}
 			{%- endif -%}
 		</div>
 	</height-change-listener>
