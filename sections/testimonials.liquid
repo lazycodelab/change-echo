@@ -6,9 +6,7 @@
 		    --ul-testimonial-list-items-per-row: 1;
 		    --ul-testimonial-list-carousel-item-width: 74vw;
 
-		    --ul-testimonial-list-grid: {% if section.settings.stack_testimonials %}
-		        auto / repeat(var(--ul-testimonial-list-items-per-row), minmax(0, 1fr)){% else %}
-		        auto / auto-flow var(--ul-testimonial-list-carousel-item-width){% endif %};
+		    --ul-testimonial-list-grid: {% if section.settings.stack_testimonials %}auto / repeat(var(--ul-testimonial-list-items-per-row), minmax(0, 1fr)){% else %}auto / auto-flow var(--ul-testimonial-list-carousel-item-width){% endif %};
 		}
 
 		#shopify-section-{{ section.id }} .scrollbar {
@@ -33,13 +31,13 @@
 		@media screen and (min-width: 1150px) {
 		    #shopify-section-{{ section.id }}{
 		        --ul-testimonial-list-items-per-row: 3;
-		        --ul-testimonial-list-carousel-item-width: calc(100% / 3 -(var(--ul-grid-gutter) / 3 * 2));
+		        --ul-testimonial-list-carousel-item-width: calc(100% / 3 - (var(--ul-grid-gutter) / 3 * 2));
 		    }
 		}
 	</style>
 
 	<div {% render 'section-attributes' %}>
-		<div class='section-stack'>
+		<div class="section-stack">
 			{%- render 'section-header',
 				subheading: section.settings.subheading,
 				heading: section.settings.title,
@@ -47,16 +45,16 @@
 				heading_gradient: section.settings.heading_gradient,
 				content: section.settings.content,
 				link_text: section.settings.link_text,
-				link_url: section.settings.link_url
+				link_url: section.settings.link_url,
 				text_alignment: section.settings.text_alignment
 			-%}
 
-			<div class='scrollable-with-controls'>
+			<div class="scrollable-with-controls">
 				{%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
 
 				<scroll-carousel
-					id='{{ scroll_area_id }}'
-					class='testimonial-list scroll-area bleed {% if section.blocks.size > 3 %}is-scrollable{% endif %}'
+					id="{{ scroll_area_id }}"
+					class="testimonial-list scroll-area bleed {% if section.blocks.size > 3 %}is-scrollable{% endif %}"
 				>
 					{%- for block in section.blocks -%}
 						<div
@@ -72,7 +70,7 @@
 								or block.settings.author != blank
 								or block.settings.show_rating
 							-%}
-								<div class='h-stack align-start gap-4 sm:gap-6'>
+								<div class="h-stack align-start gap-4 sm:gap-6">
 									{%- if block.settings.image != blank -%}
 										{%- capture image_class -%}testimonial__image
                                             {% if block.settings.round_avatar %}rounded-full{% endif %}
@@ -88,13 +86,13 @@
 										-}}
 									{%- endif -%}
 
-									<div class='grid gap-2 sm:gap-2.5'>
+									<div class="grid gap-2 sm:gap-2.5">
 										{%- if block.settings.show_rating -%}
-											<div class='rating'>
+											<div class="rating">
 												<div
-													class='rating__stars'
-													role='img'
-													aria-label='{{ 'general.rating.info' | t: rating_value: block.settings.rating, rating_max: 5 }}'
+													class="rating__stars"
+													role="img"
+													aria-label="{{ 'general.rating.info' | t: rating_value: block.settings.rating, rating_max: 5 }}"
 												>
 													{%- for i in (1..5) -%}
 														{%- if i <= block.settings.rating -%}
@@ -112,16 +110,16 @@
 										{%- endif -%}
 
 										{%- if block.settings.author != blank -%}
-											<p class='text-subdued'>{{ block.settings.author | escape }}</p>
+											<p class="text-subdued">{{ block.settings.author | escape }}</p>
 										{%- endif -%}
 									</div>
 								</div>
 							{%- endif -%}
 
 							{%- if block.settings.title != blank or block.settings.content != blank -%}
-								<div class='grid gap-2 sm:gap-2.5'>
+								<div class="grid gap-2 sm:gap-2.5">
 									{%- if block.settings.title != blank -%}
-										<p class='bold'>{{ block.settings.title | escape }}</p>
+										<p class="bold">{{ block.settings.title | escape }}</p>
 									{%- endif -%}
 
 									{{- block.settings.content -}}
