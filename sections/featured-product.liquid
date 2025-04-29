@@ -1,4 +1,5 @@
 {%- render 'section-spacing-collapsing' -%}
+{{- 'product.css' | asset_url | stylesheet_tag: preload: true -}}
 
 <style>
 		#shopify-section-{{ section.id }}{
@@ -50,7 +51,7 @@
 </style>
 
 <div {% render 'section-attributes', tight: true %}>
-	<div class='product'>
+	<div class="product">
 		{%- if section.settings.product != blank -%}
 			{%- if section.settings.product.media.size > 0 -%}
 				{%- render 'product-gallery', product: section.settings.product -%}
@@ -59,17 +60,17 @@
 			{%- render 'product-info', product: section.settings.product, update_url: false -%}
 		{%- else -%}
 			<product-gallery
-				form='placeholder-{{ section.id }}'
-				class='product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if section.settings.desktop_media_layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if section.settings.desktop_media_layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}'
+				form="placeholder-{{ section.id }}"
+				class="product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if section.settings.desktop_media_layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if section.settings.desktop_media_layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}"
 			>
-				<div class='product-gallery__ar-wrapper'>
-					<div class='product-gallery__media-list-wrapper'>
+				<div class="product-gallery__ar-wrapper">
+					<div class="product-gallery__media-list-wrapper">
 						<media-carousel
-							desktop-mode='{{ section.settings.desktop_media_layout }}'
+							desktop-mode="{{ section.settings.desktop_media_layout }}"
 							adaptive-height
-							class='product-gallery__media-list {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed'
+							class="product-gallery__media-list {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed"
 						>
-							<div class='product-gallery__media {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}'>
+							<div class="product-gallery__media {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}">
 								{{- 'product-1' | placeholder_svg_tag: 'placeholder rounded' -}}
 							</div>
 						</media-carousel>
@@ -77,73 +78,73 @@
 				</div>
 			</product-gallery>
 
-			<safe-sticky class='product-info'>
+			<safe-sticky class="product-info">
 				{%- capture product_form_id -%}featured-product-form-{{ section.id }}{%- endcapture -%}
 
 				{%- for block in section.blocks -%}
 					{%- case block.type -%}
 						{%- when 'vendor' -%}
-							<div class='product-info__vendor' {{ block.shopify_attributes }}>
+							<div class="product-info__vendor" {{ block.shopify_attributes }}>
 								{{- 'general.on_boarding.product_vendor' | t -}}
 							</div>
 
 						{%- when 'title' -%}
 							<h2
-								class='product-info__title {{ block.settings.heading_tag }}'
+								class="product-info__title {{ block.settings.heading_tag }}"
 								{{ block.shopify_attributes }}
 							>
 								{{ 'general.on_boarding.product_title' | t }}
 							</h2>
 
 						{%- when 'price' -%}
-							<div class='product-info__price'>
-								<price-list class='price-list price-list--lg'>
-									<sale-price class='text-lg'>{{ 4000 | money }}</sale-price>
+							<div class="product-info__price">
+								<price-list class="price-list price-list--lg">
+									<sale-price class="text-lg">{{ 4000 | money }}</sale-price>
 								</price-list>
 							</div>
 
 						{%- when 'separator' -%}
-							<hr class='product-info__separator' {{ block.shopify_attributes }} style="margin-top:5px">
+							<hr class="product-info__separator" {{ block.shopify_attributes }} style="margin-top:5px">
 
 						{%- when 'description' -%}
-							<div class='product-info__description' {{ block.shopify_attributes }} style="margin:20px 0">
-								<div class='prose'>
+							<div class="product-info__description" {{ block.shopify_attributes }} style="margin:20px 0">
+								<div class="prose">
 									{{- 'general.on_boarding.product_description' | t -}}
 								</div>
 							</div>
 
 						{%- when 'quantity_selector' -%}
-							<div class='product-info__quantity-selector {{ block.shopify_attributes }}'>
-								<div class='form-control'>
-									<label for='{{ product_form_id }}-quantity' class='block-label text-subdued'>
+							<div class="product-info__quantity-selector {{ block.shopify_attributes }}">
+								<div class="form-control">
+									<label for="{{ product_form_id }}-quantity" class="block-label text-subdued">
 										{{- 'product.quantity.label' | t -}}
 										:</label
 									>
 
-									<quantity-selector class='quantity-selector'>
+									<quantity-selector class="quantity-selector">
 										<button
-											type='button'
-											class='quantity-selector__button'
-											aria-label='{{ 'product.quantity.decrease_quantity' | t }}'
+											type="button"
+											class="quantity-selector__button"
+											aria-label="{{ 'product.quantity.decrease_quantity' | t }}"
 										>
 											{% render 'icon' with 'minus', width: 10, height: 2 %}
 										</button>
 										<input
-											id='{{ product_form_id }}-quantity'
-											type='text'
-											is='quantity-input'
-											inputmode='numeric'
-											class='quantity-selector__input'
-											name='quantity'
-											form='{{ product_form_id }}'
-											size='2'
-											value='1'
-											autocomplete='off'
+											id="{{ product_form_id }}-quantity"
+											type="text"
+											is="quantity-input"
+											inputmode="numeric"
+											class="quantity-selector__input"
+											name="quantity"
+											form="{{ product_form_id }}"
+											size="2"
+											value="1"
+											autocomplete="off"
 										>
 										<button
-											type='button'
-											class='quantity-selector__button'
-											aria-label='{{ 'product.quantity.increase_quantity' | t }}'
+											type="button"
+											class="quantity-selector__button"
+											aria-label="{{ 'product.quantity.increase_quantity' | t }}"
 										>
 											{% render 'icon' with 'plus', width: 10, height: 10 %}
 										</button>
@@ -152,8 +153,8 @@
 							</div>
 
 						{%- when 'buy_buttons' -%}
-							<div class='product-info__buy-buttons' {{ block.shopify_attributes }} style="margin:20px 0">
-								<buy-buttons class='buy-buttons'>
+							<div class="product-info__buy-buttons" {{ block.shopify_attributes }} style="margin:20px 0">
+								<buy-buttons class="buy-buttons">
 									{%- capture button_content -%}
 									{{ 'product.general.add_to_cart_button' | t }}{%- endcapture -%}
 									{%- render 'button',
