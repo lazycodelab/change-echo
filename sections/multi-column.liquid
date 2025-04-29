@@ -15,7 +15,7 @@
 	</style>
 
 	<div {% render 'section-attributes' %}>
-		<div class='section-stack'>
+		<div class="section-stack">
 			{%- render 'section-header',
 				subheading: section.settings.subheading,
 				heading: section.settings.title,
@@ -23,19 +23,19 @@
 				text_alignment: section.settings.text_alignment
 			-%}
 
-			<div class='multi-column scroll-area bleed md:unbleed'>
+			<div class="multi-column scroll-area bleed md:unbleed">
 				{%- for block in section.blocks -%}
 					{%- case block.type -%}
 						{%- when 'item' -%}
 							<div
-								class='multi-column__item justify-{{ section.settings.text_alignment }} snap-start'
-								style='--ul-multi-column-item-column-count: span {{ 12.0 | divided_by: block.settings.column_size | round }}'
+								class="multi-column__item justify-{{ section.settings.text_alignment }} snap-start"
+								style="--ul-multi-column-item-column-count: span {{ 12.0 | divided_by: block.settings.column_size | round }}"
 								{{ block.shopify_attributes }}
 							>
 								{%- if block.settings.video != blank -%}
 									<video-media
 										autoplay
-										style='--ul-aspect-ratio: {{ block.settings.video.aspect_ratio }}'
+										style="--ul-aspect-ratio: {{ block.settings.video.aspect_ratio }}"
 									>
 										{{
 											block.settings.video
@@ -64,28 +64,30 @@
 									or block.settings.content != blank
 									or block.settings.link_text != blank
 								-%}
-									<div class='grid gap-4 text-{{ section.settings.text_alignment }}'>
+									<div class="grid gap-4 text-{{ section.settings.text_alignment }}">
 										{%- if block.settings.title != blank -%}
-											<p class='{{ block.settings.heading_tag }}'>
+											<p class="{{ block.settings.heading_tag }}">
 												{{ block.settings.title | escape }}
 											</p>
 										{%- endif -%}
 
 										{%- if block.settings.content != blank or block.settings.link_text != blank -%}
-											<div class='prose'>
+											<div class="prose">
 												{{- block.settings.content -}}
 
 												{%- if block.settings.link_text != blank -%}
 													<div>
 														{%- if block.settings.link_style == 'link' -%}
-															<a href='{{ block.settings.link_url }}' class='link'>
+															<a href="{{ block.settings.link_url }}" class="link">
 																{{- block.settings.link_text | escape -}}
 															</a>
 														{%- else -%}
 															{%- render 'button',
 																href: block.settings.link_url,
 																content: block.settings.link_text,
-																size: 'lg'
+																size: 'lg',
+																background: block.settings.button_background,
+																text_color: block.settings.button_text_color
 															-%}
 														{%- endif -%}
 													</div>
@@ -98,8 +100,8 @@
 
 						{%- when 'spacer' -%}
 							<div
-								class='multi-column__item hidden md:block'
-								style='--ul-multi-column-item-column-count: span {{ 12.0 | divided_by: block.settings.column_size | round }}'
+								class="multi-column__item hidden md:block"
+								style="--ul-multi-column-item-column-count: span {{ 12.0 | divided_by: block.settings.column_size | round }}"
 								{{ block.shopify_attributes }}
 							></div>
 					{%- endcase -%}
@@ -324,6 +326,22 @@
 						}
 					],
 					"default": "link"
+				},
+				{
+					"type": "header",
+					"content": "Button Colors",
+					"info": "Only applies when link style is set to button"
+				},
+				{
+					"type": "color",
+					"id": "button_background",
+					"label": "Button background",
+					"default": "#DCDCDC"
+				},
+				{
+					"type": "color",
+					"id": "button_text_color",
+					"label": "Button text"
 				}
 			]
 		},
