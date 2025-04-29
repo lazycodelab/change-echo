@@ -50,7 +50,7 @@
 </style>
 
 <div {% render 'section-attributes', tight: true %}>
-	<div class='product'>
+	<div class="product">
 		{%- if product.media.size > 0 -%}
 			{%- render 'product-gallery', product: product -%}
 		{%- endif -%}
@@ -64,14 +64,14 @@
 {%- if section.settings.show_fixed_add_to_cart and product.available and buy_buttons_block != blank -%}
 	{%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
-	<product-quick-add form='{{ product_form_id }}' class='product-quick-add'>
+	<product-quick-add form="{{ product_form_id }}" class="product-quick-add">
 		{%- assign button_label = 'product.general.add_to_cart_button' | t -%}
 
 		<buy-buttons
-			template='{{ product.template_suffix }}'
-			form='{{ product_form_id }}'
+			template="{{ product.template_suffix }}"
+			form="{{ product_form_id }}"
 			force-secondary-button
-			class='sm:hidden'
+			class="sm:hidden"
 		>
 			{%- render 'button',
 				type: 'submit',
@@ -89,9 +89,9 @@
 			| default: product.featured_media
 		-%}
 
-		<div class='product-quick-add__variant {% if image == blank %}no-image{% endif %} hidden sm:grid'>
+		<div class="product-quick-add__variant {% if image == blank %}no-image{% endif %} hidden sm:grid">
 			{%- if image != blank -%}
-				<variant-media widths='80,160' form='{{ product_form_id }}'>
+				<variant-media widths="80,160" form="{{ product_form_id }}">
 					{{-
 						image
 						| image_url: width: image.width
@@ -100,14 +100,14 @@
 				</variant-media>
 			{%- endif -%}
 
-			<div class='grid gap-0.5'>
+			<div class="grid gap-0.5">
 				{%- assign vendor_block = section.blocks | where: 'type', 'vendor' -%}
 
 				{%- if vendor_block != blank -%}
 					{%- render 'vendor' with product.vendor, class: 'text-xs' -%}
 				{%- endif -%}
 
-				<a href='{{ product.url }}' class='bold truncate-text'>{{ product.title }}</a>
+				<a href="{{ product.url }}" class="bold truncate-text">{{ product.title }}</a>
 				{%- render 'price-list',
 					product: product,
 					variant: product.selected_or_first_available_variant,
@@ -116,8 +116,8 @@
 			</div>
 
 			<buy-buttons
-				template='{{ product.template_suffix }}'
-				form='{{ product_form_id }}'
+				template="{{ product.template_suffix }}"
+				form="{{ product_form_id }}"
 				force-secondary-button
 			>
 				{%- render 'button',
@@ -133,16 +133,16 @@
 	</product-quick-add>
 {%- endif -%}
 
-<template id='quick-buy-content'>
+<template id="quick-buy-content">
 	{%- capture product_form_id -%}quick-buy-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
-	<div class='quick-buy-drawer__variant text-start h-stack gap-6' slot='header'>
+	<div class="quick-buy-drawer__variant h-stack gap-6 text-start" slot="header">
 		{%- assign image = product.selected_or_first_available_variant.featured_media
 			| default: product.featured_media
 		-%}
 
 		{%- if image != blank -%}
-			<variant-media widths='80,160' form='{{ product_form_id }}'>
+			<variant-media widths="80,160" form="{{ product_form_id }}">
 				{{-
 					image
 					| image_url: width: image.width
@@ -155,8 +155,8 @@
 			</variant-media>
 		{%- endif -%}
 
-		<div class='grid gap-0.5'>
-			<a href='{{ product.url }}' class='bold justify-self-start'>{{ product.title }}</a>
+		<div class="grid gap-0.5">
+			<a href="{{ product.url }}" class="bold justify-self-start">{{ product.title }}</a>
 			{%- render 'price-list',
 				product: product,
 				variant: product.selected_or_first_available_variant,
@@ -165,7 +165,7 @@
 		</div>
 	</div>
 
-	<div class='quick-buy-drawer__info'>
+	<div class="quick-buy-drawer__info">
 		{%- comment -%}We only show a limited set of information in the quick buy{%- endcomment -%}
 
 		{%- for block in section.blocks -%}
