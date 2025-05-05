@@ -724,6 +724,13 @@
 		"name": "Cart",
 		"settings": [
 			{
+				"type": "checkbox",
+				"id": "disable_cart",
+				"label": "Disable cart functionality",
+				"info": "Hides the cart icon in the header and prevents access to the cart page",
+				"default": false
+			},
+			{
 				"type": "select",
 				"id": "cart_type",
 				"label": "Cart type",
@@ -749,24 +756,6 @@
 				"label": "Empty button link",
 				"default": "/collections/all"
 			}
-			//{
-			//	"type": "header",
-			//	"content": "Free shipping bar",
-			//	"info": "Show a shipping bar advancement on cart page and cart drawer. Configure your [shipping rates](/admin/settings/shipping) to match the amount."
-			//},
-			//{
-			//	"type": "checkbox",
-			//	"id": "cart_show_free_shipping_threshold",
-			//	"label": "Show shipping bar",
-			//	"default": false
-			//},
-			//{
-			//	"type": "number",
-			//	"id": "cart_free_shipping_threshold",
-			//	"label": "Free shipping minimum amount",
-			//	"info": "Indicate the value in your store main currency.",
-			//	"default": 50
-			//}
 		]
 	},
 	{
@@ -938,13 +927,6 @@
 				"label": "Second benefit product",
 				"info": "Required if benefit is free product"
 			},
-			//{
-			//	"type": "number",
-			//	"id": "discount_amount",
-			//	"label": "Discount Amount (%)",
-			//	"default": 10,
-			//	"info": "Required if benefit is discount"
-			//},
 			{
 				"type": "text",
 				"id": "second_threshold_message",

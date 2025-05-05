@@ -1,18 +1,18 @@
 <!doctype html>
 <html
-	class='no-js'
-	lang='{{ request.locale.iso_code }}'
-	dir='ltr'
+	class="no-js"
+	lang="{{ request.locale.iso_code }}"
+	dir="ltr"
 >
 	<head>
-		<meta charset='utf-8'>
-		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<meta name='theme-color' content='{{ settings.header_background }}'>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="{{ settings.header_background }}">
 
 		{%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
 			<link
-				rel='preconnect'
-				href='https://fonts.shopifycdn.com'
+				rel="preconnect"
+				href="https://fonts.shopifycdn.com"
 				crossorigin
 			>
 		{%- endunless -%}
@@ -30,19 +30,19 @@
 			{%- endunless -%}
 		</title>
 
-		<link rel='canonical' href='{{ canonical_url }}'>
+		<link rel="canonical" href="{{ canonical_url }}">
 
 		{%- if settings.favicon -%}
-			<link rel='shortcut icon' href='{{ settings.favicon | image_url: width: 96 }}'>
-			<link rel='apple-touch-icon' href='{{ settings.favicon | image_url: width: 180 }}'>
+			<link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
+			<link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
 		{%- endif -%}
 
 		{%- unless settings.heading_font.system? -%}
-			<link rel='preload' href='{{ settings.heading_font | font_url }}' as='font' type='font/woff2' crossorigin>
+			<link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
 		{%- endunless -%}
 
 		{%- unless settings.text_font.system? -%}
-			<link rel='preload' href='{{ settings.text_font | font_url }}' as='font' type='font/woff2' crossorigin>
+			<link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
 		{%- endunless -%}
 
 		{%- render 'meta-tags' -%}
@@ -50,8 +50,17 @@
 		{%- render 'js-variables' -%}
 		{% render 'fonts' %}
 
-		<script type='module' src='{{ 'theme.js' | asset_url }}'></script>
-		<script type='module' src='{{ 'sections.js' | asset_url }}'></script>
+		<script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+		<script type="module" src="{{ 'sections.js' | asset_url }}"></script>
+
+		{% if settings.disable_cart %}
+			<script>
+				// Redirect users from cart page when cart functionality is disabled
+				if (window.location.pathname.indexOf('/cart') === 0) {
+					window.location.href = '/'
+				}
+			</script>
+		{% endif %}
 
 		{{ content_for_header }}
 
@@ -64,14 +73,14 @@
 
 	<body>
 		{%- render 'shadow-dom-templates' -%}
-		<a href='#main' class='skip-to-content sr-only'>{{ 'general.accessibility.skip_to_content' | t }}</a>
+		<a href="#main" class="skip-to-content sr-only">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
 		{%- if request.page_type != 'password' -%}
 			{%- sections 'header-group' -%}
 			{%- sections 'overlay-group' -%}
 
 			{%- if settings.cart_type == 'popover' -%}
-				<cart-notification-drawer open-from='bottom' class='quick-buy-drawer drawer'></cart-notification-drawer>
+				<cart-notification-drawer open-from="bottom" class="quick-buy-drawer drawer"></cart-notification-drawer>
 			{%- endif -%}
 		{%- endif -%}
 
@@ -83,8 +92,8 @@
 		{%- endif -%}
 
 		<main
-			role='main'
-			id='main'
+			role="main"
+			id="main"
 		>
 			{{ content_for_layout }}
 

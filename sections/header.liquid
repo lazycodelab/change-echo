@@ -407,26 +407,28 @@
 						</a>
 					{%- endif -%}
 
-					<a
-						href="{{ routes.cart_url }}"
-						data-no-instant
-						class="tap-area relative"
-						{% if settings.cart_type != 'page' and request.page_type != 'cart' %}
-							aria-controls="cart-drawer"
-						{% endif %}
-					>
-						<span class="sr-only">{{ 'header.general.open_cart' | t }}</span>
-						{%- render 'icon' with 'cart' -%}
+					{% unless settings.disable_cart %}
+						<a
+							href="{{ routes.cart_url }}"
+							data-no-instant
+							class="tap-area relative"
+							{% if settings.cart_type != 'page' and request.page_type != 'cart' %}
+								aria-controls="cart-drawer"
+							{% endif %}
+						>
+							<span class="sr-only">{{ 'header.general.open_cart' | t }}</span>
+							{%- render 'icon' with 'cart' -%}
 
-						<div class="header__cart-count">
-							<cart-count
-								class="count-bubble {% if cart.item_count == 0 %}opacity-0{% endif %}"
-								aria-hidden="true"
-							>
-								{{- cart.item_count -}}
-							</cart-count>
-						</div>
-					</a>
+							<div class="header__cart-count">
+								<cart-count
+									class="count-bubble {% if cart.item_count == 0 %}opacity-0{% endif %}"
+									aria-hidden="true"
+								>
+									{{- cart.item_count -}}
+								</cart-count>
+							</div>
+						</a>
+					{% endunless %}
 				</div>
 			</div>
 		</div>
