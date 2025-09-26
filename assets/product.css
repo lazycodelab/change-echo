@@ -276,11 +276,18 @@
 }*/
 
 .shopify-payment-button .shopify-payment-button__button {
-	border-radius: var(--ul-button-border-radius) !important;
+	border-radius: var(--ul-rounded-button) !important;
 }
 
 .shopify-payment-button shopify-accelerated-checkout {
 	--shopify-accelerated-checkout-button-block-size: 100px !important;
+	border-radius: var(--ul-rounded-button) !important;
+}
+
+.shopify-payment-button shopify-accelerated-checkout shopify-paypal-button {
+	display: block !important;
+	overflow: hidden !important;
+	border-radius: var(--ul-rounded-button) !important;
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {

@@ -93,6 +93,8 @@
 					        --ul-button-text-color: {{ payment_button_text_color.rgb }}
 					        ;
 					    {%- endif -%}
+
+						--ul-rounded-button: {{ settings.button_border_radius | divided_by: 16.0 }}rem;
 					}
 				</style>
 			{%- endif -%}

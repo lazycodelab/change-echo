@@ -1,5 +1,5 @@
 {%- render 'section-spacing-collapsing' -%}
-{{- 'product.css' | asset_url | stylesheet_tag: preload: true -}}
+{% comment %}{{- 'product.css' | asset_url | stylesheet_tag: preload: true -}}{% endcomment %}
 
 <style>
 		#shopify-section-{{ section.id }}{

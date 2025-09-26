@@ -2621,6 +2621,13 @@ scroll-carousel {
 	.section-header > .text-with-icon {
 		grid-column-start: 2;
 	}
+
+	.shopify-section.shopify-section--featured-collection {
+		.section-header.text-center > .text-with-icon {
+			grid-column-start: 1;
+			grid-row-start: 2;
+		}
+	}
 }
 
 .section-stack {
