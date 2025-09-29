@@ -2,6 +2,10 @@
 
 <style>
 	#shopify-section-{{ section.id }} {
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
 	  --button-grid-columns: 1;
 	}
 
@@ -16,6 +20,13 @@
 	  grid-template-columns: repeat(var(--button-grid-columns), 1fr);
 	  gap: var(--ul-grid-gutter);
 	}
+
+	{% if section.settings.custom_padding %}
+		#shopify-section-{{ section.id }} {
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+		}
+	{% endif %}
 </style>
 
 <div {% render 'section-attributes' %}>
@@ -106,14 +117,46 @@
 			"default": "center"
 		},
 		{
+			"type": "checkbox",
+			"id": "enable_custom_padding",
+			"label": "Enable custom padding",
+			"default": false
+		},
+		{
 			"type": "color",
 			"id": "heading_color",
-			"label": "Heading"
+			"label": "Heading color"
 		},
 		{
 			"type": "color_background",
 			"id": "heading_gradient",
 			"label": "Heading gradient"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 0,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 0,
+			"unit": "px"
 		}
 	],
 	"blocks": [

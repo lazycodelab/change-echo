@@ -20,7 +20,13 @@
 
 {%- if show_image -%}
 	<style>
-		#shopify-section-{{ section.id }}{
+		#shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
+
 		    {%- if section.settings.full_width -%}
 		        --ul-section-outer-spacing-block: 0;
 		    {%- else -%}
@@ -53,9 +59,9 @@
         {%- endcapture -%}
 
 		<image-banner
-			reveal-on-scroll='true'
+			reveal-on-scroll="true"
 			{% if section.settings.enable_parallax %}
-				parallax='0.3'
+				parallax="0.3"
 			{% endif -%}
 			{% render 'surface', class: class, text_color: section.settings.text_color %}
 		>
@@ -103,8 +109,8 @@
 			{%- endif -%}
 
 			{%- if collection_header != blank -%}
-				<div class='{{ section.settings.mobile_text_position }} {{ section.settings.desktop_text_position }}'>
-					<div class='grid gap-4 sm:gap-6'>
+				<div class="{{ section.settings.mobile_text_position }} {{ section.settings.desktop_text_position }}">
+					<div class="grid gap-4 sm:gap-6">
 						{{- collection_header -}}
 					</div>
 				</div>
@@ -119,17 +125,17 @@
 					{%- assign featured_product_position = 'place-self-end' -%}
 				{%- endif -%}
 
-				<div class='{{ featured_product_position }} hidden md:block'>
-					<div class='collection-featured-product'>
+				<div class="{{ featured_product_position }} hidden md:block">
+					<div class="collection-featured-product">
 						{%- if section.settings.featured_product_heading != blank -%}
-							<p class='collection-featured-product__title text-xs bold'>
+							<p class="collection-featured-product__title bold text-xs">
 								{{ section.settings.featured_product_heading | escape }}
 							</p>
 						{%- endif -%}
 
 						<a
-							href='{{ section.settings.featured_product.url }}'
-							class='collection-featured-product__content'
+							href="{{ section.settings.featured_product.url }}"
+							class="collection-featured-product__content"
 						>
 							{%- render 'horizontal-product',
 								product: section.settings.featured_product,
@@ -144,9 +150,9 @@
 	</div>
 {%- else -%}
 	{%- if collection_header != blank -%}
-		<div class='collection-header'>
-			<div class='container'>
-				<div class='grid gap-4 sm:gap-6'>
+		<div class="collection-header">
+			<div class="container">
+				<div class="grid gap-4 sm:gap-6">
 					{{- collection_header -}}
 				</div>
 			</div>
@@ -389,6 +395,32 @@
 			"step": 1,
 			"unit": "%",
 			"default": 30
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	]
 }

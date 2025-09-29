@@ -4,6 +4,10 @@
 
 <style>
 	#shopify-section-{{ section.id }}{
+		{% if section.settings.custom_padding %}
+		padding-top: {{ section.settings.padding_top }}px;
+		padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
 	    {%- if section.settings.full_width -%}
 	        --ul-section-outer-spacing-block: 0;
 	    {%- endif -%}
@@ -93,6 +97,8 @@
 									>
 										{%- render 'styled-text',
 											content: block.settings.text,
+											text_color: block.settings.heading_color,
+											gradient: block.settings.heading_gradient,
 											apparition_effect: true
 										-%}
 									</p>
@@ -317,6 +323,32 @@
 			"step": 1,
 			"unit": "%",
 			"default": 30
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"blocks": [
@@ -377,6 +409,16 @@
 						}
 					],
 					"default": "h1"
+				},
+				{
+					"type": "color",
+					"id": "heading_color",
+					"label": "Heading color"
+				},
+				{
+					"type": "color_background",
+					"id": "heading_gradient",
+					"label": "Heading gradient"
 				}
 			]
 		},

@@ -3,29 +3,27 @@
 		{%- assign posted_successfully = false -%}
 		{%- assign newsletter_id = 'newsletter-' | append: section.id -%}
 
-		{%- capture temporary -%}
-      {%- form 'customer', id: newsletter_id, class: 'form' -%}
-        {%- assign posted_successfully = form.posted_successfully? -%}
-      {%- endform -%}
-    {%- endcapture -%}
+		{%- form 'customer', id: newsletter_id, class: 'form' -%}
+			{%- assign posted_successfully = form.posted_successfully? -%}
+		{%- endform -%}
 
 		<newsletter-popup
-			id='newsletter-drawer'
-			open-from='right'
-			class='drawer newsletter-drawer'
+			id="newsletter-drawer"
+			open-from="right"
+			class="drawer newsletter-drawer"
 			{% if section.settings.show_only_once %}
 				only-once
 			{% endif %}
-			apparition-delay='{{ section.settings.apparition_delay }}'
+			apparition-delay="{{ section.settings.apparition_delay }}"
 			{% if posted_successfully %}
 				open
 			{% endif %}
 			handle-section-events
 		>
 			<button
-				is='close-button'
-				aria-label='{{ 'general.accessibility.close' | t | escape }}'
-				class='sm-max:hidden'
+				is="close-button"
+				aria-label="{{ 'general.accessibility.close' | t | escape }}"
+				class="sm-max:hidden"
 			>
 				{%- render 'icon' with 'close', width: 19, height: 19 -%}
 			</button>
@@ -40,10 +38,18 @@
 				-}}
 			{%- endif -%}
 
-			<div class='newsletter-drawer__content grid gap-4 text-center'>
-				<div class='grid gap-6'>
+			<style>
+				#shopify-section-{{ section.id }} {
+					{% if section.settings.custom_padding %}
+					padding-top: {{ section.settings.padding_top }}px;
+					padding-bottom: {{ section.settings.padding_bottom }}px;
+						{% endif %}
+				}
+			</style>
+			<div class="newsletter-drawer__content grid gap-4 text-center">
+				<div class="grid gap-6">
 					{%- if section.settings.title != blank -%}
-						<p class='h5'>{{- section.settings.title -}}</p>
+						<p class="h5">{{- section.settings.title -}}</p>
 					{%- endif -%}
 
 					{%- form 'customer', id: newsletter_id, class: 'form' -%}
@@ -60,8 +66,8 @@
 								{%- render 'banner', status: 'error', content: content -%}
 							{%- endif -%}
 
-							<div class='fieldset'>
-								<input type='hidden' name='contact[tags]' value='newsletter'>
+							<div class="fieldset">
+								<input type="hidden" name="contact[tags]" value="newsletter">
 
 								{%- assign label = 'blog.comments.email' | t -%}
 								{%- render 'input',
@@ -85,7 +91,7 @@
 				</div>
 
 				{%- if section.settings.subtext != blank -%}
-					<p class='text-xs text-subdued'>{{- section.settings.subtext -}}</p>
+					<p class="text-subdued text-xs">{{- section.settings.subtext -}}</p>
 				{%- endif -%}
 			</div>
 		</newsletter-popup>
@@ -152,6 +158,32 @@
 			"id": "subtext",
 			"label": "Subtext",
 			"default": "Describe what your customers will receive when subscribing to your newsletter."
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	]
 }

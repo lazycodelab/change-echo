@@ -16,6 +16,10 @@
 
 		{%- if section.settings.enable_sticky -%}
 		    #shopify-section-{{ section.id }}{
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
 		        position: sticky;
 		        top: 0;
 		        z-index: 20;
@@ -264,6 +268,32 @@
 			"type": "color",
 			"id": "text_color",
 			"label": "Text"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	]
 }

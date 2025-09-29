@@ -93,7 +93,13 @@
             min-height: 90px;
         }
     }
-</style>
+
+		#shopify-section-{{ section.id }} {
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
+		}</style>
 
 <div {% render 'section-attributes' %} id="{{section.settings.related_section_id}}">
     <div class="section-stack">
@@ -153,163 +159,218 @@
 </div>
 
 {% schema %}
+{
+  "name": "Featured collection",
+  "class": "shopify-section--featured-collection",
+  "tag": "section",
+  "disabled_on": {
+    "templates": [
+      "password"
+    ],
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
+  },
+  "settings": [
     {
-        "name": "Featured collection",
-        "class": "shopify-section--featured-collection",
-        "tag": "section",
-        "disabled_on": {
-            "templates": ["password"],
-            "groups": [
-                "header",
-                "custom.overlay"
-            ]
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "info": "Replaces collection when selected."
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_products",
+      "label": "Stack products",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bar",
+      "label": "Show carousel progress bar",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 1,
+      "max": 50,
+      "label": "Products to show",
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "products_per_row_mobile",
+      "label": "Products per row (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
         },
-        "settings": [
-            {
-                "type": "collection",
-                "id": "collection",
-                "label": "Collection"
-            }, {
-                "type": "product_list",
-                "id": "products",
-                "label": "Products",
-                "info": "Replaces collection when selected."
-            }, {
-                "type": "checkbox",
-                "id": "full_width",
-                "label": "Full width",
-                "default": true
-            }, {
-                "type": "checkbox",
-                "id": "stack_products",
-                "label": "Stack products",
-                "default": true
-            }, {
-                "type": "checkbox",
-                "id": "show_progress_bar",
-                "label": "Show carousel progress bar",
-                "default": false
-            }, {
-                "type": "range",
-                "id": "products_count",
-                "min": 1,
-                "max": 50,
-                "label": "Products to show",
-                "default": 6
-            }, {
-                "type": "select",
-                "id": "products_per_row_mobile",
-                "label": "Products per row (mobile)",
-                "options": [
-                    {
-                        "value": "1",
-                        "label": "1"
-                    }, {
-                        "value": "2",
-                        "label": "2"
-                    }
-                ],
-                "default": "2"
-            }, {
-                "type": "range",
-                "id": "products_per_row_desktop",
-                "min": 2,
-                "max": 5,
-                "label": "Products per row (desktop)",
-                "default": 3
-            }, {
-                "type": "text",
-                "id": "subheading",
-                "label": "Subheading"
-            }, {
-                "type": "text",
-                "id": "title",
-                "label": "Heading",
-                "default": "Featured collection"
-            }, {
-                "type": "richtext",
-                "id": "content",
-                "label": "Content"
-            }, {
-                "type": "select",
-                "id": "text_alignment",
-                "label": "Text alignment",
-                "options": [
-                    {
-                        "value": "start",
-                        "label": "Left"
-                    }, {
-                        "value": "center",
-                        "label": "Center"
-                    }
-                ],
-                "default": "start"
-            }, {
-                "type": "url",
-                "id": "link_url",
-                "label": "Link URL",
-                "info": "Default to collection URL."
-            }, {
-                "type": "text",
-                "id": "link_text",
-                "label": "Link text",
-                "default": "View all"
-            }, {
-                "type": "header",
-                "content": "Colors",
-                "info": "Gradient replaces solid colors when set."
-            }, {
-                "type": "color",
-                "id": "background",
-                "label": "Background"
-            }, {
-                "type": "color_background",
-                "id": "background_gradient",
-                "label": "Background gradient"
-            }, {
-                "type": "color",
-                "id": "text_color",
-                "label": "Text"
-            }, {
-                "type": "color",
-                "id": "heading_color",
-                "label": "Heading color"
-            }, {
-                "type": "color_background",
-                "id": "heading_gradient",
-                "label": "Heading gradient"
-            }, {
-                "type": "color",
-                "id": "product_card_background",
-                "label": "Product card background"
-            }, {
-                "type": "color",
-                "id": "product_card_text_color",
-                "label": "Product card text"
-            }, {
-                "type": "text",
-                "id": "related_section_id",
-                "label": "Related Section id",
-                "info": "Used for quick scroll"
-            }, {
-                "type": "checkbox",
-                "id": "show_coming_soon_offer",
-                "label": "Show Coming Soon Offer",
-                "default": false
-            }, {
-                "type": "image_picker",
-                "id": "coming_soon_card_image",
-                "label": "Coming Soon Card Image"
-            }, {
-                "type": "text",
-                "id": "coming_soon_text",
-                "label": "Coming Soon title"
-            }
-        ],
-        "presets": [
-            {
-                "name": "Featured collection"
-            }
-        ]
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 2,
+      "max": 5,
+      "label": "Products per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "info": "Default to collection URL."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "View all"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Heading gradient"
+    },
+    {
+      "type": "color",
+      "id": "product_card_background",
+      "label": "Product card background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_text_color",
+      "label": "Product card text"
+    },
+    {
+      "type": "text",
+      "id": "related_section_id",
+      "label": "Related Section id",
+      "info": "Used for quick scroll"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_coming_soon_offer",
+      "label": "Show Coming Soon Offer",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "coming_soon_card_image",
+      "label": "Coming Soon Card Image"
+    },
+    {
+      "type": "text",
+      "id": "coming_soon_text",
+      "label": "Coming Soon title"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_padding",
+      "label": "Custom padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
     }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
 {% endschema %}

@@ -1,12 +1,12 @@
 {%- if collections.size == 0 -%}
-	<div class='empty-state'>
-		<div class='empty-state__icon-wrapper'>
+	<div class="empty-state">
+		<div class="empty-state__icon-wrapper">
 			{%- render 'icon' with 'picto-box', width: 32, height: 32, stroke_width: 1 -%}
-			<span class='count-bubble count-bubble--lg'>0</span>
+			<span class="count-bubble count-bubble--lg">0</span>
 		</div>
 
-		<div class='prose'>
-			<p class='h4'>{{ 'collection.general.no_collections' | t }}</p>
+		<div class="prose">
+			<p class="h4">{{ 'collection.general.no_collections' | t }}</p>
 
 			{%- assign button_content = 'collection.general.continue_shopping' | t -%}
 			{%- render 'button', href: settings.routes.root_url, size: 'xl', content: button_content -%}
@@ -31,26 +31,33 @@
 		        --ul-collection-list-grid: auto / repeat({{ section.settings.collections_per_row }}, minmax(0, 1fr));
 		    }
 		}
+
+		#shopify-section-{{ section.id }} {
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
+		}
 	</style>
 
-	<div class='container'>
-		<div class='page-spacer'>
-			<div class='grid gap-12'>
-				<h1 class='h1 text-center'>{{ 'collection.general.all_collections' | t }}</h1>
+	<div class="container">
+		<div class="page-spacer">
+			<div class="grid gap-12">
+				<h1 class="h1 text-center">{{ 'collection.general.all_collections' | t }}</h1>
 
 				{%- paginate collections by 48 -%}
-					<collection-list class='collection-list'>
+					<collection-list class="collection-list">
 						{% assign collections_list = section.settings.collections | default: collections %}
 
 						{%- for collection in collections_list -%}
 							<a
-								href='{{ collection.url }}'
-								class='collection-card'
+								href="{{ collection.url }}"
+								class="collection-card"
 								reveal-js
 							>
 								<div
-									class='content-over-media group rounded-sm'
-									style='--ul-content-over-media-overlay: {{ section.settings.overlay_color.rgb }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }}'
+									class="content-over-media group rounded-sm"
+									style="--ul-content-over-media-overlay: {{ section.settings.overlay_color.rgb }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }}"
 								>
 									{%- if collection.featured_image != blank -%}
 										{%- capture sizes -%}(max-width: 699px) 73vw, {{ settings.page_width | divided_by: section.settings.collections_per_row }}px{%- endcapture -%}
@@ -66,11 +73,11 @@
 									{%- endif -%}
 
 									<div
-										class='collection-card__content-wrapper place-self-center text-center text-custom'
-										style='--ul-text-color: {{ section.settings.text_color.rgb }}'
+										class="collection-card__content-wrapper text-custom place-self-center text-center"
+										style="--ul-text-color: {{ section.settings.text_color.rgb }}"
 									>
-										<div class='collection-card__content'>
-											<p class='h2'>{{ collection.title | escape }}</p>
+										<div class="collection-card__content">
+											<p class="h2">{{ collection.title | escape }}</p>
 										</div>
 
 										{%- render 'icon' with 'circle-button-right-clipped', width: 48, height: 48 -%}
@@ -134,6 +141,32 @@
 			"step": 1,
 			"unit": "%",
 			"default": 30
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	]
 }

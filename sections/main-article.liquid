@@ -7,7 +7,8 @@
 {%- assign article_image = section.settings.image | default: article.image -%}
 
 <style>
-	#shopify-section-{{ section.id }} .article-banner {
+	#shopify-section-{{ section.id }} {
+		.article-banner {
 	    --ul-article-banner-background: {%- if background_color != blank -%}
 	        {{ background_color.rgb }}
 	    {%- else -%}
@@ -15,12 +16,16 @@
 	    --ul-article-banner-badge-background: var(--ul-text-color) / 0.12;
 
 	    {% if text_color != blank %}
-	        --ul-text-color: {{ text_color.rgb }}
-	        ;
+	        --ul-text-color: {{ text_color.rgb }};
 	    {% endif %}
 	}
 
-	#shopify-section-{{ section.id }}{
+	#shopify-section-{{ section.id }} {
+		{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+		{% endif %}
 	    --ul-article-max-width: {{ section.settings.content_width }}
 	    ;
 	    --ul-article-banner-column-gap: var(--ul-spacing-10);
@@ -115,7 +120,7 @@
 </style>
 
 <div
-	class='article'
+	class="article"
 	{% if section.settings.allow_transparent_header %}
 		allow-transparent-header
 	{% endif %}
@@ -128,63 +133,63 @@
 		article_image: article_image
 	-%}
 
-	<div class='container'>
-		<div class='article-content grid gap-8 sm:gap-10'>
-			<div class='prose'>
+	<div class="container">
+		<div class="article-content grid gap-8 sm:gap-10">
+			<div class="prose">
 				{{ article.content }}
 			</div>
 
 			{%- if section.settings.show_share_buttons -%}
-				<div class='share-buttons gap-3'>
+				<div class="share-buttons gap-3">
 					{%- assign share_label = 'general.social.share' | t -%}
 					{%- assign share_url = shop.url | append: article.url -%}
 
 					<button
-						class='button button--subdued button--lg w-full h-stack gap-3 align-center justify-center sm:hidden'
-						is='share-button'
-						style='--ul-button-background: 0 0 0 / 0'
-						share-url='{{ share_url | escape }}'
-						share-title='{{ article.title | escape }}'
+						class="button button--subdued button--lg h-stack align-center w-full justify-center gap-3 sm:hidden"
+						is="share-button"
+						style="--ul-button-background: 0 0 0 / 0"
+						share-url="{{ share_url | escape }}"
+						share-title="{{ article.title | escape }}"
 					>
 						{%- render 'icon' with 'share', with: 18, height: 18 -%}
 						{{- 'general.social.share' | t -}}
 					</button>
 
-					<span class='bold sm-max:hidden'>{{- share_label -}}</span>
+					<span class="bold sm-max:hidden">{{- share_label -}}</span>
 
-					<ul class='h-stack sm-max:hidden gap-3' role='list'>
+					<ul class="h-stack sm-max:hidden gap-3" role="list">
 						<li>
 							<a
-								href='{% render 'share-link', host: 'facebook', title: article.title, url: article.url %}'
-								class='share-buttons__item'
-								aria-label='{{ 'general.social.share_on' | t: social_media: 'Facebook' }}'
+								href="{% render 'share-link', host: 'facebook', title: article.title, url: article.url %}"
+								class="share-buttons__item"
+								aria-label="{{ 'general.social.share_on' | t: social_media: 'Facebook' }}"
 							>
 								{%- render 'icon' with 'facebook', width: 24, height: 24 -%}
 							</a>
 						</li>
 						<li>
 							<a
-								href='{% render 'share-link', host: 'twitter', title: article.title, url: article.url %}'
-								class='share-buttons__item'
-								aria-label='{{ 'general.social.share_on' | t: social_media: 'Twitter' }}'
+								href="{% render 'share-link', host: 'twitter', title: article.title, url: article.url %}"
+								class="share-buttons__item"
+								aria-label="{{ 'general.social.share_on' | t: social_media: 'Twitter' }}"
 							>
 								{%- render 'icon' with 'twitter', width: 24, height: 24 -%}
 							</a>
 						</li>
 						<li>
 							<a
-								href='{% render 'share-link', host: 'pinterest', title: article.title, url: article.url %}'
-								class='share-buttons__item'
-								aria-label='{{ 'general.social.share_on' | t: social_media: 'Pinterest' }}'
+								href="{% render 'share-link', host: 'pinterest', title: article.title, url: article.url %}"
+								class="share-buttons__item"
+								aria-label="{{ 'general.social.share_on' | t: social_media: 'Pinterest' }}"
 							>
 								{%- render 'icon' with 'pinterest', width: 24, height: 24 -%}
 							</a>
 						</li>
 						<li>
 							<a
-								href='{% render 'share-link', host: 'email', title: article.title, url: article.url %}'
-								class='share-buttons__item'
-								aria-label='{{ 'general.social.share_email' | t }}'
+								href="{% render 'share-link', host: 'email', title: article.title, url: article.url %}"
+								class="share-buttons__item"
+								aria-label="{{ 'general.social.share_email' | t }}"
 							>
 								{%- render 'icon' with 'email' -%}
 							</a>
@@ -331,6 +336,32 @@
 				}
 			],
 			"default": "750px"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"blocks": [

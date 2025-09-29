@@ -76,7 +76,13 @@
 	.hide-it {
 	    display: none !important;
 	}
-</style>
+
+		#shopify-section-{{ section.id }} {
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
+		}</style>
 
 <div {% render 'section-attributes' %}>
 	<div class='section-stack'>
@@ -94,37 +100,66 @@
 
 {% schema %}
 {
-	"name": "Section Navigator",
-	"class": "shopify-section--navigator",
-	"tag": "section",
-	"enabled_on": {
-		"templates": ["index"]
-	},
-	"settings": [],
-	"blocks": [
-		{
-			"type": "tab_item",
-			"name": "Tab Item",
-			"settings": [
-				{
-					"type": "text",
-					"id": "name",
-					"label": "Tab Name"
-				},
-				{
-					"type": "text",
-					"id": "related_section_id",
-					"label": "Section ID",
-					"info": "Add section ID without the # symbol"
-				}
-			]
-		}
-	],
-	"presets": [
-		{
-			"name": "Section Navigator"
-		}
-	]
+  "name": "Section Navigator",
+  "class": "shopify-section--navigator",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "custom_padding",
+      "label": "Custom padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_item",
+      "name": "Tab Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Tab Name"
+        },
+        {
+          "type": "text",
+          "id": "related_section_id",
+          "label": "Section ID",
+          "info": "Add section ID without the # symbol"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Navigator"
+    }
+  ]
 }
 {% endschema %}
 

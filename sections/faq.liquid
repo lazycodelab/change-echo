@@ -3,7 +3,13 @@
 {%- assign text_position = section.settings.text_position -%}
 
 <style>
-	#shopify-section-{{ section.id }}{
+	#shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+			{% endif %}
 	    --ul-section-stack-intro: {% if text_position == 'center' %}
 	        60%{% else %}
 	        50%{% endif %};
@@ -14,7 +20,7 @@
 </style>
 {% unless section.blocks.size == 0 %}
 	<div {% render 'section-attributes' %}>
-		<div class='section-stack {% if text_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if text_position == 'end' %}section-stack--reverse{% endif %}'>
+		<div class="section-stack {% if text_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if text_position == 'end' %}section-stack--reverse{% endif %}">
 			{%- capture content -%}
                 {%- if section.settings.subheading != blank -%}
                     <p class="bold">{{ section.settings.subheading | escape }}</p>
@@ -61,16 +67,16 @@
             {%- endcapture -%}
 
 			{%- if content != blank or subcontent != blank -%}
-				<div class='section-stack__intro'>
-					<div class='grid gap-10'>
+				<div class="section-stack__intro">
+					<div class="grid gap-10">
 						{%- if content != blank -%}
-							<div class='prose {% if text_position == 'center' %}text-center{% endif %}'>
+							<div class="prose {% if text_position == 'center' %}text-center{% endif %}">
 								{{- content -}}
 							</div>
 						{%- endif -%}
 
 						{%- if text_position != 'center' and subcontent != blank -%}
-							<div class='hidden lg:block'>
+							<div class="hidden lg:block">
 								{{- subcontent -}}
 							</div>
 						{%- endif -%}
@@ -79,7 +85,7 @@
 			{%- endif -%}
 
 			{%- if section.blocks.size > 0 -%}
-				<div class='section-stack__main'>
+				<div class="section-stack__main">
 					<div
 						{% render 'surface',
 							class: 'accordion-box rounded',
@@ -107,7 +113,7 @@
 
 			<div
 				{% if text_position != 'center' %}
-					class='lg:hidden'
+					class="lg:hidden"
 				{% endif %}
 			>
 				{{- subcontent -}}
@@ -118,7 +124,7 @@
 
 {%- comment -%}On the FAQ page, we also output the content with JSON microdata for SEO{%- endcomment -%}
 
-<script type='application/ld+json'>
+<script type="application/ld+json">
 	{
 	"@context": "https://schema.org",
 	        "@type": "FAQPage",
@@ -299,6 +305,32 @@
 			"type": "color",
 			"id": "accordion_text_color",
 			"label": "Accordion text"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"presets": [

@@ -1,7 +1,13 @@
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
-	#shopify-section-{{ section.id }}{
+	#shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+			{% endif %}
 	    --ul-media-grid-row-height: {{ section.settings.mobile_row_height }}px;
 	}
 
@@ -729,6 +735,32 @@
 			"type": "color_background",
 			"id": "background_gradient",
 			"label": "Background gradient"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"presets": [

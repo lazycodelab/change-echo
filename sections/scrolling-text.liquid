@@ -80,6 +80,14 @@
 		{%- assign is_tight = true -%}
 	{%- endif -%}
 
+	<style>
+		#shopify-section-{{ section.id }} {
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+				{% endif %}
+		}
+	</style>
 	<div {% render 'section-attributes', tight: is_tight %}>
 		<div class="prose {% if section.settings.text_alignment == 'center' %}text-center{% endif %}">
 			{%- if section.settings.sec_title != blank -%}
@@ -95,11 +103,11 @@
 		{%- capture section_content -%}
             {% if section.settings.enable_block_scrolling %}
                 {%- for i in (1..5) -%}
-                    {% assign isParentLoopFirst = false %}
+                    {% assign is_parent_loop_first = false %}
                     {% if forloop.first %}
-                        {% assign isParentLoopFirst = true %}
+                        {% assign is_parent_loop_first = true %}
                     {% endif %}
-                    <span class="logo-list__item bg-custom scrolling-text__text {% unless isParentLoopFirst %}{% endunless %}" {% unless isParentLoopFirst %}aria-hidden="true"{% endunless %}>
+                    <span class="logo-list__item bg-custom scrolling-text__text {% unless is_parent_loop_first %}{% endunless %}" {% unless is_parent_loop_first %}aria-hidden="true"{% endunless %}>
                         {%- for block in section.blocks -%}
                             {%- if block.settings.logo != blank -%}
                                 <div class="desktop_only">
@@ -338,6 +346,32 @@
 			"id": "enable_block_scrolling",
 			"label": "Enable Block Scrolling",
 			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"blocks": [

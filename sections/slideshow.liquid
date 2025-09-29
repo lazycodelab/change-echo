@@ -10,6 +10,10 @@
 	  {%- endif -%}
 
 	  #shopify-section-{{ section.id }} {
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
 	--ul-slideshow-background: {{ section.blocks.first.settings.background_gradient | default: section.blocks.first.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
 	--ul-slideshow-controls-background: {{ controls_background.rgb }};
 	--ul-slideshow-controls-color: {{ controls_color.rgb }};
@@ -229,354 +233,383 @@
 
 {% schema %}
 {
-	"name": "Slideshow",
-	"class": "shopify-section--slideshow",
-	"tag": "section",
-	"disabled_on": {
-		"groups": ["header", "custom.overlay"]
-	},
-	"max_blocks": 5,
-	"settings": [
-		{
-			"type": "checkbox",
-			"id": "full_width",
-			"label": "Full width",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "allow_transparent_header",
-			"label": "Allow transparent header",
-			"info": "This setting only applies when this section is the first one.",
-			"default": true
-		},
-		{
-			"type": "select",
-			"id": "image_size",
-			"label": "Image size",
-			"options": [
-				{
-					"value": "auto",
-					"label": "Original image ratio"
-				},
-				{
-					"value": "sm",
-					"label": "Small"
-				},
-				{
-					"value": "md",
-					"label": "Medium"
-				},
-				{
-					"value": "lg",
-					"label": "Large"
-				},
-				{
-					"value": "fill",
-					"label": "Fill screen height"
-				}
-			],
-			"info": "Choose \"Original image ratio\" to not cut images. [Learn more](https://help.shopify.com/en/manual/online-store/images/theme-images#best-practices-for-slideshows-and-full-width-images)",
-			"default": "auto"
-		},
-		{
-			"type": "select",
-			"id": "transition_type",
-			"label": "Transition type",
-			"options": [
-				{
-					"value": "fade",
-					"label": "Fade"
-				},
-				{
-					"value": "fade_with_text",
-					"label": "Fade with text transition"
-				}
-			],
-			"default": "fade_with_text"
-		},
-		{
-			"type": "checkbox",
-			"id": "autoplay",
-			"label": "Auto rotate between slides",
-			"default": false
-		},
-		{
-			"type": "range",
-			"id": "cycle_speed",
-			"min": 4,
-			"max": 20,
-			"step": 1,
-			"unit": "sec",
-			"label": "Change slides every",
-			"default": 6
-		},
-		{
-			"type": "header",
-			"content": "Background",
-			"info": "When \"Full width\" is enabled, the background is shown while image is loading. You can override the background for each slide."
-		},
-		{
-			"type": "color",
-			"id": "background",
-			"label": "Background",
-			"default": "#F2F2F2"
-		},
-		{
-			"type": "color_background",
-			"id": "background_gradient",
-			"label": "Background gradient"
-		}
-	],
-	"blocks": [
-		{
-			"type": "image",
-			"name": "Image",
-			"settings": [
-				{
-					"type": "image_picker",
-					"id": "image",
-					"info": "2800 x 1000px .jpg recommended",
-					"label": "Image"
-				},
-				{
-					"type": "image_picker",
-					"id": "mobile_image",
-					"label": "Mobile image",
-					"info": "1200 x 1600px .jpg recommended"
-				},
-				{
-					"type": "header",
-					"content": "Content"
-				},
-				{
-					"type": "range",
-					"id": "content_max_width",
-					"label": "Content maximum width",
-					"min": 400,
-					"max": 1200,
-					"step": 20,
-					"unit": "px",
-					"default": 780
-				},
-				{
-					"type": "select",
-					"id": "mobile_text_position",
-					"label": "Mobile content position",
-					"options": [
-						{
-							"value": "place-self-start text-start",
-							"label": "Top left"
-						},
-						{
-							"value": "place-self-start-center text-center",
-							"label": "Top center"
-						},
-						{
-							"value": "place-self-start-end text-end",
-							"label": "Top right"
-						},
-						{
-							"value": "place-self-center-start text-start",
-							"label": "Middle left"
-						},
-						{
-							"value": "place-self-center text-center",
-							"label": "Middle center"
-						},
-						{
-							"value": "place-self-center-end text-end",
-							"label": "Middle right"
-						},
-						{
-							"value": "place-self-end-start text-start",
-							"label": "Bottom left"
-						},
-						{
-							"value": "place-self-end-center text-center",
-							"label": "Bottom center"
-						}
-					],
-					"default": "place-self-center text-center"
-				},
-				{
-					"type": "select",
-					"id": "desktop_text_position",
-					"label": "Desktop content position",
-					"options": [
-						{
-							"value": "sm:place-self-start sm:text-start",
-							"label": "Top left"
-						},
-						{
-							"value": "sm:place-self-start-center sm:text-center",
-							"label": "Top center"
-						},
-						{
-							"value": "sm:place-self-start-end sm:text-end",
-							"label": "Top right"
-						},
-						{
-							"value": "sm:place-self-center-start sm:text-start",
-							"label": "Middle left"
-						},
-						{
-							"value": "sm:place-self-center sm:text-center",
-							"label": "Middle center"
-						},
-						{
-							"value": "sm:place-self-center-end sm:text-end",
-							"label": "Middle right"
-						},
-						{
-							"value": "sm:place-self-end-start sm:text-start",
-							"label": "Bottom left"
-						},
-						{
-							"value": "sm:place-self-end-center sm:text-center",
-							"label": "Bottom center"
-						}
-					],
-					"default": "sm:place-self-center sm:text-center"
-				},
-				{
-					"type": "text",
-					"id": "subheading",
-					"label": "Subheading",
-					"default": "Tell your story"
-				},
-				{
-					"type": "text",
-					"id": "title",
-					"label": "Heading",
-					"default": "Slide title"
-				},
-				{
-					"type": "select",
-					"id": "heading_tag",
-					"label": "Heading size",
-					"options": [
-						{
-							"value": "h0",
-							"label": "H0"
-						},
-						{
-							"value": "h1",
-							"label": "H1"
-						},
-						{
-							"value": "h2",
-							"label": "H2"
-						},
-						{
-							"value": "h3",
-							"label": "H3"
-						},
-						{
-							"value": "h4",
-							"label": "H4"
-						},
-						{
-							"value": "h5",
-							"label": "H5"
-						},
-						{
-							"value": "h6",
-							"label": "H6"
-						}
-					],
-					"default": "h0"
-				},
-				{
-					"type": "html",
-					"id": "button_svg",
-					"label": "Add Icon Inside The Button"
-				},
-				{
-					"type": "text",
-					"id": "button_text",
-					"label": "Button text"
-				},
-				{
-					"type": "url",
-					"id": "button_link",
-					"label": "Button link",
-					"info": "Leave the button text empty to make the slide fully clickable."
-				},
-				{
-					"type": "header",
-					"content": "Slide colors"
-				},
-				{
-					"type": "color",
-					"id": "text_color",
-					"label": "Text",
-					"default": "#ffffff"
-				},
-				{
-					"type": "color",
-					"id": "button_background",
-					"label": "Button background",
-					"default": "#ffffff"
-				},
-				{
-					"type": "color",
-					"id": "button_text_color",
-					"label": "Button text",
-					"default": "#000000"
-				},
-				{
-					"type": "color",
-					"id": "overlay_color",
-					"label": "Overlay",
-					"default": "#000000"
-				},
-				{
-					"type": "range",
-					"id": "overlay_opacity",
-					"label": "Overlay opacity",
-					"min": 0,
-					"max": 100,
-					"step": 1,
-					"unit": "%",
-					"default": 30
-				},
-				{
-					"type": "header",
-					"content": "Background",
-					"info": "Disable the \"Full width\" setting at the slideshow level to show background."
-				},
-				{
-					"type": "color",
-					"id": "background",
-					"label": "Background"
-				},
-				{
-					"type": "color_background",
-					"id": "background_gradient",
-					"label": "Background gradient"
-				}
-			]
-		}
-	],
-	"presets": [
-		{
-			"name": "Slideshow",
-			"blocks": [
-				{
-					"type": "image",
-					"settings": {
-						"title": "Slide 1"
-					}
-				},
-				{
-					"type": "image",
-					"settings": {
-						"title": "Slide 2"
-					}
-				}
-			]
-		}
-	]
+  "name": "Slideshow",
+  "class": "shopify-section--slideshow",
+  "tag": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
+  },
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_transparent_header",
+      "label": "Allow transparent header",
+      "info": "This setting only applies when this section is the first one.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Image size",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Original image ratio"
+        },
+        {
+          "value": "sm",
+          "label": "Small"
+        },
+        {
+          "value": "md",
+          "label": "Medium"
+        },
+        {
+          "value": "lg",
+          "label": "Large"
+        },
+        {
+          "value": "fill",
+          "label": "Fill screen height"
+        }
+      ],
+      "info": "Choose \"Original image ratio\" to not cut images. [Learn more](https://help.shopify.com/en/manual/online-store/images/theme-images#best-practices-for-slideshows-and-full-width-images)",
+      "default": "auto"
+    },
+    {
+      "type": "select",
+      "id": "transition_type",
+      "label": "Transition type",
+      "options": [
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade_with_text",
+          "label": "Fade with text transition"
+        }
+      ],
+      "default": "fade_with_text"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto rotate between slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "cycle_speed",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change slides every",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Background",
+      "info": "When \"Full width\" is enabled, the background is shown while image is loading. You can override the background for each slide."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#F2F2F2"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_padding",
+      "label": "Custom padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "info": "2800 x 1000px .jpg recommended",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "1200 x 1600px .jpg recommended"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "range",
+          "id": "content_max_width",
+          "label": "Content maximum width",
+          "min": 400,
+          "max": 1200,
+          "step": 20,
+          "unit": "px",
+          "default": 780
+        },
+        {
+          "type": "select",
+          "id": "mobile_text_position",
+          "label": "Mobile content position",
+          "options": [
+            {
+              "value": "place-self-start text-start",
+              "label": "Top left"
+            },
+            {
+              "value": "place-self-start-center text-center",
+              "label": "Top center"
+            },
+            {
+              "value": "place-self-start-end text-end",
+              "label": "Top right"
+            },
+            {
+              "value": "place-self-center-start text-start",
+              "label": "Middle left"
+            },
+            {
+              "value": "place-self-center text-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "place-self-center-end text-end",
+              "label": "Middle right"
+            },
+            {
+              "value": "place-self-end-start text-start",
+              "label": "Bottom left"
+            },
+            {
+              "value": "place-self-end-center text-center",
+              "label": "Bottom center"
+            }
+          ],
+          "default": "place-self-center text-center"
+        },
+        {
+          "type": "select",
+          "id": "desktop_text_position",
+          "label": "Desktop content position",
+          "options": [
+            {
+              "value": "sm:place-self-start sm:text-start",
+              "label": "Top left"
+            },
+            {
+              "value": "sm:place-self-start-center sm:text-center",
+              "label": "Top center"
+            },
+            {
+              "value": "sm:place-self-start-end sm:text-end",
+              "label": "Top right"
+            },
+            {
+              "value": "sm:place-self-center-start sm:text-start",
+              "label": "Middle left"
+            },
+            {
+              "value": "sm:place-self-center sm:text-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "sm:place-self-center-end sm:text-end",
+              "label": "Middle right"
+            },
+            {
+              "value": "sm:place-self-end-start sm:text-start",
+              "label": "Bottom left"
+            },
+            {
+              "value": "sm:place-self-end-center sm:text-center",
+              "label": "Bottom center"
+            }
+          ],
+          "default": "sm:place-self-center sm:text-center"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Tell your story"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Slide title"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading size",
+          "options": [
+            {
+              "value": "h0",
+              "label": "H0"
+            },
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h0"
+        },
+        {
+          "type": "html",
+          "id": "button_svg",
+          "label": "Add Icon Inside The Button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "info": "Leave the button text empty to make the slide fully clickable."
+        },
+        {
+          "type": "header",
+          "content": "Slide colors"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "type": "header",
+          "content": "Background",
+          "info": "Disable the \"Full width\" setting at the slideshow level to show background."
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color_background",
+          "id": "background_gradient",
+          "label": "Background gradient"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "title": "Slide 1"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "title": "Slide 2"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

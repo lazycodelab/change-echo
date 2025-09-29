@@ -10,7 +10,15 @@
 			{%- render 'icon' with 'close' -%}
 		</button>
 
-		<div class="empty-state align-self-center">
+		<style>
+	#shopify-section-{{ section.id }} {
+		{% if section.settings.custom_padding %}
+		padding-top: {{ section.settings.padding_top }}px;
+		padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
+	}
+</style>
+<div class="empty-state align-self-center">
 			<div class="empty-state__icon-wrapper">
 				{%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
 				<span class="count-bubble count-bubble--lg">0</span>
@@ -233,67 +241,93 @@
 
 {% schema %}
 {
-	"name": "Cart drawer",
-	"settings": [
-		{
-			"type": "paragraph",
-			"content": "Cart drawer won't appear to your customers if you have set the cart type to Page in the global theme settings."
-		},
-		{
-			"type": "paragraph",
-			"content": "Free shipping bar can be configured in global cart settings."
-		},
-		{
-			"type": "checkbox",
-			"id": "show_cart_note",
-			"label": "Show cart note",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "show_shipping_text",
-			"label": "Show shipping text",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "show_view_cart_button",
-			"label": "Show view cart button",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "show_checkout_button",
-			"label": "Show checkout button",
-			"default": true
-		},
-		{
-			"type": "header",
-			"content": "Product recommendations"
-		},
-		{
-			"type": "text",
-			"id": "recommendations_title",
-			"label": "Heading",
-			"default": "Trending this month"
-		},
-		{
-			"type": "product_list",
-			"id": "products",
-			"label": "Recommendations",
-			"info": "Suggest additional products to your customers.",
-			"limit": 10
-		},
-		{
-			"type": "color",
-			"id": "product_card_background",
-			"label": "Product card background"
-		},
-		{
-			"type": "color",
-			"id": "product_card_text_color",
-			"label": "Product card text"
-		}
-	]
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Cart drawer won't appear to your customers if you have set the cart type to Page in the global theme settings."
+    },
+    {
+      "type": "paragraph",
+      "content": "Free shipping bar can be configured in global cart settings."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "label": "Show cart note",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_text",
+      "label": "Show shipping text",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_cart_button",
+      "label": "Show view cart button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_checkout_button",
+      "label": "Show checkout button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product recommendations"
+    },
+    {
+      "type": "text",
+      "id": "recommendations_title",
+      "label": "Heading",
+      "default": "Trending this month"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Recommendations",
+      "info": "Suggest additional products to your customers.",
+      "limit": 10
+    },
+    {
+      "type": "color",
+      "id": "product_card_background",
+      "label": "Product card background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_text_color",
+      "label": "Product card text"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_padding",
+      "label": "Custom padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    }
+  ]
 }
 {% endschema %}

@@ -48,7 +48,13 @@
 	    {%- assign card_blends = true -%}
 	{%- endunless -%}
 
-	#shopify-section-{{ section.id }}{
+	#shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+			{% endif %}
 	    --ul-product-list-gap: {% if section.settings.products_per_row_mobile == '2' %}
 	        {% if card_blends %}
 	            var(--ul-product-list-row-gap){% endif %}
@@ -95,18 +101,18 @@
 	}
 </style>
 
-<div class='container'>
+<div class="container">
 	{%- if search.performed and search.results_count > 0 or active_filters.size > 0 -%}
-		<div class='page-spacer'>
-			<div class='grid gap-6 sm:gap-8'>
-				<h1 class='h2 text-center'>
+		<div class="page-spacer">
+			<div class="grid gap-6 sm:gap-8">
+				<h1 class="h2 text-center">
 					{{- 'search.results_count' | t: count: search.results_count, terms: search.terms -}}
 				</h1>
 				{{- search_form -}}
 			</div>
 
 			{%- paginate search.results by section.settings.products_per_page -%}
-				<div class='collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %}'>
+				<div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %}">
 					{%- if show_filters or section.settings.show_sort_by -%}
 						{%- comment -%}
 							IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
@@ -114,11 +120,11 @@
 
 						<facet-drawer
 							header-bordered
-							id='facets-drawer'
-							class='facets-drawer drawer'
-							open-from='left'
+							id="facets-drawer"
+							class="facets-drawer drawer"
+							open-from="left"
 						>
-							<p class='h5' slot='title'>{{ 'collection.faceting.filters' | t }}</p>
+							<p class="h5" slot="title">{{ 'collection.faceting.filters' | t }}</p>
 							{%- render 'facets-vertical',
 								results: search,
 								show_filters: true,
@@ -144,7 +150,7 @@
 						{%- endif -%}
 
 						{%- comment -%}We also need to render the button, that is floating on mobile{%- endcomment -%}
-						<facet-floating-filter class='facets__floating-filter md:hidden'>
+						<facet-floating-filter class="facets__floating-filter md:hidden">
 							{%- assign filter_label = 'collection.faceting.filter_and_sort' | t -%}
 							{%- render 'button',
 								size: 'xl',
@@ -159,8 +165,8 @@
 					{%- endif -%}
 
 					{%- if show_filters and section.settings.filter_layout == 'sidebar' -%}
-						<div class='collection__facets'>
-							<safe-sticky class='collection__facets-scroller'>
+						<div class="collection__facets">
+							<safe-sticky class="collection__facets-scroller">
 								{%- render 'facets-vertical',
 									results: search,
 									show_filters: true,
@@ -171,16 +177,16 @@
 						</div>
 					{%- endif -%}
 
-					<div class='collection__results'>
+					<div class="collection__results">
 						{%- if search.results_count == 0 -%}
-							<div class='empty-state'>
-								<div class='empty-state__icon-wrapper'>
+							<div class="empty-state">
+								<div class="empty-state__icon-wrapper">
 									{%- render 'icon' with 'picto-stop', width: 32, height: 32, stroke_width: 1 -%}
-									<span class='count-bubble count-bubble--lg'>0</span>
+									<span class="count-bubble count-bubble--lg">0</span>
 								</div>
 
-								<div class='prose'>
-									<p class='h5'>{{ 'collection.faceting.no_results' | t }}</p>
+								<div class="prose">
+									<p class="h5">{{ 'collection.faceting.no_results' | t }}</p>
 
 									{%- assign button_content = 'collection.faceting.clear_filters' | t -%}
 									{%- render 'button',
@@ -192,17 +198,17 @@
 								</div>
 							</div>
 						{%- else -%}
-							<div class='grid gap-6'>
-								<div class='grid gap-4 md:hidden'>
+							<div class="grid gap-6">
+								<div class="grid gap-4 md:hidden">
 									{%- comment -%}We have to duplicate some information on mobile and tablet here{%- endcomment -%}
 									{%- render 'active-facets', results: search -%}
 								</div>
 
-								<reveal-items selector='.product-list > *'>
+								<reveal-items selector=".product-list > *">
 									<product-list
-										class='product-list'
-										role='region'
-										aria-live='polite'
+										class="product-list"
+										role="region"
+										aria-live="polite"
 									>
 										{%- assign product_results = search.results
 											| where: 'object_type', 'product'
@@ -226,8 +232,8 @@
 			{%- endpaginate -%}
 		</div>
 	{%- else -%}
-		<div class='empty-state'>
-			<h1 class='h2'>
+		<div class="empty-state">
+			<h1 class="h2">
 				{%- if search.performed -%}
 					{{- 'search.general.no_results' | t -}}
 				{%- else -%}
@@ -347,6 +353,32 @@
 			"id": "open_first_filter_group",
 			"label": "Open first group by default",
 			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	]
 }

@@ -2,7 +2,13 @@
 	{%- render 'section-spacing-collapsing' -%}
 
 	<style>
-		#shopify-section-{{ section.id }}{
+		#shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+			{% endif %}
 		    --ul-text-with-icons-template: {% if section.settings.stack_on_mobile %}
 		        minmax(0, 1fr){% else %}
 		        auto-flow 100%{% endif %};
@@ -62,7 +68,13 @@
 		<div class="section-stack">
 			{%- if section.settings.title != blank -%}
 				<div class="justify-self-center">
-					<h2 class="h3">{{ section.settings.title | escape }}</h2>
+					<h2 class="h3">
+						{%- render 'styled-text',
+							content: section.settings.title,
+							text_color: section.settings.heading_color,
+							gradient: section.settings.heading_gradient
+						-%}
+					</h2>
 				</div>
 			{%- endif -%}
 
@@ -610,6 +622,42 @@
 			"type": "color",
 			"id": "text_color",
 			"label": "Text"
+		},
+		{
+			"type": "color",
+			"id": "heading_color",
+			"label": "Heading color"
+		},
+		{
+			"type": "color_background",
+			"id": "heading_gradient",
+			"label": "Heading gradient"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"presets": [

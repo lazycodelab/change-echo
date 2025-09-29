@@ -7,7 +7,13 @@
 		--ul-----------------------------------------------------------------------------------------------------------------------
 	{%- endcomment -%}
 	<style>
-		#shopify-section-{{ section.id }}{
+		#shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+			{% endif %}
 		    --ul-press-items-border: {{ section.settings.logo_item_border.rgb }}
 		    /{{ section.settings.logo_item_border.alpha }};
 		    --ul-press-max-width: {% if section.settings.content_size == 'small' %}
@@ -36,32 +42,38 @@
 		--ul-----------------------------------------------------------------------------------------------------------------------
 	{%- endcomment -%}
 	<div {% render 'section-attributes' %}>
-		<div class='section-stack'>
+		<div class="section-stack">
 			{%- if section.settings.title != blank -%}
-				<div class='justify-self-center'>
-					<h2 class='h3'>{{ section.settings.title | escape }}</h2>
+				<div class="justify-self-center">
+					<h2 class="h3">
+						{%- render 'styled-text',
+							content: section.settings.title,
+							text_color: section.settings.heading_color,
+							gradient: section.settings.heading_gradient
+						-%}
+					</h2>
 				</div>
 			{%- endif -%}
-			<div class='press'>
+			<div class="press">
 				<press-carousel
-					id='carousel-{{ section.id }}'
-					class='press__list full-bleed text-center sm:unbleed'
-					role='region'
+					id="carousel-{{ section.id }}"
+					class="press__list full-bleed sm:unbleed text-center"
+					role="region"
 				>
 					{%- for block in section.blocks -%}
 						<div
-							id='block-{{ section.id }}-{{ block.id }}'
-							class='press__list-item snap-center {% if forloop.first %}is-selected{% endif %}'
-							role='group'
-							aria-label='{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}'
+							id="block-{{ section.id }}-{{ block.id }}"
+							class="press__list-item snap-center {% if forloop.first %}is-selected{% endif %}"
+							role="group"
+							aria-label="{{ 'general.accessibility.item_nth_of_count' | t: index: forloop.index, count: section.blocks.size }}"
 							{{ block.shopify_attributes }}
 						>
 							{%- if block.settings.show_rating -%}
-								<div class='rating'>
+								<div class="rating">
 									<div
-										class='rating__stars'
-										role='img'
-										aria-label='{{ 'general.rating.info' | t: rating_value: block.settings.rating, rating_max: 5 }}'
+										class="rating__stars"
+										role="img"
+										aria-label="{{ 'general.rating.info' | t: rating_value: block.settings.rating, rating_max: 5 }}"
 									>
 										{%- for i in (1..5) -%}
 											{%- if i <= block.settings.rating -%}
@@ -77,7 +89,7 @@
 							{%- endif -%}
 
 							{%- if block.settings.content != blank -%}
-								<blockquote class='blockquote h3' reveal-on-scroll='true'>
+								<blockquote class="blockquote h3" reveal-on-scroll="true">
 									{%- render 'styled-text',
 										content: block.settings.content,
 										text_color: section.settings.heading_color,
@@ -87,7 +99,7 @@
 							{%- endif -%}
 
 							{%- if block.settings.logo != blank or block.settings.author != blank -%}
-								<div class='grid gap-2'>
+								<div class="grid gap-2">
 									{%- if block.settings.logo != blank -%}
 										<div
 											{% render 'surface',
@@ -114,7 +126,7 @@
 									{%- endif -%}
 
 									{%- if block.settings.author != blank -%}
-										<p class='press__author text-subdued'>{{ block.settings.author }}</p>
+										<p class="press__author text-subdued">{{ block.settings.author }}</p>
 									{%- endif -%}
 								</div>
 							{%- endif -%}
@@ -123,24 +135,24 @@
 				</press-carousel>
 
 				{%- if section.blocks.size > 1 -%}
-					<div class='press__controls'>
+					<div class="press__controls">
 						<button
-							class='circle-button ring group'
-							is='prev-button'
-							aria-controls='carousel-{{ section.id }}'
+							class="circle-button group ring"
+							is="prev-button"
+							aria-controls="carousel-{{ section.id }}"
 						>
-							<span class='sr-only'>{{ 'general.accessibility.previous' | t }}</span>
-							<span class='animated-arrow animated-arrow--reverse'></span>
+							<span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+							<span class="animated-arrow animated-arrow--reverse"></span>
 						</button>
 
-						<swiper-dots aria-controls='carousel-{{ section.id }}' class='swiper-dots'>
+						<swiper-dots aria-controls="carousel-{{ section.id }}" class="swiper-dots">
 							{%- for index in (1..section.blocks.size) -%}
 								<button
-									type='button'
-									class='tap-area'
-									aria-current='{% if forloop.first %}true{% else %}false{% endif %}'
+									type="button"
+									class="tap-area"
+									aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
 								>
-									<span class='sr-only'>
+									<span class="sr-only">
 										{{- 'general.accessibility.go_to_item' | t: index: index -}}
 									</span>
 								</button>
@@ -148,12 +160,12 @@
 						</swiper-dots>
 
 						<button
-							class='circle-button ring group'
-							is='next-button'
-							aria-controls='carousel-{{ section.id }}'
+							class="circle-button group ring"
+							is="next-button"
+							aria-controls="carousel-{{ section.id }}"
 						>
-							<span class='sr-only'>{{ 'general.accessibility.next' | t }}</span>
-							<span class='animated-arrow'></span>
+							<span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+							<span class="animated-arrow"></span>
 						</button>
 					</div>
 				{%- endif -%}
@@ -248,6 +260,32 @@
 			"type": "color",
 			"id": "logo_item_border",
 			"label": "Logo border"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"blocks": [

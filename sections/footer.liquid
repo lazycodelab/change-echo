@@ -3,7 +3,13 @@
 {%- if section.blocks.size > 3 -%}
 	<style>
 		@media screen and (min-width: 1000px) {
-		    #shopify-section-{{ section.id }}{
+		    #shopify-section-{{ section.id }} {
+
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+
+			{% endif %}
 		        {%- if newsletter_block != blank -%}
 		            --ul-footer-block-list-gap: var(--ul-spacing-10);
 		        {%- endif -%}
@@ -360,6 +366,32 @@
 			"id": "show_locale_selector",
 			"label": "Show language selector",
 			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"blocks": [

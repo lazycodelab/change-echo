@@ -1,3 +1,11 @@
+<style>
+	#shopify-section-{{ section.id }} {
+		{% if section.settings.custom_padding %}
+		padding-top: {{ section.settings.padding_top }}px;
+		padding-bottom: {{ section.settings.padding_bottom }}px;
+			{% endif %}
+	}
+</style>
 <div class="container">
 	{%- if cart.item_count == 0 -%}
 		<div class="empty-state">
@@ -187,14 +195,29 @@
 									{%- when 'offer' -%}
 										{%- assign previous_block_index = forloop.index0 | minus: 1 -%}
 										{%- assign next_block_index = forloop.index0 | plus: 1 -%}
-
-										{%- if section.blocks[next_block_index].type == 'offer' -%}
+										{%- assign should_open = false -%}
+										{%- if forloop.first -%}
+											{%- assign should_open = true -%}
+										{%- elsif previous_block_index >= 0
+											and section.blocks[previous_block_index].type != 'offer'
+										-%}
+											{%- assign should_open = true -%}
+										{%- endif -%}
+										{%- if should_open -%}
 											<div class="grid gap-4">
 										{%- endif -%}
 
 										{%- render 'offer', block: block -%}
 
-										{%- if section.blocks[previous_block_index].type == 'offer' -%}
+										{%- assign should_close = false -%}
+										{%- if forloop.last -%}
+											{%- assign should_close = true -%}
+										{%- elsif next_block_index < section.blocks.size
+											and section.blocks[next_block_index].type != 'offer'
+										-%}
+											{%- assign should_close = true -%}
+										{%- endif -%}
+										{%- if should_close -%}
 											</div>
 										{%- endif -%}
 
@@ -665,6 +688,32 @@
 			"id": "show_payment_icons",
 			"label": "Show payment icons",
 			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	]
 }

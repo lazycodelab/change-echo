@@ -6,45 +6,45 @@
 			IMPLEMENTATION NOTE: We natively integrate with the free Shopify Reviews app, which is a popular app (developed by
 			Shopify themselves) to show review. When we are in the product page, then we load custom CSS and custom JS. This
 			means that for merchant not using the app but an app section, it may lead to add extra JS, but this is an acceptable
-			performance impact as the JS and CSS are very small. 各務
+			performance impact as the JS and CSS are very small.
 		{%- endcomment -%}
 		<link
-			rel='stylesheet'
-			href='{{ 'apps.css' | asset_url }}'
-			media='print'
-			fetchpriority='low'
+			rel="stylesheet"
+			href="{{ 'apps.css' | asset_url }}"
+			media="print"
+			fetchpriority="low"
 			onload="this.media='all'"
 		>
 		<script
-			type='module'
-			src='{{ 'apps.js' | asset_url }}'
-			fetchpriority='low'
+			type="module"
+			src="{{ 'apps.js' | asset_url }}"
+			fetchpriority="low"
 		></script>
 
-		<template id='shopify-reviews-custom-header'>
+		<template id="shopify-reviews-custom-header">
 			{%- assign rating_value = product.metafields.reviews.rating.value.rating | round: 1 -%}
 			{%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 -%}
 
 			<custom-spr-header
-				product-id='{{ product.id | escape }}'
-				review-count='{{ rating_count | escape }}'
+				product-id="{{ product.id | escape }}"
+				review-count="{{ rating_count | escape }}"
 				{% render 'surface',
 					class: 'custom-spr__header',
 					background_gradient: section.settings.review_header_gradient,
 					text_color: section.settings.review_header_text_color
 				%}
 			>
-				<div class='grid gap-2'>
+				<div class="grid gap-2">
 					{%- if rating_count > 0 -%}
-						<div class='custom-spr__rating text-center'>
-							<span class='custom-spr__rating-value bold'>{{ rating_value }}</span>
-							<span class='custom-spr__rating-max bold'
+						<div class="custom-spr__rating text-center">
+							<span class="custom-spr__rating-value bold">{{ rating_value }}</span>
+							<span class="custom-spr__rating-max bold"
 								>/ {{ product.metafields.reviews.rating.value.scale_max -}}
 							</span>
 						</div>
 					{%- endif -%}
 
-					<div class='custom-spr__info text-center'>
+					<div class="custom-spr__info text-center">
 						<p>
 							{%- if rating_count > 0 -%}
 								{{-
@@ -73,20 +73,37 @@
 	{%- endif -%}
 
 	<style>
-		#shopify-section-{{ section.id }}{
-		    {% if section.settings.remove_vertical_spacing %}
-		        --ul-section-spacing-block: 0;
-		    {% endif %}
-		    {% if section.settings.remove_horizontal_spacing %}
-		        --ul-section-spacing-inline: 0;
-		    {% endif %}
+			#shopify-section-{{ section.id }} {
+
+				{% comment %}{% if section.settings.custom_padding %}
+				padding-top: {{ section.settings.padding_top }}px;
+				padding-bottom: {{ section.settings.padding_bottom }}px;
+
+				{% endif %}{% endcomment %}
+			    {% if section.settings.remove_vertical_spacing %}
+			        --ul-section-spacing-block: 0;
+			    {% endif %}
+			    {% if section.settings.remove_horizontal_spacing %}
+			        --ul-section-spacing-inline: 0;
+			    {% endif %}
+
+			{% comment %}.apps__inner {
+				{%- if section.settings.padding_top != blank -%}
+					padding-top: {{ section.settings.padding_top }}px;
+				{%- endif -%}
+				{%- if section.settings.padding_bottom != blank -%}
+					padding-bottom: {{ section.settings.padding_bottom }}px;
+				{%- endif -%}
+			}{% endcomment %}
 		}
 	</style>
 
 	<div {% render 'section-attributes' %}>
-		{%- for block in section.blocks -%}
-			{%- render block -%}
-		{%- endfor -%}
+		<div class="apps__inner">
+			{%- for block in section.blocks -%}
+				{%- render block -%}
+			{%- endfor -%}
+		</div>
 	</div>
 {%- endif -%}
 
@@ -172,6 +189,32 @@
 			"id": "review_button_text_color",
 			"label": "Review count button text_color",
 			"default": "#ffffff"
+		},
+		{
+			"type": "checkbox",
+			"id": "custom_padding",
+			"label": "Custom padding",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Top padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Bottom padding",
+			"min": 0,
+			"max": 200,
+			"step": 4,
+			"default": 40,
+			"unit": "px"
 		}
 	],
 	"blocks": [

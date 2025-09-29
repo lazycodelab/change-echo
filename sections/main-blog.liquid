@@ -1,7 +1,13 @@
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
-	#shopify-section-{{ section.id }}{
+	#shopify-section-{{ section.id }} {
+			
+			{% if section.settings.custom_padding %}
+			padding-top: {{ section.settings.padding_top }}px;
+			padding-bottom: {{ section.settings.padding_bottom }}px;
+			
+			{% endif %}
 	    {%- if section.settings.allow_transparent_header -%}
 	        --ul-banner-spacing-block-added: var(--ul-header-height);
 
@@ -265,183 +271,209 @@
 
 {% schema %}
 {
-	"name": "Blog",
-	"class": "shopify-section--main-blog",
-	"tag": "section",
-	"blocks": [
-		{
-			"type": "newsletter",
-			"name": "Newsletter",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "paragraph",
-					"content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
-				},
-				{
-					"type": "text",
-					"id": "title",
-					"label": "Heading",
-					"default": "Newsletter"
-				},
-				{
-					"type": "richtext",
-					"id": "content",
-					"label": "Content",
-					"default": "<p>Write something about what your customers will receive by subscribing to your newsletter.</p>"
-				},
-				{
-					"type": "text",
-					"id": "button_text",
-					"label": "Button",
-					"default": "Subscribe"
-				},
-				{
-					"type": "text",
-					"id": "subtext",
-					"label": "Subtext"
-				},
-				{
-					"type": "range",
-					"id": "position",
-					"label": "Position in grid",
-					"min": 1,
-					"max": 24,
-					"step": 1,
-					"default": 5
-				},
-				{
-					"type": "header",
-					"content": "Colors"
-				},
-				{
-					"type": "color",
-					"id": "background",
-					"label": "Background"
-				},
-				{
-					"type": "color",
-					"id": "text_color",
-					"label": "Text"
-				}
-			]
-		}
-	],
-	"settings": [
-		{
-			"type": "header",
-			"content": "Banner"
-		},
-		{
-			"type": "checkbox",
-			"id": "allow_transparent_header",
-			"label": "Allow transparent header",
-			"info": "This setting only applies when this section is the first one.",
-			"default": false
-		},
-		{
-			"type": "richtext",
-			"id": "content",
-			"label": "Content",
-			"default": "<p>Get access to our latest news by signing up for our newsletter.</p>"
-		},
-		{
-			"type": "checkbox",
-			"id": "show_newsletter_form",
-			"label": "Show newsletter form",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "show_tags",
-			"label": "Show tags",
-			"default": true,
-			"info": "Categorize your blog posts by [adding tags](https://help.shopify.com/en/manual/online-store/blogs/writing-blogs#add-tags-to-a-blog-post)."
-		},
-		{
-			"type": "color",
-			"id": "banner_background",
-			"label": "Background"
-		},
-		{
-			"type": "color",
-			"id": "banner_text_color",
-			"label": "Text"
-		},
-		{
-			"type": "color",
-			"id": "button_background",
-			"label": "Button background"
-		},
-		{
-			"type": "color",
-			"id": "button_text_color",
-			"label": "Button text"
-		},
-		{
-			"type": "header",
-			"content": "Blog post listing"
-		},
-		{
-			"type": "range",
-			"id": "articles_per_page",
-			"label": "Articles per page",
-			"min": 5,
-			"max": 24,
-			"step": 1,
-			"default": 6
-		},
-		{
-			"type": "checkbox",
-			"id": "feature_first_article",
-			"label": "Feature first blog post",
-			"default": true
-		},
-		{
-			"type": "color",
-			"id": "feature_article_background",
-			"label": "Featured article background"
-		},
-		{
-			"type": "color",
-			"id": "feature_article_text_color",
-			"label": "Featured article text"
-		},
-		{
-			"type": "header",
-			"content": "Blog post card"
-		},
-		{
-			"type": "checkbox",
-			"id": "show_excerpt",
-			"label": "Show excerpt",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "show_date",
-			"label": "Show date",
-			"default": true
-		},
-		{
-			"type": "checkbox",
-			"id": "show_author",
-			"label": "Show author",
-			"default": false
-		},
-		{
-			"type": "checkbox",
-			"id": "show_comments_count",
-			"label": "Show comments count",
-			"default": false
-		},
-		{
-			"type": "checkbox",
-			"id": "show_category",
-			"label": "Show category",
-			"info": "The first post's tag will be shown as category.",
-			"default": true
-		}
-	]
+  "name": "Blog",
+  "class": "shopify-section--main-blog",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Write something about what your customers will receive by subscribing to your newsletter.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button",
+          "default": "Subscribe"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "range",
+          "id": "position",
+          "label": "Position in grid",
+          "min": 1,
+          "max": 24,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_transparent_header",
+      "label": "Allow transparent header",
+      "info": "This setting only applies when this section is the first one.",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Get access to our latest news by signing up for our newsletter.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter_form",
+      "label": "Show newsletter form",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": true,
+      "info": "Categorize your blog posts by [adding tags](https://help.shopify.com/en/manual/online-store/blogs/writing-blogs#add-tags-to-a-blog-post)."
+    },
+    {
+      "type": "color",
+      "id": "banner_background",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text"
+    },
+    {
+      "type": "header",
+      "content": "Blog post listing"
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 5,
+      "max": 24,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_first_article",
+      "label": "Feature first blog post",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "feature_article_background",
+      "label": "Featured article background"
+    },
+    {
+      "type": "color",
+      "id": "feature_article_text_color",
+      "label": "Featured article text"
+    },
+    {
+      "type": "header",
+      "content": "Blog post card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments_count",
+      "label": "Show comments count",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show category",
+      "info": "The first post's tag will be shown as category.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_padding",
+      "label": "Custom padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    }
+  ]
 }
 {% endschema %}
